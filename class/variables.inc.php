@@ -84,7 +84,7 @@ Class SQL extends Dbh {
         } else {
             $result = 'insert fail';
         }
-        echo "\$result = $result <br>";
+        #echo "\$result = $result <br>";
         return $result;
     }
 
