@@ -4,7 +4,7 @@ if (isset($_GET['code'])){
     $code = urldecode($_GET['code']);
     $filename = false; //if don't want to have filename, must be FALSE, not '' / string(0);
     $err_correction = ''; 
-    $code_pixel_size = 4; //the size of the QRCode;
+    $code_pixel_size = 12; //the size of the QRCode;
     $outside_border_range = 0; //border around the QRCode.
 }
 

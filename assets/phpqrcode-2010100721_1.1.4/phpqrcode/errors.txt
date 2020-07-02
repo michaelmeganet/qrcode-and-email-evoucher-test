@@ -9718,4 +9718,4 @@
 <b>Notice</b>:  Trying to access array offset on value of type int in <b>C:\xamppnew\htdocs\cct3000-serialno-generator\phpqrcode-2010100721_1.1.4\phpqrcode\qrsplit.php</b> on line <b>53</b><br />
 <br />
 <b>Notice</b>:  Trying to access array offset on value of type int in <b>C:\xamppnew\htdocs\cct3000-serialno-generator\phpqrcode-2010100721_1.1.4\phpqrcode\qrsplit.php</b> on line <b>62</b><br />
-2020-06-29 11:44:44: empty string!!!
+2020-06-29 11:44:44: empty string!!!2020-07-02 09:55:54: empty string!!!

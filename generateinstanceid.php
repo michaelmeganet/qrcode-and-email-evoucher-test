@@ -11,17 +11,21 @@ include_once 'IdGenerate.class.php';
  * and open the template in the editor.
  */
 
-function insertSQL($instancetid, $userid, $expiredate, $serialno, $datecreate) {
-    $sqlInsert = "INSERT INTO serialtable SET instanceid = '$instancetid', "
-            . " userid = '$userid', expiredate = '$expiredate' , serialno = '$serialno',"
-            . " datecreate = '$datecreate';";
+function insertSQL($instancetid, $userid, $expiredate, $serialno, $datecreate, $valvoucher) {
+    $sqlInsert = "INSERT INTO serialtable SET "
+            . "instanceid = '$instancetid', "
+            . "userid = '$userid', "
+            . "valvoucher = '$valvoucher', "
+            . "expiredate = '$expiredate', "
+            . "serialno = '$serialno', "
+            . "datecreate = '$datecreate';";
     #echo "$sqlInsert = $sqlInsert <br>";
     $objinsert = new SQL($sqlInsert);
     $result = $objinsert->InsertData();
     #echo "$result<br>";
 }
 
-function generate_runno($j) {
+function generate_runno($j,$valvoucher) {
     $date = new DateTime();
     $date->setDate(2020, 10, 3);
 //    echo $date->format('Y-m-d') . " | ";
@@ -44,7 +48,7 @@ function generate_runno($j) {
     $sid = '';
     // return $id;
     // Prints the day, date, month, year, time, AM or PM
-    insertSQL($instancetid, $j, $expiredate, $serialno, $datecreate);
+    insertSQL($instancetid, $j, $expiredate, $serialno, $datecreate, $valvoucher);
     #echo "work_id = $j, \$instancetid = $instancetid    |   " . $datecreate . " | expireddate = $expiredate | $serialno<br>";
     // echo "work_id = $j, \$id = $id    |   " . date("l jS \of F Y h:i:s A") . " <br>";date_format($expiredate, 'd/m/Y');
     // sleep(1);
@@ -52,5 +56,6 @@ function generate_runno($j) {
 //    echo"<br>list down array \$instancetid<br>";
 //    print_r($instancetid);
 //    echo "<br>";
-    return $instancetid;
+    $arr_runno = array('instancetid' => $instancetid, 'datecreate' => $datecreate, 'expiredate' => $expiredate);
+    return $arr_runno;
 }
