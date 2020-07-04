@@ -119,7 +119,7 @@ Class PREPRINT_VOUCHER extends CREATE_VOUCHER{
                     $result = $this->insertSQL();
                 }else{
                     //voucher is still valid, runningno cannot be used,
-                    $result = "Runningno already active, please check<br>";
+                    $result = "Runningno already active, please check";
                 }
             }
             return $result;
