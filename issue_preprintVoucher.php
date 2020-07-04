@@ -49,8 +49,8 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Activate Batch</title>
         <script src="./assets/jquery-2.1.1.min.js"></script>
-        <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
-        <script src="bower_components/select2/dist/js/select2.min.js"></script>
+        <link href="./bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="./bower_components/select2/dist/js/select2.min.js"></script>
         <script type="text/javascript">
             function getSelectOptionNo(sel) {
 
@@ -119,30 +119,22 @@ and open the template in the editor.
                 <div class="form-group row row-no-gutters">
                     <div class="col-sm-1">                     
                         <label class="label label-default">User :</label><br> 
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
                     </div>
                 </div>
                 <div class="form-group row row-no-gutters">
                     <div class="col-sm-1">                     
-                        <label class="label label-default">Last procesed Runningno : <?php echo sprintf("%'.010d",$lastRunNo);?></label><br> 
+                        <label class="label label-primary">Last procesed Runningno : <?php echo sprintf("%'.010d",$lastRunNo);?></label><br> 
                     </div>
                 </div>
                 <div class="form-group row row-no-gutters">
-                    <div class="col-sm-1">                     
-                        <label class="label label-default">From :</label><br> 
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="<?php echo $lastRunNo+1;?>" placeholder="0000000000" maxlength="10" />
-                    </div>
-                    <div class="col-sm-1 col-sm-pull-0">                     
-                        <label class="label label-default">To :</label><br> 
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numEnd" id='numEnd' value="<?php echo $lastRunNo+2;?>" placeholder="9999999999" maxlength='10' />
-                    </div>
                     <div class="col-sm-2">
                         <label class="label label-default">No. of vouchers :</label><br>
                         <select class='form-control' name='noQty' id='noQty' class="js-example-basic-single"
                                 style="text-align: center;padding-right: 3px;padding-left:3px;width:120%" name="state"
                                 onchange="getSelectOptionNo(this)">
                                     <?php
-                                    for ($i = 1; $i < 10000; $i++) {
+                                    for ($i = 1; $i < 1000; $i++) {
                                         echo "<option value=\"$i\">$i</option>";
                                     }
                                     ?>
@@ -150,6 +142,17 @@ and open the template in the editor.
                         </select>
 
                     </div>
+                </div>
+                <div class="form-group row row-no-gutters">
+                    <div class="col-sm-2">                     
+                        <label class="label label-default">From :</label><br> 
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:100%"type="text" name="numStart" id='numStart' value="<?php echo $lastRunNo+1;?>" placeholder="0000000000" maxlength="10" />
+                    </div>
+                    <div class="col-sm-2 col-sm-pull-0">                     
+                        <label class="label label-default">To :</label><br> 
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:100%"type="text" name="numEnd" id='numEnd' value="<?php echo $lastRunNo+2;?>" placeholder="9999999999" maxlength='10' />
+                    </div>
+                    
                 </div>
                 <div>
                     <label class=" radio-inline "><input type="radio" name="valvoucher" id='valvoucher' value="5"/>RM 5</label>
