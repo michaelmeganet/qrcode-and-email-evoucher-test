@@ -48,6 +48,31 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Activate Batch</title>
+        <script src="./assets/jquery-2.1.1.min.js"></script>
+        <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="bower_components/select2/dist/js/select2.min.js"></script>
+        <script type="text/javascript">
+            function getSelectOptionNo(sel) {
+
+                var tmp = sel.options[sel.selectedIndex].text;
+                var tmp2 = sel.options[sel.selectedIndex].value;
+//                $('#numStart').val(tmp);
+//                $('#numStart').val(tmp);
+                var numStart = document.getElementById('numStart').value;
+                var start = parseFloat(numStart);
+                var noInteger = parseFloat(tmp);
+                console.log("start = " + start);
+                console.log("noInteger = " + noInteger);
+                var numEnd = start + noInteger - 1;
+                $('#numEnd').val(numEnd);
+                console.log(numEnd);
+
+                //document.getElementById("Thick").value = cars;
+//    alert(tmp);
+                //console.log(tmp);
+
+            }
+        </script>
     </head>
     <body>
         <div class='container'>
@@ -113,7 +138,7 @@ and open the template in the editor.
                     </div>
                     <div class="col-sm-2">
                         <label class="label label-default">No. of vouchers :</label><br>
-                        <select name='noQty' id='noQty' class="js-example-basic-single"
+                        <select class='form-control' name='noQty' id='noQty' class="js-example-basic-single"
                                 style="text-align: center;padding-right: 3px;padding-left:3px;width:120%" name="state"
                                 onchange="getSelectOptionNo(this)">
                                     <?php
@@ -153,7 +178,16 @@ and open the template in the editor.
             }
             ?>
         </div>
-        
+        <script type="text/javascript" >
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+            $("#noQty").keyup(function() {
+
+                var noQty = document.getElementById("noQty").value;
+
+            });
+        </script>
     </body>
 </html>
 
