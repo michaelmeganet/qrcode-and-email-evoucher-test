@@ -36,7 +36,7 @@ function getLastRunningNo(){
     return $lastRunNo;
 }
 
-$lastRunNo = sprintf("%'.010d", getLastRunningNo());
+$lastRunNo = getLastRunningNo();
 ?>
 <!DOCTYPE html>
 <!--
@@ -105,11 +105,25 @@ and open the template in the editor.
                 <div class="form-group row row-no-gutters">
                     <div class="col-sm-1">                     
                         <label class="label label-default">From :</label><br> 
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000000" maxlength="10" />
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="<?php echo $lastRunNo+1;?>" placeholder="0000000000" maxlength="10" />
                     </div>
                     <div class="col-sm-1 col-sm-pull-0">                     
                         <label class="label label-default">To :</label><br> 
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numEnd" id='numEnd' value="" placeholder="9999999999" maxlength='10' />
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numEnd" id='numEnd' value="<?php echo $lastRunNo+2;?>" placeholder="9999999999" maxlength='10' />
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="label label-default">No. of vouchers :</label><br>
+                        <select name='noQty' id='noQty' class="js-example-basic-single"
+                                style="text-align: center;padding-right: 3px;padding-left:3px;width:120%" name="state"
+                                onchange="getSelectOptionNo(this)">
+                                    <?php
+                                    for ($i = 1; $i < 10000; $i++) {
+                                        echo "<option value=\"$i\">$i</option>";
+                                    }
+                                    ?>
+
+                        </select>
+
                     </div>
                 </div>
                 <div>
