@@ -165,7 +165,7 @@ and open the template in the editor.
                     
                 </div>
                 <div>
-                    <label class=" radio-inline "><input type="radio" name="valvoucher" id='valvoucher' value="5"/>RM 5</label>
+                    <label class=" radio-inline "><input type="radio" name="valvoucher" id='valvoucher' value="5" checked="checked"/>RM 5</label>
                     <label class=" radio-inline "><input type="radio" name="valvoucher" id='valvoucher' value="10"/>RM 10</label>
                 </div>
                 <div>
