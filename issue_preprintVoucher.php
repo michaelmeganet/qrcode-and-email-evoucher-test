@@ -6,6 +6,7 @@ include_once 'header.php';
 $month = date('m');
 $year = date('y');
 $rundate = $year . $month;
+$numStart = 1;
 ?>
 <!DOCTYPE html>
 <!--
@@ -17,6 +18,32 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Activate Batch</title>
+        <script src="./assets/jquery-2.1.1.min.js"></script>
+        <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="bower_components/select2/dist/js/select2.min.js"></script>
+        <script type="text/javascript">
+            function getSelectOptionNo(sel) {
+
+                var tmp = sel.options[sel.selectedIndex].text;
+                var tmp2 = sel.options[sel.selectedIndex].value;
+//                $('#numStart').val(tmp);
+//                $('#numStart').val(tmp);
+                var numStart = document.getElementById('numStart').value;
+                var start = parseFloat(numStart);
+                var noInteger = parseFloat(tmp);
+                console.log("start = " + start);
+                console.log("noInteger = " + noInteger);
+                var numEnd = start + noInteger - 1;
+                $('#numEnd').val(numEnd);
+                console.log(numEnd);
+
+                //document.getElementById("Thick").value = cars;
+//    alert(tmp);
+                //console.log(tmp);
+
+            }
+        </script>
+
     </head>
     <body>
         <div class='container'>
@@ -26,7 +53,7 @@ and open the template in the editor.
                     <div class='form-group row'>
                         <div class="col-sm-1">
                             <label class="label label-default">Running Date :</label><br>
-                            <input class='form-control text-primary ' style="padding-right: 3px"type="text" name="rundate" value="<?php # echo $rundate;   ?>" readonly="readonly" />
+                            <input class='form-control text-primary ' style="padding-right: 3px"type="text" name="rundate" value="<?php # echo $rundate;                                           ?>" readonly="readonly" />
                         </div>
                     </div>
                 -->
@@ -39,15 +66,25 @@ and open the template in the editor.
                 <div class="form-group row row-no-gutters">
                     <div class="col-sm-1">
                         <label class="label label-default">From :</label><br>
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000000" maxlength="10" />
+                        <input class='form-control text-primary' <?php echo" value =\"$numStart\""; ?> style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000000" maxlength="10" />
                     </div>
                     <div class="col-sm-1 col-sm-pull-0">
                         <label class="label label-default">To :</label><br>
                         <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numEnd" id='numEnd' value="" placeholder="9999999999" maxlength='10' />
                     </div>
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                         <label class="label label-default">No. of vouchers :</label><br>
-                        <input class='form-control text-primary ' value ="100" style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000100" maxlength="10" />
+                        <select name='noQty' id='noQty' class="js-example-basic-single"
+                                style="text-align: center;padding-right: 3px;padding-left:3px;width:120%" name="state"
+                                onchange="getSelectOptionNo(this)">
+                                    <?php
+                                    for ($i = 1; $i < 10000; $i++) {
+                                        echo "<option value=\"$i\">$i</option>";
+                                    }
+                                    ?>
+
+                        </select>
+
                     </div>
 
                 </div>
@@ -63,7 +100,19 @@ and open the template in the editor.
         <?php
         // put your code here
         ?>
+
+        <script type="text/javascript" >
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+            $("#noQty").keyup(function() {
+
+                var noQty = document.getElementById("noQty").value;
+
+            });
+        </script>
     </body>
+
 </html>
 
 
