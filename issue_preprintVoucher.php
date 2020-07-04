@@ -1,9 +1,11 @@
 <?php
+
 namespace voucher\PrePrint;
+
 include_once 'header.php';
 $month = date('m');
 $year = date('y');
-$rundate = $year.$month;
+$rundate = $year . $month;
 ?>
 <!DOCTYPE html>
 <!--
@@ -19,30 +21,35 @@ and open the template in the editor.
     <body>
         <div class='container'>
             <form action="activatePrePrintVoucher.php" method='POST'>
-            <h3 class="text-primary">Activate Pre-Printed Vouchers (Batch)</h3>
-            <!--
-                <div class='form-group row'>
-                    <div class="col-sm-1">                     
-                        <label class="label label-default">Running Date :</label><br> 
-                        <input class='form-control text-primary ' style="padding-right: 3px"type="text" name="rundate" value="<?php# echo $rundate; ?>" readonly="readonly" />
+                <h3 class="text-primary">Activate Pre-Printed Vouchers (Batch)</h3>
+                <!--
+                    <div class='form-group row'>
+                        <div class="col-sm-1">
+                            <label class="label label-default">Running Date :</label><br>
+                            <input class='form-control text-primary ' style="padding-right: 3px"type="text" name="rundate" value="<?php # echo $rundate;   ?>" readonly="readonly" />
+                        </div>
                     </div>
-                </div>  
-            -->
+                -->
                 <div class="form-group row row-no-gutters">
-                    <div class="col-sm-1">                     
-                        <label class="label label-default">User :</label><br> 
+                    <div class="col-sm-1">
+                        <label class="label label-default">User :</label><br>
                         <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
                     </div>
                 </div>
                 <div class="form-group row row-no-gutters">
-                    <div class="col-sm-1">                     
-                        <label class="label label-default">From :</label><br> 
+                    <div class="col-sm-1">
+                        <label class="label label-default">From :</label><br>
                         <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000000" maxlength="10" />
                     </div>
-                    <div class="col-sm-1 col-sm-pull-0">                     
-                        <label class="label label-default">To :</label><br> 
+                    <div class="col-sm-1 col-sm-pull-0">
+                        <label class="label label-default">To :</label><br>
                         <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numEnd" id='numEnd' value="" placeholder="9999999999" maxlength='10' />
                     </div>
+                    <div class="col-sm-1">
+                        <label class="label label-default">No. of vouchers :</label><br>
+                        <input class='form-control text-primary ' value ="100" style="text-align: center;padding-right: 3px;padding-left:3px;width:135%"type="text" name="numStart" id='numStart' value="" placeholder="0000000100" maxlength="10" />
+                    </div>
+
                 </div>
                 <div>
                     <label class=" radio-inline "><input type="radio" name="valvoucher" id='valvoucher' value="5"/>RM 5</label>
