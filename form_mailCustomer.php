@@ -11,6 +11,9 @@ include 'header.php';
 
 #echo "THIS :> ".basename((__FILE__),'.php');
 ?>
+<form action="index.php" method="post">
+    <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+</form>
 <div class ="container">
     <h3><b>INSERT TITLE HERE</b></h3>
     <br>
