@@ -4,7 +4,7 @@ session_start();
 include_once 'generateinstanceid.php';
 
 use Exception;
-use PREPRINT_VOUCHER;
+use CREATE_PREPRINT_VOUCHER;
 
 
 if(isset($_POST['submitActivate'])){
@@ -35,7 +35,7 @@ try {
             $currNo = $numStart + $i - 1;
             $runningno = sprintf("%'.010d",$currNo);
             echo "No.$i : Processed runningno = $runningno<br>";
-            $objVoucher = new PREPRINT_VOUCHER($userid, $valvoucher, $datecreate, $runningno);
+            $objVoucher = new CREATE_PREPRINT_VOUCHER($userid, $valvoucher, $datecreate, $runningno);
             //create a voucher
             $createResult = $objVoucher->create_voucher();
             if ($createResult != 'Insert Successful!'){
