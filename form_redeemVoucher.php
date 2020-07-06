@@ -40,14 +40,21 @@ and open the template in the editor.
                 </div>
             </form>
         <?php
-        if ($vouchertype == 'evoucher'){
-            //show evoucher check form
-            ?>
-            <form action="validate"
-            <?php
-
-        }elseif($vouchertype == 'preprintvoucher'){
-
+        if (isset($vouchertype)){
+                ?>
+            <form action='<?php echo "validateVoucher.php";?>' method="POST">
+                <div class="form-group row row-no-gutters">
+                    <div class="col-sm-3">
+                        <label class="label label-default">Scan QRCode or Type in here :</label>
+                        <div class="row-no-gutters">
+                            <input class=" form-control text-primary inline " type="input" name="serialcode" id="serialcode" value="" placeholder="Serial Code" />
+                            <input class="inline btn btn-info btn-block" style=' align-self: center ' type="submit" name="submitSerialCode" id="submitSerialCode" value="Submit"/>
+                        </div>
+                    </div>
+                </div>
+                <input type='hidden' name='vouchertype' id='vouchertype' value="<?php echo $vouchertype; ?>" />
+            </form>
+                <?php
         }
 
         ?>
