@@ -1,7 +1,7 @@
 <?php
 namespace voucher\PrePrint;
 session_start();
-include_once 'generateinstanceid.php';
+include_once 'class/vouchergenerate.inc.php';
 
 use Exception;
 use CREATE_PREPRINT_VOUCHER;

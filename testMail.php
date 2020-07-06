@@ -1,7 +1,7 @@
 <?php
 namespace voucher\EVoucher;
 
-include_once 'generateinstanceid.php';
+include_once 'class/vouchergenerate.inc.php';
 
 use CREATE_E_VOUCHER;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -43,14 +43,15 @@ try{
         echo "curr = ".$curr."<br>";
        
         //Create PNG of Barcode
+        $img_dir = './resource/img/qrcode_img.png';
         $output = file_get_contents($curr);
-        file_put_contents('./qrcode_img.png', $output);
+        file_put_contents($img_dir, $output);
 
         //create PDF for the E-Voucher
         //include_once 'printToPDF.php';
 
         //directory of PDF file
-        //$evoucher = './pdf/evoucher_tmp.pdf';
+        //$evoucher = './resource/pdf/evoucher_tmp.pdf';
 
         $mail = new PHPMailer(true);
         /**/
@@ -70,7 +71,7 @@ try{
             #$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
             $mail->addAddress($recipient);               // Name is optional
             $mail->addReplyTo('meganet003@gmail.com', '-noreply');
-            $mail->addEmbeddedImage('./qrcode_img.png', 'qrcode'); //Adds an image to be embedded
+            $mail->addEmbeddedImage($img_dir, 'qrcode'); //Adds an image to be embedded
             #$mail->addCC('cc@example.com');
             #$mail->addBCC('bcc@example.com');
 
