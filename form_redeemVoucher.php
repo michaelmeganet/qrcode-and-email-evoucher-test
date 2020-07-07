@@ -1,5 +1,6 @@
 <?php
 namespace voucher\Validate;
+session_start();
 include 'header.php';
 $physvoucherRadio = '';
 $evoucherRadio = '';
@@ -11,6 +12,11 @@ if(isset($_POST['vouchertype'])){
     }else{
         $physvoucherRadio = "checked='checked'";
     }
+}
+
+if(isset($_SESSION['VOUCHER_UPD_MSG'])){
+    $voucherUpdMsg = $_SESSION['VOUCHER_UPD_MSG'];
+    session_destroy();
 }
 ?><!DOCTYPE html>
 <!--
@@ -56,7 +62,13 @@ and open the template in the editor.
             </form>
                 <?php
         }
-
+        if (isset($voucherUpdMsg)){
+            ?>
+            <div class="form-group row row-no-gutters">
+                <label class="alert alert-block alert-dismissable"><?php echo $voucherUpdMsg; ?></label>
+            </div>
+            <?php
+        }
         ?>
             
         </div>
