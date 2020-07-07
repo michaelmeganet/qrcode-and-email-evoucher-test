@@ -11,7 +11,7 @@ include_once 'IdGenerate.class.php';
  * and open the template in the editor.
  */
 
-class CREATE_VOUCHER {
+class VOUCHER {
 
     protected $instanceid;
     protected $userid;
@@ -112,14 +112,15 @@ class CREATE_VOUCHER {
 
 }
 
-Class CREATE_E_VOUCHER extends CREATE_VOUCHER {
+Class E_VOUCHER extends VOUCHER {
 
     protected $serialno;
     protected $void = 'no'; //default value = no
     protected $table = 'evoucher_serial';
 
-    public function __construct($userid, $valvoucher, $datecreate) {
+    public function __construct($userid, $valvoucher) {
         $table = $this->table;
+        $datecreate = date('Y-m-d H:i:s');
         parent::__construct($userid, $valvoucher, $datecreate, $table);
         $lastSerialNo = $this->fetchLastSerialNo();
         echo "\$lastSerialNo = $lastSerialNo<br>";
@@ -205,15 +206,12 @@ Class CREATE_E_VOUCHER extends CREATE_VOUCHER {
         return $lastSerialNo;
     }
 
-    /* currently commented out Expiration and Void checker
-     * E-Voucher process doesn't need to check this when creating new voucher.
-
-      function checkExpiryDate(){
+      public function checkExpiryDate($instanceid){
       $table = $this->get_table();
       $currDate = date_format(date_create($this->get_datecreate()),'Y-m-d');
       echo "\$currDate = $currDate<br>";
       $runningno = $this->get_runningno();
-      $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC;";
+      $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC;";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
       if ($currDate >= $result['expiredate']){
@@ -227,10 +225,10 @@ Class CREATE_E_VOUCHER extends CREATE_VOUCHER {
       return $info;
       }
 
-      function checkVoid(){
+      public function checkVoid($instanceid){
       $table = $this->get_table();
       $runningno = $this->get_runningno();
-      $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC";
+      $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
       if($result['void'] == 'no'){
@@ -242,8 +240,6 @@ Class CREATE_E_VOUCHER extends CREATE_VOUCHER {
       }
       return $info;
       }
-     *
-     */
 
     public function get_serialno() {
         return $this->serialno;
@@ -271,15 +267,16 @@ Class CREATE_E_VOUCHER extends CREATE_VOUCHER {
 
 }
 
-Class CREATE_PREPRINT_VOUCHER extends CREATE_VOUCHER {
+Class PREPRINT_VOUCHER extends VOUCHER {
 
     protected $runningno;
     protected $serialno;
     protected $void = 'no'; //default value = no
     protected $table = 'preprint_serial';
 
-    public function __construct($userid, $valvoucher, $datecreate, $runningno) {
+    public function __construct($userid, $valvoucher, $runningno) {
         $table = $this->table;
+        $datecreate = date('Y-m-d H:i:s');
         parent::__construct($userid, $valvoucher, $datecreate, $table);
         $this->set_runningno($runningno);
         $lastSerialNo = $this->fetchLastSerialNo(); ///serialno format = int
@@ -290,15 +287,16 @@ Class CREATE_PREPRINT_VOUCHER extends CREATE_VOUCHER {
     }
 
     public function create_voucher() {
+        $runningno = $this->get_runningno();
         //check if the runningno available or not
-        $inf_checkRunningNo = $this->checkRunningNo();
+        $inf_checkRunningNo = $this->checkRunningNo($runningno);
         if ($inf_checkRunningNo == 'runno avail') {
             //runningno available, can create new voucher
             $result = $this->insertSQL();
         } else {
             //runningno not available, check if voucher valid or not
-            $inf_checkExpiryDate = $this->checkExpiryDate();
-            $inf_checkVoid = $this->checkVoid();
+            $inf_checkExpiryDate = $this->checkExpiryDate($runningno);
+            $inf_checkVoid = $this->checkVoid($runningno);
             if (($inf_checkExpiryDate == 'voucher expired') || ($inf_checkVoid == 'voucher void')) {
                 //voucher is not valid, can create new voucher
                 $result = $this->insertSQL();
@@ -363,9 +361,9 @@ Class CREATE_PREPRINT_VOUCHER extends CREATE_VOUCHER {
         return $lastSerialNo;
     }
 
-    public function checkRunningNo() {
+    public function checkRunningNo($runningno) {
         $table = $this->get_table();
-        $runningno = $this->get_runningno();
+        #$runningno = $this->get_runningno();
         $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC;";
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
@@ -380,11 +378,11 @@ Class CREATE_PREPRINT_VOUCHER extends CREATE_VOUCHER {
         return $info;
     }
 
-    public function checkExpiryDate() {
+    public function checkExpiryDate($runningno) {
         $table = $this->get_table();
         $currDate = date_format(date_create($this->get_datecreate()), 'Y-m-d');
         echo "\$currDate = $currDate<br>";
-        $runningno = $this->get_runningno();
+        #$runningno = $this->get_runningno();
         $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC;";
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
@@ -398,9 +396,9 @@ Class CREATE_PREPRINT_VOUCHER extends CREATE_VOUCHER {
         return $info;
     }
 
-    public function checkVoid() {
+    public function checkVoid($runningno) {
         $table = $this->get_table();
-        $runningno = $this->get_runningno();
+        #$runningno = $this->get_runningno();
         $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC";
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
