@@ -3,7 +3,7 @@ namespace voucher\EVoucher;
 
 include_once 'class/vouchergenerate.inc.php';
 
-use CREATE_E_VOUCHER;
+use E_VOUCHER;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -25,8 +25,7 @@ if (isset($_POST)){
 }  
 
 try{
-    $datecreate = date('Y-m-d H:i:s');
-    $objEVoucher = new CREATE_E_VOUCHER($userid, $voucheramount, $datecreate);
+    $objEVoucher = new E_VOUCHER($userid, $voucheramount);
     $result = $objEVoucher->create_voucher();
     echo "\$result  =$result<br>";
     if ($result != 'Insert Successful!'){

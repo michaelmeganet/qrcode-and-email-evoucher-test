@@ -4,7 +4,7 @@ session_start();
 include_once 'class/vouchergenerate.inc.php';
 
 use Exception;
-use CREATE_PREPRINT_VOUCHER;
+use PREPRINT_VOUCHER;
 
 
 if(isset($_POST['submitActivate'])){
@@ -16,7 +16,6 @@ if(isset($_POST['submitActivate'])){
     $valvoucher = (int)$_POST['valvoucher'];
     $numStart = (int)$_POST['numStart'];
     $numEnd = (int)$_POST['numEnd'];
-    $datecreate = date('Y-m-d H:i:s');
 }else{
     die("Please try <a href='index.php'>again</a>.");
 }
@@ -35,7 +34,7 @@ try {
             $currNo = $numStart + $i - 1;
             $runningno = sprintf("%'.010d",$currNo);
             echo "No.$i : Processed runningno = $runningno<br>";
-            $objVoucher = new CREATE_PREPRINT_VOUCHER($userid, $valvoucher, $datecreate, $runningno);
+            $objVoucher = new PREPRINT_VOUCHER($userid, $valvoucher, $runningno);
             //create a voucher
             $createResult = $objVoucher->create_voucher();
             if ($createResult != 'Insert Successful!'){
