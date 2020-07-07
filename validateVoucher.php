@@ -23,12 +23,28 @@ if (isset($_POST)){
     die("Please try <a href='index.php'>again</a>.");
     
 }    
- 
-function updateRedeemVoid($table,$instanceid, $dateredeem,$updVoid){
+function fetchVoucherData($inputSerialCode, $vouchertype){
+    if($vouchertype == 'evoucher'){
+        $qr = "SELECT * FROM evoucher_serial WHERE instanceid = '$inputSerialCode'";
+    }elseif($vouchertype == 'preprintvoucher'){
+        $qr = "SELECT * FROM preprint_serial WHERE runningno = '$inputSerialCode'";
+    }
+    $objSQL = new SQL($qr);
+    $result = $objSQL->getResultOneRowArray();
+    
+    return $result;
+}
+function updateRedeemVoid($vouchertype,$instanceid, $dateredeem,$updVoid){
+    if($vouchertype == 'evoucher'){
+        $table = 'evoucher_serial';
+    }elseif($vouchertype == 'preprintvoucher'){
+        $table = 'preprintvoucher';
+    }
     $qr = "UPDATE $table SET "
             . "dateredeem = '$dateredeem', "
-            . "void = '$updVoid'"
+            . "void = '$updVoid' "
             . "WHERE instanceid = '$instanceid'";
+    echo "\$qr = $qr<br>";
     $objUpdSQL = new SQL($qr);
     $result = $objUpdSQL->getUpdate();
     if($result == 'updated'){
@@ -40,21 +56,8 @@ function updateRedeemVoid($table,$instanceid, $dateredeem,$updVoid){
     
 }
 
-switch($vouchertype){
-    case 'evoucher':
-        $table = 'evoucher_serial';
-        $query = "SELECT * FROM $table WHERE instanceid = '$inputSerialCode'";
-        #$voucherObj = new CREATE_E_VOUCHER($userid, $valvoucher, $datecreate);
-        break;
-    case 'preprintvoucher':
-        $table = 'preprint_serial';
-        $query = "SELECT * FROM $table WHERE runningno = '$inputSerialCode'";
-       #$voucherObj = new CREATE_PREPRINT_VOUCHER($userid, $valvoucher, $datecreate, $runningno);
-        break;
- } 
  try{
-     $objSQL = new SQL($query);
-     $result = $objSQL->getResultOneRowArray();
+     $result = fetchVoucherData($inputSerialCode,$vouchertype);
      if(!empty($result)){
          echo "Found data based on \$inputSerialCode = $inputSerialCode<br>";
          //check results
@@ -63,6 +66,7 @@ switch($vouchertype){
          $valvoucher = $result['valvoucher']; // the amount of the voucher
          $instanceid = $result['instanceid']; // exclusive instance id 
          $currDate = date_format(date_create($currentDate),'Y-m-d');
+         
          //check if expired or not.
          if ($void != 'no'){
              echo "voucher is void<br>";
@@ -71,7 +75,7 @@ switch($vouchertype){
              echo "Voucher has already expired<br>";
              $dateredeem = NULL;
              $updVoid = 'yes';
-             $result = updateRedeemVoid($table, $instanceid, $dateredeem, $updVoid);
+             $result = updateRedeemVoid($vouchertype, $instanceid, $dateredeem, $updVoid);
              throw new Exception("Voucher has already expired");
              //<-- do update Void into 'yes' here-->//
          }else{
@@ -79,7 +83,7 @@ switch($vouchertype){
              //<-- do update Void and Redeem here-->//
              $dateredeem = $currentDate;
              $updVoid = 'yes';
-             $result = updateRedeemVoid($table, $instanceid, $dateredeem, $updVoid);
+             $result = updateRedeemVoid($vouchertype, $instanceid, $dateredeem, $updVoid);
              echo "\$result = $result<br>";
              if($result == 'Update Success'){
                 
