@@ -27,14 +27,16 @@ CREATE TABLE IF NOT EXISTS `evoucher_serial` (
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table ishindata.evoucher_serial: ~0 rows (approximately)
+-- Dumping data for table ishindata.evoucher_serial: ~5 rows (approximately)
 /*!40000 ALTER TABLE `evoucher_serial` DISABLE KEYS */;
 INSERT INTO `evoucher_serial` (`sid`, `instanceid`, `userid`, `valvoucher`, `expiredate`, `serialno`, `datecreate`, `dateredeem`, `void`) VALUES
-	(1, '620557291489337349', 'Claudio', 5.00, '2020-09-06', 1, '2020-07-06 08:43:13', NULL, 'no'),
+	(1, '620557291489337349', 'Claudio', 5.00, '2020-09-06', 1, '2020-07-07 16:15:33', '2020-07-07 11:15:33', 'yes'),
 	(2, '620557504492871685', 'Claudio', 5.00, '2020-09-06', 2, '2020-07-06 08:43:39', NULL, 'no'),
 	(3, '620557933603725317', 'Claudio', 5.00, '2020-09-06', 3, '2020-07-06 08:44:30', NULL, 'no'),
-	(4, '620558217432276997', 'Claudio', 5.00, '2020-09-06', 4, '2020-07-06 08:45:04', NULL, 'no'),
-	(5, '620559769442197509', 'Claudio', 5.00, '2020-09-06', 5, '2020-07-06 08:48:09', NULL, 'no');
+	(4, '620558217432276997', 'Claudio', 5.00, '2020-09-06', 4, '2020-07-07 11:25:45', '2020-07-07 06:25:45', 'yes'),
+	(5, '620559769442197509', 'Claudio', 5.00, '2020-09-06', 5, '2020-07-07 11:24:52', '2020-07-07 06:24:52', 'yes'),
+	(6, '620625895689822213', 'Claudio', 5.00, '2020-09-06', 6, '2020-07-07 11:02:42', '2020-07-07 06:02:42', 'yes'),
+	(7, '621213307126161413', 'Claudio', 10.00, '2020-09-07', 7, '2020-07-07 11:27:24', '2020-07-07 06:27:24', 'yes');
 /*!40000 ALTER TABLE `evoucher_serial` ENABLE KEYS */;
 
 -- Dumping structure for table ishindata.preprint_serial
@@ -54,10 +56,10 @@ CREATE TABLE IF NOT EXISTS `preprint_serial` (
   KEY `psid` (`psid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table ishindata.preprint_serial: ~2,896 rows (approximately)
+-- Dumping data for table ishindata.preprint_serial: ~3,186 rows (approximately)
 /*!40000 ALTER TABLE `preprint_serial` DISABLE KEYS */;
 INSERT INTO `preprint_serial` (`psid`, `runningno`, `instanceid`, `userid`, `valvoucher`, `expiredate`, `serialno`, `datecreate`, `dateredeem`, `void`) VALUES
-	(1, '0000000020', '619088581192851461', 'Claudio', 10.00, '2020-09-04', 1, '2020-07-04 08:05:09', NULL, 'no'),
+	(1, '0000000020', '619088581192851461', 'Claudio', 10.00, '2020-09-04', 1, '2020-07-04 08:05:09', '2020-07-08 03:14:26', 'yes'),
 	(2, '0000000021', '619088581243183109', 'Claudio', 10.00, '2020-09-04', 2, '2020-07-04 08:05:09', NULL, 'no'),
 	(3, '0000000022', '619088581369012229', 'Claudio', 10.00, '2020-07-04', 3, '2020-07-04 08:05:09', NULL, 'no'),
 	(4, '0000000023', '619088581578727429', 'Claudio', 10.00, '2020-09-04', 4, '2020-07-04 08:05:09', NULL, 'no'),

@@ -92,8 +92,8 @@ try {
             echo "\$result = $result<br>";
             if ($result == 'Update Success') {
 
-                $_SESSION['VOUCHER_UPD_MSG'] = "<label class='alert alert-success'>Congratulation! You received RM" . $valvoucher . " discount!<br>"
-                        . "Contact our staff for payment!</label>";
+                $_SESSION['VOUCHER_UPD_MSG'] = "Congratulation! You received RM" . $valvoucher . " discount!<br>"
+                        . "Contact our staff for payment!";
             } else {
                 throw new Exception('Failed to redeem, please contact administrator', (int) $inputSerialCode);
             }
@@ -104,8 +104,8 @@ try {
     }
 } catch (Exception $ex) {
 
-    $_SESSION['VOUCHER_UPD_MSG'] = "<label class='alert alert-danger'>" . $ex->getMessage() . "</label>";
+    $_SESSION['VOUCHER_UPD_MSG'] = $ex->getMessage();
 }
 echo $_SESSION['VOUCHER_UPD_MSG'];
-//echo '<META HTTP-EQUIV="refresh" content="0;URL=form_redeemVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+echo '<META HTTP-EQUIV="refresh" content="0;URL=form_redeemVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
