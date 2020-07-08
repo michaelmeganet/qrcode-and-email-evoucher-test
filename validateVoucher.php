@@ -40,8 +40,8 @@ function fetchVoucherData($inputSerialCode, $vouchertype) {
 function updateRedeemVoid($vouchertype, $instanceid, $dateredeem, $updVoid) {
     if ($vouchertype == 'evoucher') {
         $table = 'evoucher_serial';
-    } elseif ($vouchertype == 'preprintvoucher') {
-        $table = 'preprintvoucher';
+    }elseif($vouchertype == 'preprintvoucher'){
+        $table = 'preprint_serial';
     }
     $qr = "UPDATE $table SET "
             . "dateredeem = '$dateredeem', "
