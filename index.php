@@ -22,7 +22,7 @@ and open the template in the editor.
         <br>
         <a href ="form_mailCustomer.php">Batch Generate many E-Vouchers and E-Mail to Customers (not yet)</a>
         <br>
-        <a href ='issue_PreprintVoucher.php'>Activate pre-printed Voucher (done)</a>
+        <a href ='importPreprintVoucher.php'>Activate pre-printed Voucher (done)</a>
         <br>
         <a href ='form_redeemVoucher.php'>Validate Voucher(not yet)</a>
         <?php
