@@ -11,8 +11,28 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Dumping structure for table ishindata.customers
+CREATE TABLE IF NOT EXISTS `customers` (
+  `cid` int(11) NOT NULL AUTO_INCREMENT,
+  `cus_name` varchar(50) NOT NULL,
+  `address1` varchar(50) DEFAULT NULL,
+  `address2` varchar(50) DEFAULT NULL,
+  `address3` varchar(50) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  KEY `cid` (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table ishindata.customers: ~4 rows (approximately)
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` (`cid`, `cus_name`, `address1`, `address2`, `address3`, `email`, `status`) VALUES
+	(1, 'Claudio', 'Jl. Sungkai', 'Indonesia', NULL, 'mosint.nagant@gmail.com', 'active'),
+	(2, 'Chong C.T', 'Malaysia', NULL, NULL, 'cct3000@gmail.com', 'active'),
+	(3, 'Claudio 2', 'Jl. Sungkai', 'Cikarang', 'Indonesia', 'claudio.christyo@gmail.com', 'active'),
+	(4, 'IT PHH Indo', 'Jl. Sungkai', 'Indonesia', NULL, 'it@phh.co.id', 'active');
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+
 -- Dumping structure for table ishindata.evoucher_serial
-DROP TABLE IF EXISTS `evoucher_serial`;
 CREATE TABLE IF NOT EXISTS `evoucher_serial` (
   `sid` int(11) NOT NULL AUTO_INCREMENT,
   `instanceid` varchar(18) NOT NULL DEFAULT '0',
@@ -27,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `evoucher_serial` (
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table ishindata.evoucher_serial: ~5 rows (approximately)
+-- Dumping data for table ishindata.evoucher_serial: ~34 rows (approximately)
 /*!40000 ALTER TABLE `evoucher_serial` DISABLE KEYS */;
 INSERT INTO `evoucher_serial` (`sid`, `instanceid`, `userid`, `valvoucher`, `expiredate`, `serialno`, `datecreate`, `dateredeem`, `void`) VALUES
 	(1, '620557291489337349', 'Claudio', 5.00, '2020-09-06', 1, '2020-07-07 16:15:33', '2020-07-07 11:15:33', 'yes'),
@@ -36,11 +56,41 @@ INSERT INTO `evoucher_serial` (`sid`, `instanceid`, `userid`, `valvoucher`, `exp
 	(4, '620558217432276997', 'Claudio', 5.00, '2020-09-06', 4, '2020-07-07 11:25:45', '2020-07-07 06:25:45', 'yes'),
 	(5, '620559769442197509', 'Claudio', 5.00, '2020-09-06', 5, '2020-07-07 11:24:52', '2020-07-07 06:24:52', 'yes'),
 	(6, '620625895689822213', 'Claudio', 5.00, '2020-09-06', 6, '2020-07-07 11:02:42', '2020-07-07 06:02:42', 'yes'),
-	(7, '621213307126161413', 'Claudio', 10.00, '2020-09-07', 7, '2020-07-07 11:27:24', '2020-07-07 06:27:24', 'yes');
+	(7, '621213307126161413', 'Claudio', 10.00, '2020-09-07', 7, '2020-07-07 11:27:24', '2020-07-07 06:27:24', 'yes'),
+	(8, '621942100656660485', '', 5.00, '2020-09-08', 8, '2020-07-08 06:34:35', NULL, 'no'),
+	(9, '624279314040365061', 'Claudio', 5.00, '2020-09-11', 9, '2020-07-11 11:58:13', NULL, 'no'),
+	(10, '624280643315965957', 'Claudio', 5.00, '2020-09-11', 10, '2020-07-11 12:00:51', NULL, 'no'),
+	(11, '624281289733709829', 'Claudio', 5.00, '2020-09-11', 11, '2020-07-11 12:02:09', NULL, 'no'),
+	(12, '624284123153833989', 'Claudio', 5.00, '2020-09-11', 12, '2020-07-11 12:07:46', NULL, 'no'),
+	(13, '624284875888795653', 'Claudio', 5.00, '2020-09-11', 13, '2020-07-11 12:09:16', NULL, 'no'),
+	(14, '624285457252884485', 'Claudio', 5.00, '2020-09-11', 14, '2020-07-11 12:10:25', NULL, 'no'),
+	(15, '624287813554151429', 'Claudio', 5.00, '2020-09-11', 15, '2020-07-11 12:15:06', NULL, 'no'),
+	(16, '624292864637018117', 'Claudio', 5.00, '2020-09-11', 16, '2020-07-11 12:25:08', NULL, 'no'),
+	(17, '624293264387743749', 'Claudio', 5.00, '2020-09-11', 17, '2020-07-11 12:25:56', NULL, 'no'),
+	(18, '624293292548300805', 'Claudio', 5.00, '2020-09-11', 18, '2020-07-11 12:25:59', NULL, 'no'),
+	(19, '624293327084199941', 'Claudio', 5.00, '2020-09-11', 19, '2020-07-11 12:26:03', NULL, 'no'),
+	(20, '624295822594416645', 'Claudio', 5.00, '2020-09-11', 20, '2020-07-11 12:31:01', NULL, 'no'),
+	(21, '624295851426062341', 'Claudio', 5.00, '2020-09-11', 21, '2020-07-11 12:31:04', NULL, 'no'),
+	(22, '624299447471316997', 'Claudio', 5.00, '2020-09-11', 22, '2020-07-11 12:38:13', NULL, 'no'),
+	(23, '624300395274969093', 'Claudio', 5.00, '2020-09-11', 23, '2020-07-11 12:40:06', NULL, 'no'),
+	(24, '624300801023549445', 'Claudio', 5.00, '2020-09-11', 24, '2020-07-11 12:40:54', NULL, 'no'),
+	(25, '624302817485529093', 'Claudio', 5.00, '2020-09-11', 25, '2020-07-11 12:44:55', NULL, 'no'),
+	(26, '624302847508357125', 'Claudio', 5.00, '2020-09-11', 26, '2020-07-11 12:44:58', NULL, 'no'),
+	(27, '624303947959508997', 'Claudio', 5.00, '2020-09-11', 27, '2020-07-11 12:47:10', NULL, 'no'),
+	(28, '624303977026035717', 'Claudio', 5.00, '2020-09-11', 28, '2020-07-11 12:47:13', NULL, 'no'),
+	(29, '624306924246016005', 'Claudio', 5.00, '2020-09-11', 29, '2020-07-11 12:53:04', NULL, 'no'),
+	(30, '624306955342585861', 'Claudio', 5.00, '2020-09-11', 30, '2020-07-11 12:53:08', NULL, 'no'),
+	(31, '624308098290425861', 'Claudio', 5.00, '2020-09-11', 31, '2020-07-11 12:55:24', NULL, 'no'),
+	(32, '624308878581964805', 'Claudio', 10.00, '2020-09-11', 32, '2020-07-11 12:56:57', NULL, 'no'),
+	(33, '624308908420243461', 'Claudio', 10.00, '2020-09-11', 33, '2020-07-11 12:57:01', NULL, 'no'),
+	(34, '624308936815681541', 'Claudio', 10.00, '2020-09-11', 34, '2020-07-11 12:57:04', NULL, 'no'),
+	(35, '625468398804934661', 'Claudio', 5.00, '2020-09-13', 35, '2020-07-13 03:20:43', NULL, 'no'),
+	(36, '625468740758151173', 'Claudio', 5.00, '2020-09-13', 36, '2020-07-13 03:21:24', NULL, 'no'),
+	(37, '625469308205539333', 'Claudio', 5.00, '2020-09-13', 37, '2020-07-13 03:22:31', NULL, 'no'),
+	(38, '625476918560432133', 'Claudio', 5.00, '2020-09-13', 38, '2020-07-13 03:37:39', NULL, 'no');
 /*!40000 ALTER TABLE `evoucher_serial` ENABLE KEYS */;
 
 -- Dumping structure for table ishindata.preprint_serial
-DROP TABLE IF EXISTS `preprint_serial`;
 CREATE TABLE IF NOT EXISTS `preprint_serial` (
   `psid` int(11) NOT NULL AUTO_INCREMENT,
   `runningno` varchar(12) NOT NULL DEFAULT '-',
@@ -56,13 +106,13 @@ CREATE TABLE IF NOT EXISTS `preprint_serial` (
   KEY `psid` (`psid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table ishindata.preprint_serial: ~3,186 rows (approximately)
+-- Dumping data for table ishindata.preprint_serial: ~2,867 rows (approximately)
 /*!40000 ALTER TABLE `preprint_serial` DISABLE KEYS */;
 INSERT INTO `preprint_serial` (`psid`, `runningno`, `instanceid`, `userid`, `valvoucher`, `expiredate`, `serialno`, `datecreate`, `dateredeem`, `void`) VALUES
 	(1, '0000000020', '619088581192851461', 'Claudio', 10.00, '2020-09-04', 1, '2020-07-04 08:05:09', '2020-07-08 03:14:26', 'yes'),
 	(2, '0000000021', '619088581243183109', 'Claudio', 10.00, '2020-09-04', 2, '2020-07-04 08:05:09', NULL, 'no'),
 	(3, '0000000022', '619088581369012229', 'Claudio', 10.00, '2020-07-04', 3, '2020-07-04 08:05:09', NULL, 'no'),
-	(4, '0000000023', '619088581578727429', 'Claudio', 10.00, '2020-09-04', 4, '2020-07-04 08:05:09', NULL, 'no'),
+	(4, '0000000023', '619088581578727429', 'Claudio', 10.00, '2020-09-04', 4, '2020-07-04 08:05:09', '2020-07-08 04:51:43', 'yes'),
 	(5, '0000000024', '619088581712945157', 'Claudio', 10.00, '2020-09-04', 5, '2020-07-04 08:05:09', NULL, 'no'),
 	(6, '0000000025', '619088581914271749', 'Claudio', 10.00, '2020-09-04', 6, '2020-07-04 08:05:09', NULL, 'no'),
 	(7, '0000000026', '619088581956214789', 'Claudio', 10.00, '2020-09-04', 7, '2020-07-04 08:05:09', NULL, 'no'),
@@ -3248,7 +3298,6 @@ INSERT INTO `preprint_serial` (`psid`, `runningno`, `instanceid`, `userid`, `val
 /*!40000 ALTER TABLE `preprint_serial` ENABLE KEYS */;
 
 -- Dumping structure for table ishindata.serialtable
-DROP TABLE IF EXISTS `serialtable`;
 CREATE TABLE IF NOT EXISTS `serialtable` (
   `sid` int(11) NOT NULL AUTO_INCREMENT,
   `instanceid` varchar(18) NOT NULL DEFAULT '0',
