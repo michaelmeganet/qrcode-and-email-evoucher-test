@@ -30,7 +30,7 @@ function sendEmail($recipient,//the email recipient
     /**/
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+        #$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -88,16 +88,16 @@ $arr_results = array();
 
 foreach($arr_email as $row){
     $rows = explode('|x|',$row);
-    echo"<br>";
+    #echo"<br>";
     $cusName = $rows[0];
     $_SESSION['post']['customer_name'] = $cusName;
-    echo "cusname = $cusName<br>";
+    #echo "cusname = $cusName<br>";
     $cusEmail = $rows[1];
-    echo "cusEmail = $cusEmail<br>";
+    #echo "cusEmail = $cusEmail<br>";
     try{
         $objEVoucher = new E_VOUCHER($userid, $voucheramount);
         $result = $objEVoucher->create_voucher();
-        echo "\$result = $result<br>";
+        #echo "\$result = $result<br>";
         if ($result != 'Insert Successful!'){
             throw new Exception("Fail to create Voucher for $cusName. Please Contact Administrator regarding this.");
         }else{
@@ -113,7 +113,7 @@ foreach($arr_email as $row){
             $qrURL = "qrcodeimage.php?code=$encode_ID";
             $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
             $curr = str_replace(basename((__FILE__)),$qrURL,$currURL);
-            echo "curr = ".$curr."<br>";
+            #echo "curr = ".$curr."<br>";
 
             //Create PNG of Barcode
             $img_dir = './resource/img/qrcode_img.png';
@@ -145,6 +145,6 @@ foreach($arr_email as $row){
 $_SESSION['mailCount'] = array('successCount' => $successCount, 'errCount' => $errCount);
 $_SESSION['mailResults'] = $arr_results;
    
-#echo '<META HTTP-EQUIV="refresh" content="0;URL=form_mailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /**/
