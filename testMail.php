@@ -1,9 +1,9 @@
 <?php
 namespace voucher\EVoucher;
 
-include_once 'generateinstanceid.php';
+include_once 'class/vouchergenerate.inc.php';
 
-use CREATE_E_VOUCHER;
+use E_VOUCHER;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -25,8 +25,7 @@ if (isset($_POST)){
 }  
 
 try{
-    $datecreate = date('Y-m-d H:i:s');
-    $objEVoucher = new CREATE_E_VOUCHER($userid, $voucheramount, $datecreate);
+    $objEVoucher = new E_VOUCHER($userid, $voucheramount);
     $result = $objEVoucher->create_voucher();
     echo "\$result  =$result<br>";
     if ($result != 'Insert Successful!'){
@@ -34,29 +33,34 @@ try{
     }else{
         $instanceid = $objEVoucher->get_instanceid();
         $expiredate = $objEVoucher->get_expiredate();
+        $datecreate = $objEVoucher->get_datecreate();
+            $_SESSION['post']['datecreate'] = $datecreate;
+            $_SESSION['post']['expiredate'] = $expiredate;
         
         //create script filename
         $encode_ID = urlencode($instanceid);
+            $_SESSION['post']['encode_ID'] = $encode_ID;
         $qrURL = "qrcodeimage.php?code=$encode_ID";
         $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
         $curr = str_replace(basename((__FILE__)),$qrURL,$currURL);
         echo "curr = ".$curr."<br>";
        
         //Create PNG of Barcode
+        $img_dir = './resource/img/qrcode_img.png';
         $output = file_get_contents($curr);
-        file_put_contents('./qrcode_img.png', $output);
+        file_put_contents($img_dir, $output);
 
         //create PDF for the E-Voucher
         //include_once 'printToPDF.php';
 
         //directory of PDF file
-        //$evoucher = './pdf/evoucher_tmp.pdf';
+        //$evoucher = './resource/pdf/evoucher_tmp.pdf';
 
         $mail = new PHPMailer(true);
         /**/
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+            #$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -70,7 +74,7 @@ try{
             #$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
             $mail->addAddress($recipient);               // Name is optional
             $mail->addReplyTo('meganet003@gmail.com', '-noreply');
-            $mail->addEmbeddedImage('./qrcode_img.png', 'qrcode'); //Adds an image to be embedded
+            $mail->addEmbeddedImage($img_dir, 'qrcode'); //Adds an image to be embedded
             #$mail->addCC('cc@example.com');
             #$mail->addBCC('bcc@example.com');
 

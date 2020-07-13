@@ -18,11 +18,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <a href ="form_mailCustomer.php">Generate an E-Voucher and E-Mail to Customer</a>
+        <a href ="form_mailCustomer.php">Generate an E-Voucher and E-Mail to Customer (done)</a>
         <br>
-        <a href ='issue_PreprintVoucher.php'>Activate pre-printed Voucher </a>
+        <a href ="form_batchMailCustomer.php">Batch Generate many E-Vouchers and E-Mail to Customers (done)</a>
         <br>
-        <a href ='validate_Voucher.php'>Validate Voucher</a>
+        <a href ='importPreprintVoucher.php'>Activate pre-printed Voucher (done)</a>
+        <br>
+        <a href ='form_redeemVoucher.php'>Validate Voucher(done)</a>
         <?php
         
         ?>

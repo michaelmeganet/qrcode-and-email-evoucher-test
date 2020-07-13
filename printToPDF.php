@@ -24,7 +24,7 @@ $dompdf = new Dompdf();
 
 //Save PDF into file
     $output = $dompdf->output();
-    file_put_contents('./pdf/evoucher_tmp.pdf', $output);
+    file_put_contents('./resource/pdf/evoucher_tmp.pdf', $output);
 // Output the generated PDF to Browser
  #   $dompdf->stream("download1",array('Attachment' => 0));
 
