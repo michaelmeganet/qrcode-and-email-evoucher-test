@@ -33,9 +33,13 @@ try{
     }else{
         $instanceid = $objEVoucher->get_instanceid();
         $expiredate = $objEVoucher->get_expiredate();
+        $datecreate = $objEVoucher->get_datecreate();
+            $_SESSION['post']['datecreate'] = $datecreate;
+            $_SESSION['post']['expiredate'] = $expiredate;
         
         //create script filename
         $encode_ID = urlencode($instanceid);
+            $_SESSION['post']['encode_ID'] = $encode_ID;
         $qrURL = "qrcodeimage.php?code=$encode_ID";
         $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
         $curr = str_replace(basename((__FILE__)),$qrURL,$currURL);
