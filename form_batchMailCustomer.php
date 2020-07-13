@@ -1,11 +1,29 @@
 <?php
-namespace voucher\EVoucher;
+namespace voucher\EVoucherBatch;
+include 'class/dbh.inc.php';
+include 'class/variables.inc.php';
+use SQL;
 session_start();
-if(isset($_SESSION['mailMsg'])){
-    $mailMsg = $_SESSION['mailMsg'];
-    $mailStat = $_SESSION['mailStat'];
+if(isset($_SESSION['mailResults'])){
+    $mailResults = $_SESSION['mailResults'];
+    $mailCount = $_SESSION['mailCount'];
+    $successCount = $mailCount['successCount'];
+    $errCount = $mailCount['errCount'];
     session_destroy();
 }
+#if(isset($_POST['emailSelected'])){
+#    $arr_email = $_POST['emailSelected'];
+#    echo "<pre>";
+#    print_r($arr_email);
+#    echo "</pre>";
+#}
+function getCustomerList(){
+    $qr = "SELECT * FROM customers ORDER BY cid";
+    $objSQL = new SQL($qr);
+    $result = $objSQL->getResultRowArray();
+    return $result;
+}
+$customerList = getCustomerList();
 include 'header.php';   
 
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];
@@ -16,49 +34,79 @@ include 'header.php';
     <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
 </form>
 <div class ="container">
-    <h3><b>INSERT TITLE HERE</b></h3>
+    <h3><b>Issue E-Voucher (Batch)</b></h3>
     <br>
     <br>
     <?php
-        if(isset($mailStat)){
-            if($mailStat == 'success'){
-            ?>            
-            <label class="label label-success">
+    if(isset($mailCount)){
+        ?>
+        <div class="alert alert-info alert-dismissible">
+
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            Done processing E-Voucher with <span style=" font-weight: bold;color: green"><?php echo $successCount; ?> successful process</span> and <span style="font-weight:bold;color:red"><?php echo $errCount; ?> failed process.</span><br>
+            <p>Detail Failures :</p><br>
             <?php
-            }else{
+                $postCount = 0;
+                foreach($mailResults as $rows){
+                    if($rows['mailStat'] == 'fail'){
+                        $postCount++;
+                        echo "$postCount. ".$rows['name']."(".$rows['email'].") => <i>".$rows['details']."</i><br>";
+                    }
+                }
             ?>
-            <label class='label label-danger'>    
-            <?php
-            }
-        echo $mailMsg;
-        }
+        </div>
+
+        <?php
+    }
     ?>
     </label>
-    <form action='testMail.php' method='POST'>
+    <form action='testMailBatch.php' method='POST'>
         <div class="form-group row row-no-gutters">
             <div class="col-sm-1">                     
                 <label class="label label-default">User :</label><br> 
                 <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
             </div>
         </div>
-        <div class="form-group row">
-            <div class='container'>
-                <label class="label label-default">Who to send?</label><br>
+        
+        <div class='container form-group row' style="vertical-align: middle">
+            <div class="col-sm-5">
+                <label class='label label-default'>Voucher Type :</label>
+                <label class='radio-inline'><input type='radio' name='radioRM' id='radioRM' value='5' checked="checked"/>RM 5</label>
+                <label class='radio-inline'><input type='radio' name='radioRM' id='radioRM' value='10'/>RM 10</label>
             </div>
-            <div class="col-sm-3">
-                <input class='form-control text-primary' type="text" value ='' name='address' id='address' placeholder="who@address.com"/>
-            </div>
-            <div class="col-sm-3">
-                <input class='form-control text-primary' type='text' value ='' name="customer_name" id='customer_name' placeholder="customer name"/><br>
+            <div class="col-sm-2 col-sm-push-5" style=" text-align: right">
+                <input class='btn btn-default' type='submit' value ='Send Mail' name="submitSendMail" id='submitSendMail'/><br>                
             </div>
         </div>
-        <div class='container form-group row'>
-            <label class='label label-default'>Voucher Type :</label>
-            <label class='radio-inline'><input type='radio' name='radioRM' id='radioRM' value='5' checked="checked"/>RM 5</label>
-            <label class='radio-inline'><input type='radio' name='radioRM' id='radioRM' value='10'/>RM 10</label>
-        </div>
-        <div class="container form-group row" style="text-align: right">
-            <input class='btn btn-default' type='submit' value ='Send Mail' name="submitSendMail" id='submitSendMail'/><br>
+        <div class="container form-group row" style="text-align: center">
+            <table class="table table-responsive" style="overflow-y: auto;max-height: 400px">
+                <thead>
+                    <tr>
+                        <th>Id.</th>
+                        <th>Customer.</th>
+                        <th colspan="3" style="text-align: center">Address.</th>
+                        <th>E-Mail.</th>
+                        <th>Status</th>
+                        <th style="width: 10px">Send Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        foreach ($customerList as $customerData){
+                            echo "<tr>";
+                            #$arr_emailSelected = array("name" => $customerData['cus_name'], "email" => $customerData['email']);
+                            $emailSelected = $customerData['cus_name']."|x|".$customerData['email'];
+                            foreach($customerData as $key => $val){
+                                echo "<td>$val</td>";
+                            }
+                            ?>
+                            <td><input type="checkbox" name="emailSelected[]" value="<?php echo $emailSelected; ?>" /></td>
+                            <?php
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
         
     </form>
