@@ -1,4 +1,5 @@
 <?php
+
 include_once 'header.php';
 
 if(isset($_SESSION['post'])){
@@ -8,6 +9,9 @@ if(isset($_SESSION['post'])){
 #    $encode_ID = '696969696969696969';
     $customer_name = $postdata['customer_name'];
     $voucheramount = "RM".$postdata['radioRM'];
+    $datecreate = $postdata['datecreate'];
+    $expiredate = $postdata['expiredate'];
+    $encode_ID = $postdata['encode_ID'];
 }
 ?>
 <div class="container">
