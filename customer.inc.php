@@ -29,8 +29,8 @@ class CUSTOMER {
     function create(){
         $post_data = $this->post_data;
         $cnt = 0;
-        unset($post_data['cid']);
-        unset($post_data['submitCreate']);
+        unset($post_data['cid']);               //not needed for bindparam
+        unset($post_data['submitCreate']);      //not needed for bindparam
         $arrCount = count($post_data);
         #echo "\$arrCount = $arrCount<br>";
         
@@ -54,7 +54,29 @@ class CUSTOMER {
     }
     
     function update(){
+        $post_data = $this->post_data;
+        $cnt = 0;
+        unset($post_data['cid']);               //not needed for bindparam
+        unset($post_data['submitUpdate']);      //not needed for bindparam
+        $arrCount = count($post_data);
+        $cid = $this->get_cid();
         
+        $qr = "UPDATE customers SET ";
+        foreach ($post_data as $rowKey => $rowVal){
+            $cnt++;
+            $qr .= $rowKey."=:".$rowKey;
+            if ($cnt != $arrCount){
+                $qr .= ", ";
+            }
+        }
+        $qr .= " WHERE cid = $cid";
+        $objSQL = new SQLBINDPARAM($qr, $post_data);
+        $result = $objSQL->UpdateData2();
+        if ($result == 'Update ok!'){
+            return 'Update Successful';
+        }else{
+            return 'Update Failed';
+        }
     }
     
     function delete(){
