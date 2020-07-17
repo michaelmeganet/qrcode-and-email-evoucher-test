@@ -80,7 +80,16 @@ class CUSTOMER {
     }
     
     function delete(){
+        $cid = $this->get_cid();
+        $qr = "DELETE FROM customers WHERE cid = $cid";
         
+        $objSQL = new SQL($qr);
+        $result = $objSQL->getDelete();
+        if ($result == 'deleted'){
+            return 'Delete Successful';
+        }else{
+            return 'Delete Failed';
+        }
     }
     
     function extract_post_data($post_data){
