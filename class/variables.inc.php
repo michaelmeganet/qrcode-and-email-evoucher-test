@@ -156,9 +156,9 @@ Class SQLBINDPARAM extends SQL {
 //        var_dump($stmt);
 //        echo "=====end of var_dump \$stmt==================<br>";
         if ($stmt->execute()) {
-            echo "dump \$stmt :";
-            print_r($stmt);
-            echo "<br>";
+            #echo "dump \$stmt :";
+            #print_r($stmt);
+            #echo "<br>";
             $result = 'insert ok!';
         } else {
             $result = 'insert fail';
