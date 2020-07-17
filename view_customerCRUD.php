@@ -4,6 +4,11 @@ include_once 'header.php';
 require 'CRUD-functions.php';
 
 $customerList = getCustomerList();
+session_start();
+if (isset($_SESSION['delMsg'])){
+    $deleteResult = $_SESSION['delMsg'];
+    session_destroy();
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -24,6 +29,16 @@ and open the template in the editor.
             </form>
         <h3><b>Customer List CRUD</b></h3>
         <br>
+        <?php
+        if (isset($deleteResult)){
+            ?>
+        <div class='alert alert-info alert-dismissible fade in'>
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <?php echo $deleteResult;?> <br>
+        </div>
+            <?php
+        }
+        ?>
         <br>
             <div class="container form-group row">
                 <div class=" form-group">
@@ -51,7 +66,9 @@ and open the template in the editor.
                                 <td>
                                     <a href="CRUD-DetailsCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-success">Details</a>
                                     <a href="CRUD-UpdateCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-info">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <?php 
+                                    echo "<a href=\"javascript:delValidate('CRUD-DeleteCustomer.php?cid={$customerData['cid']}','#')\" class='btn btn-danger'>Delete</a>";
+                                    ?>
                                 </td>
                                 <?php
                                 echo "</tr>";
