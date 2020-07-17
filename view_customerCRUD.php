@@ -50,7 +50,7 @@ and open the template in the editor.
                                 ?>
                                 <td>
                                     <a href="CRUD-DetailsCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-success">Details</a>
-                                    <a href="" class="btn btn-info">Edit</a>
+                                    <a href="CRUD-UpdateCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-info">Edit</a>
                                     <a href="" class="btn btn-danger">Delete</a>
                                 </td>
                                 <?php
