@@ -21,12 +21,12 @@ class CUSTOMER {
     protected $status;
     protected $post_data;
     
-    function __construct($post_data) {
+    Public function __construct($post_data) {
         $this->post_data = $post_data;
         $this->extract_post_data($post_data);
     }
     
-    function create(){
+    Public function create(){
         $post_data = $this->post_data;
         $cnt = 0;
         unset($post_data['cid']);               //not needed for bindparam
@@ -53,7 +53,7 @@ class CUSTOMER {
         
     }
     
-    function update(){
+    Public function update(){
         $post_data = $this->post_data;
         $cnt = 0;
         unset($post_data['cid']);               //not needed for bindparam
@@ -79,7 +79,7 @@ class CUSTOMER {
         }
     }
     
-    function delete(){
+    Public function delete(){
         $cid = $this->get_cid();
         $qr = "DELETE FROM customers WHERE cid = $cid";
         
@@ -92,7 +92,7 @@ class CUSTOMER {
         }
     }
     
-    function extract_post_data($post_data){
+    Public function extract_post_data($post_data){
         extract($post_data,EXTR_PREFIX_ALL,'post');
         $this->set_cid($post_cid);
         $this->set_cusName($post_cus_name);
@@ -103,59 +103,59 @@ class CUSTOMER {
         $this->set_status($post_status);
     }
     
-    function set_cid($input){
+    Public function set_cid($input){
         $this->cid = $input;
     }
     
-    function get_cid(){
+    Public function get_cid(){
         return $this->cid;
     }
     
-    function set_cusName($input){
+    Public function set_cusName($input){
         $this->cus_name = $input;
     }
     
-    function get_cusName(){
+    Public function get_cusName(){
         return $this->cus_name;
     }
     
-    function set_address1($input){
+    Public function set_address1($input){
         $this->address1 = $input;
     }
     
-    function get_address1(){
+    Public function get_address1(){
         return $this->address1;
     }
     
-    function set_address2($input){
+    Public function set_address2($input){
         $this->address2 = $input;
     }
     
-    function get_address2(){
+    Public function get_address2(){
         return $this->address2;
     }
     
-    function set_address3($input){
+    Public function set_address3($input){
         $this->address3 = $input;
     }
     
-    function get_address3(){
+    Public function get_address3(){
         return $this->address3;
     }
     
-    function set_email($input){
+    Public function set_email($input){
         $this->email = $input;
     }
     
-    function get_email(){
+    Public function get_email(){
         return $this->email;
     }
     
-    function set_status($input){
+    Public function set_status($input){
         $this->status = $input;
     }
     
-    function get_status(){
+    Public function get_status(){
         return $this->status;
     }
 }
