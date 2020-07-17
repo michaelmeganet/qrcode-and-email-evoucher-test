@@ -1,5 +1,5 @@
 <?php
-namespace CRUD\Customer;
+namespace CRUD\Customer\Create;
 include_once 'header.php';
 require 'CRUD-functions.php';
 require 'customer.inc.php';
@@ -12,7 +12,7 @@ if (isset($_POST['submitCreate'])){
     $createResult = $objCustomer->create();
 }
 
-$lastCID = getLastCID();
+$lastCID = \CRUD\Customer\getLastCID();
 $cid = $lastCID + 1;
 ?>
 <!DOCTYPE html>
