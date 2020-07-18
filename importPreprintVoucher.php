@@ -85,11 +85,12 @@ and open the template in the editor.
         </script>
     </head>
     <body>
+        
         <div class='container'>
-            <form action="activatePrePrintVoucher.php" method='POST'>
             <form action="index.php" method="post">
                 <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
             </form>
+            <form action="activatePrePrintVoucher.php" method='POST'>
             <h3 class="text-primary">Activate Pre-Printed Vouchers (Batch)</h3>
             <!--
                 <div class='form-group row'>

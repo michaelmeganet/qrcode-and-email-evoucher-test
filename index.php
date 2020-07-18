@@ -25,6 +25,8 @@ and open the template in the editor.
         <a href ='importPreprintVoucher.php'>Activate pre-printed Voucher (done)</a>
         <br>
         <a href ='form_redeemVoucher.php'>Validate Voucher(done)</a>
+        <br>
+        <a href ='CRUD-index.php?view=main'>Customer List CRUD (not yet)</a>
         <?php
         
         ?>
