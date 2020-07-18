@@ -126,8 +126,8 @@ Class SQLBINDPARAM extends SQL {
         $stmt = $this->connect()->prepare($sql);
         $bindparamArray = $this->bindparamArray;
 //        unset($bindparamArray['submit']);
-        print_r($bindparamArray);
-        echo "<br>";
+//        print_r($bindparamArray);
+//        echo "<br>";
 //        $para = "";
         $count = 0;
         foreach ($bindparamArray as $key => $value) {
