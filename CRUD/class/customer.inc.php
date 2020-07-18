@@ -17,6 +17,7 @@ class CUSTOMER {
     protected $address1;
     protected $address2;
     protected $address3;
+    protected $phone;
     protected $email;
     protected $status;
     protected $post_data;
@@ -99,6 +100,7 @@ class CUSTOMER {
         $this->set_address1($post_address1);
         $this->set_address2($post_address2);
         $this->set_address3($post_address3);
+        $this->set_phone($post_phone);
         $this->set_email($post_email);
         $this->set_status($post_status);
     }
@@ -141,6 +143,14 @@ class CUSTOMER {
     
     function get_address3(){
         return $this->address3;
+    }
+    
+    function set_phone($input){
+        $this->phone = $input;
+    }
+    
+    function get_phone(){
+        return $this->phone;
     }
     
     function set_email($input){
