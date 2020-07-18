@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" >
     <head>
-        <title>Voucher Processing</title>
+        <title>CRUD Activity</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">  
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src='bower_components/jquery-validation/dist/jquery.validate.min.js'></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
             function cloneValidate(url,index){
@@ -26,26 +27,7 @@
                     window.location.href = index;
                 }
             }
-            function dtlOpenNewWindow(url){
-                window.open(url,"_self");
-                return false;
-            }
- 
-            function updOpenNewWindow(url){
-                window.open(url,"_self");
-                return false;
-            }
-            function openPopUp(url){
-                window.open(url);
-                return false;
-            }
-            function updateValidate(){
-                if(window.confirm("Are you sure you want to submit?")){
-                    return true;
-                }else{
-                    return false;
-                }
-            }
+            
             function redirectToMain(text,main){
                 window.alert(text);
                 window.location.href = main;
