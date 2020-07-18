@@ -1,8 +1,8 @@
 <?php
 namespace CRUD\Customer\Create;
-include_once 'header.php';
+include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
-require 'customer.inc.php';
+require 'CRUD/class/customer.inc.php';
 
 use CUSTOMER;
 
@@ -25,6 +25,16 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+            label.error{
+                background-color: red;
+                padding: 0px 3px 0px 3px;
+                border-radius: 5px;
+                font-family: 'Helvetica';
+                font-size: 12px;
+                color: white;
+            }
+        </style>
     </head>
     <body>
         
@@ -41,13 +51,13 @@ and open the template in the editor.
                 echo "</div>";
             }
             ?>
-            <form action="view_customerCRUD.php" method="post">
+            <form action="CRUD-index.php?view=main" method="post" >
                 <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Back to Main">
             </form>
             <h3><b>Customer List CRUD</b></h3>
             <h4><b>Create Customer</b></h4>
             <br>
-            <form action='' method="POST">
+            <form name="customerform" id='customerform' action='' method="POST" novalidate="novalidate">
                 <div class="form-group row col-sm-4">
                     <label class="label label-default" style="font-size: 15px">ID</label>
                     <input class="form-control" style="max-width: 100px;text-align: right" type="text" id="cid" name="cid" value ="<?php echo $cid;?>" readonly/>
@@ -60,8 +70,11 @@ and open the template in the editor.
                     <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="address2" name="address2" value='' placeholder="Address2"/>
                     <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="address3" name="address3" value='' placeholder="Address3"/>
                     <br>
+                    <label class="label label-default" style="font-size: 15px">Phone Number</label>
+                    <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="phone" name="phone" value='' placeholder="Phone Number"/>
+                    <br>
                     <label class="label label-default" style="font-size: 15px">Email</label>
-                    <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="email" name="email" value='' placeholder="E-Mail"/>
+                    <input class="form-control" style="max-width: 100%;text-align: left" type="email" id="email" name="email" value='' placeholder="mail@address.com"/>
                     <br>
                     <label class="label label-default" style="font-size: 15px">Status</label>
                     <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="status" name="status" value='active' placeholder="Status"/>
@@ -73,4 +86,6 @@ and open the template in the editor.
             </form>
         </div>
     </body>
+    
+    <script src='CRUD/validation.js'></script>
 </html>

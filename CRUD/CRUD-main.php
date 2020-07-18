@@ -42,7 +42,7 @@ and open the template in the editor.
         <br>
             <div class="container form-group row">
                 <div class=" form-group">
-                    <a href="CRUD-CreateCustomer.php" class="btn btn-sm btn-primary">Create New Customer</a>
+                    <a href="CRUD-index.php?view=CC" class="btn btn-sm btn-primary">Create New Customer</a>
                 </div>
                 <table class="table table-bordered" style="overflow-y: auto;max-height: 400px;text-align: center">
                     <thead>
@@ -64,10 +64,11 @@ and open the template in the editor.
                                 }
                                 ?>
                                 <td>
-                                    <a href="CRUD-DetailsCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-success">Details</a>
-                                    <a href="CRUD-UpdateCustomer.php?cid=<?php echo $customerData['cid']; ?>" class="btn btn-info">Edit</a>
+                                    <a href="CRUD-index.php?view=RC&cid=<?php echo $customerData['cid']; ?>" class="btn btn-success">Details</a>
+                                    <a href="CRUD-index.php?view=UC&cid=<?php echo $customerData['cid']; ?>" class="btn btn-info">Edit</a>
                                     <?php 
-                                    echo "<a href=\"javascript:delValidate('CRUD-DeleteCustomer.php?cid={$customerData['cid']}','#')\" class='btn btn-danger'>Delete</a>";
+                                    #jscript is on header.php, Show alertbox to confirm decision
+                                    echo "<a href=\"javascript:delValidate('CRUD-index.php?view=DC&cid={$customerData['cid']}','#')\" class='btn btn-danger'>Delete</a>";
                                     ?>
                                 </td>
                                 <?php

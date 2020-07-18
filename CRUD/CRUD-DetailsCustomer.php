@@ -1,8 +1,8 @@
 <?php
 namespace CRUD\Customer\Details;
-include_once 'header.php';
+include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
-require 'customer.inc.php';
+require 'CRUD/class/customer.inc.php';
 
 if (isset($_GET['cid'])){
     $cid = $_GET['cid'];
@@ -26,7 +26,7 @@ and open the template in the editor.
     <body>
         
         <div class="container">
-            <form action="view_customerCRUD.php" method="post">
+            <form action="CRUD-index.php?view=main" method="post">
                 <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Back to Main">
             </form>
             <h3><b>Customer List CRUD</b></h3>
@@ -44,15 +44,18 @@ and open the template in the editor.
                 <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="address2" name="address2" value='<?php echo $dtl_address2;?>' placeholder="Address2" readonly/>
                 <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="address3" name="address3" value='<?php echo $dtl_address3;?>' placeholder="Address3" readonly/>
                 <br>
+                <label class="label label-default" style="font-size: 15px">Phone Number</label>
+                <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="phone" name="phone" value='<?php echo $dtl_phone;?>' placeholder="Phone Number" readonly/>
+                <br>
                 <label class="label label-default" style="font-size: 15px">Email</label>
-                <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="email" name="email" value='<?php echo $dtl_email;?>' placeholder="E-Mail" readonly/>
+                <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="email" name="email" value='<?php echo $dtl_email;?>' placeholder="address@mail.com" readonly/>
                 <br>
                 <label class="label label-default" style="font-size: 15px">Status</label>
                 <input class="form-control" style="max-width: 100%;text-align: left" type="text" id="status" name="status" value='<?php echo $dtl_status;?>' placeholder="Status" readonly/>
                 <br>
             </div>
                 <div class='form-group row col-sm-4' style='text-align:left'>
-                    <a href='CRUD-UpdateCustomer.php?cid=<?php echo $dtl_cid;?>' class='btn btn-success'>Edit Customer</a>
+                    <a href='CRUD-index.php?view=UC&cid=<?php echo $dtl_cid;?>' class='btn btn-success'>Edit Customer</a>
                 </div>
         </div>
     </body>

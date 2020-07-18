@@ -1,8 +1,8 @@
 <?php
 namespace CRUD\Customer\Details;
-include_once 'header.php';
+include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
-require 'customer.inc.php';
+require 'CRUD/class/customer.inc.php';
 session_start();
 use CUSTOMER;
 
@@ -12,9 +12,9 @@ if (isset($_GET['cid'])){
     $objCustomer = new CUSTOMER($post_data);
     $deleteResult = $objCustomer->delete();
     $_SESSION['delMsg'] = $deleteResult;
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=view_customerCRUD.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=CRUD-index.php?view=main">'; //using META tags instead of headers because headers didn't work in PHP5.3
 }else{
-    die('Cannot reach the page this way, <a href="view_customerCRUD.php">Please Try Again</a>.');
+    die('Cannot reach the page this way, <a href="CRUD-index.php?view=main">Please Try Again</a>.');
 }
 
 ?>
