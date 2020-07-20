@@ -87,13 +87,13 @@
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
                         <li><a href='index.php'>Home</a></li>
-                        <li><a href='#'>Customer</a>
+                        <li><a href='CRUD-index.php?view=main'>Customer</a>
                             <ul>
                                 <li><a href='CRUD-index.php?view=CC'>Create Customer</a></li>
                                 <li><a href='CRUD-index.php?view=main'>Customer List</a></li>
                             </ul>
                         </li>
-                        <li><a href='#'>Vouchers</a>
+                        <li><a href='form_redeemVoucher.php'>Vouchers</a>
                             <ul>
                                 <li><a href='#'>E-Voucher</a>
                                     <ul id='nav'>
