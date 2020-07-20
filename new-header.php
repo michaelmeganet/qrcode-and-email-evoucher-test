@@ -74,7 +74,8 @@
         </script>
 
     </head>
-
+    <!-- https://www.smartmenus.org/about/themes/ 
+         Complete navbar .sm-clean -->
     <div id="page">
         <div id="content">
             <body  onLoad="LoadOnce()">
@@ -109,7 +110,7 @@
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
                             </ul>
                         
-                        <li class="sm-rtl"><a href='http://192.168.83.11/php7-phhsystem/logout.php'>Logout </a></li>
+                        <li class="sm-rtl"><a href='#'>Logout </a></li>
                     </ul>
                 </nav>
                 <br>

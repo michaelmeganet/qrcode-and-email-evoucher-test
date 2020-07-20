@@ -87,7 +87,7 @@
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
                             </ul>
 
-                        <li class="sm-rtl"><a href='http://192.168.83.11/php7-phhsystem/logout.php'>Logout </a></li>
+                        <li class="sm-rtl"><a href='#'>Logout </a></li>
                     </ul>
                 </nav>
                 <br>
