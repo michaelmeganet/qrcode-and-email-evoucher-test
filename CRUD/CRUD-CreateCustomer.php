@@ -1,6 +1,5 @@
 <?php
 namespace CRUD\Customer\Create;
-include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
 require 'CRUD/class/customer.inc.php';
 
@@ -52,7 +51,7 @@ and open the template in the editor.
             }
             ?>
             <form action="CRUD-index.php?view=main" method="post" >
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Back to Main">
+                <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
             <h3><b>Customer List CRUD</b></h3>
             <h4><b>Create Customer</b></h4>

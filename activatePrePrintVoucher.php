@@ -33,7 +33,7 @@ try {
             #$runningno = $str_rundate.$currNo;
             $currNo = $numStart + $i - 1;
             $runningno = sprintf("%'.010d",$currNo);
-            echo "No.$i : Processed runningno = $runningno<br>";
+            #echo "No.$i : Processed runningno = $runningno<br>";
             $objVoucher = new PREPRINT_VOUCHER($userid, $valvoucher, $runningno);
             //create a voucher
             $createResult = $objVoucher->create_voucher();
@@ -42,8 +42,8 @@ try {
                 $arr_listFail[] = array('runningno' => $runningno, 'message' => $createResult);
                     
             }
-            echo $createResult."<br>";
-            echo "-------------------------------------------------<br>";
+            #echo $createResult."<br>";
+            #echo "-------------------------------------------------<br>";
         }
         $successCount = $batchCount - $errorCount;
         $_SESSION['prePrintCount'] = array('success'=>$successCount,'fail'=>$errorCount,'lastrunningno'=>$currNo);

@@ -1,6 +1,5 @@
 <?php
 namespace CRUD\Customer\Details;
-include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
 require 'CRUD/class/customer.inc.php';
 
@@ -26,8 +25,8 @@ and open the template in the editor.
     <body>
         
         <div class="container">
-            <form action="CRUD-index.php?view=main" method="post">
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Back to Main">
+            <form action="CRUD-index.php?view=main" method="post" >
+                <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
             <h3><b>Customer List CRUD</b></h3>
             <h4><b>Details Customer</b></h4>
@@ -58,5 +57,8 @@ and open the template in the editor.
                     <a href='CRUD-index.php?view=UC&cid=<?php echo $dtl_cid;?>' class='btn btn-success'>Edit Customer</a>
                 </div>
         </div>
+        <?php
+            include 'new-footer.php';
+       ?>
     </body>
 </html>

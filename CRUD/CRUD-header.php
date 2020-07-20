@@ -3,7 +3,14 @@
     <head>
         <title>CRUD Activity</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">  
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--https://en.wikipedia.org/wiki/Meta_refresh-->
+        <!-- SmartMenus core CSS (required) -->
+        <link href="assets/css/sm-core-css.css" rel="stylesheet" type="text/css" />
+
+        <!-- "sm-clean" menu theme (optional, you can use your own CSS, too) -->
+        <link href="assets/css/sm-clean.css" rel="stylesheet" type="text/css" />
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/style.css">
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -45,24 +52,42 @@
             })*/
         </script>
     </head>
-    <body >
-        <!--
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                    </button>
-                    <a class="navbar-brand" href="#"></a>
-                </div>
-                <div class="collapse navbar-collapse" id="myNavbar">
-                    <ul class="nav navbar-nav">
-                        <li></li>
-                        <li></li>
-                    </ul>
 
-                </div>
-            </div>
-        </nav>-->
+    <div id="page">
+        <div id="content">
+            <body  onLoad="LoadOnce()">
+                <nav id="main-nav"class='main-nav' role='navigation' >
+                    <input id="main-menu-state" type="checkbox" />
+                    <label class="main-menu-btn" for="main-menu-state">
+                      <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+                    </label>
+                    <h2 class='nav-brand'><label class='label' style='color:#555555'>ISHIN Japanese Dining</label></h2>
+                    <!-- Sample menu definition -->
+                    <ul id="main-menu" class="sm sm-clean">
+                        <li><a href='index.php'>Home</a></li>
+                        <li><a href='CRUD-index.php?view=main'>Customer</a>
+                            <ul>
+                                <li><a href='CRUD-index.php?view=CC'>Create Customer</a></li>
+                                <li><a href='CRUD-index.php?view=main'>Customer List</a></li>
+                    </ul>
+                        </li>
+                        <li><a href='form_redeemVoucher.php'>Vouchers</a>
+                            <ul>
+                                <li><a href='#'>E-Voucher</a>
+                                    <ul id='nav'>
+                                        <li><a href='form_mailCustomer.php'>Create Single</a></li>
+                                        <li><a href='form_batchMailCustomer.php'>Create Batch</a></li>
+                                    </ul> 
+                                </li>
+                                <li><a href='#'>Physical Voucher</a>
+                                    <ul id='nav'>
+                                        <li><a href='importPreprintVoucher.php'>Activate Physical Voucher</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
+                            </ul>
+
+                        <li class="sm-rtl"><a href='http://192.168.83.11/php7-phhsystem/logout.php'>Logout </a></li>
+                    </ul>
+                </nav>
+                <br>

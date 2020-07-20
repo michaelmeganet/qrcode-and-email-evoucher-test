@@ -6,14 +6,14 @@ if(isset($_SESSION['mailMsg'])){
     $mailStat = $_SESSION['mailStat'];
     session_destroy();
 }
-include 'header.php';   
+include 'new-header.php';   
 
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];
 
 #echo "THIS :> ".basename((__FILE__),'.php');
 ?>
 <form action="index.php" method="post">
-    <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+    <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
 </form>
 <div class ="container">
     <h3><b>INSERT TITLE HERE</b></h3>
@@ -63,3 +63,6 @@ include 'header.php';
         
     </form>
 </div>
+<?php
+include 'new-footer.php';
+?>
