@@ -2,11 +2,10 @@
 <html lang="en">
     <!--   -->
     <head>
-        <title>PHHSYSTEM FOR PHP7 MAIN PAGE</title>
+        <title>ISHIN Japanese Dining</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!--https://en.wikipedia.org/wiki/Meta_refresh-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
 
         <!-- SmartMenus core CSS (required) -->
         <link href="assets/css/sm-core-css.css" rel="stylesheet" type="text/css" />
