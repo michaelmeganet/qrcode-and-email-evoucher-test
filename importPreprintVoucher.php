@@ -1,7 +1,7 @@
 <?php
 namespace voucher\PrePrint;
 session_start();
-include_once 'header.php';
+include_once 'new-header.php';
 include_once 'class/dbh.inc.php';
 include_once 'class/variables.inc.php';
 
@@ -51,44 +51,13 @@ and open the template in the editor.
         <script src="./assets/jquery-2.1.1.min.js"></script>
         <link href="bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
         <script src="bower_components/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript">
-            function getSelectOptionNo(sel) {
-
-                var tmp = sel.options[sel.selectedIndex].text;
-                var tmp2 = sel.options[sel.selectedIndex].value;
-//                $('#numStart').val(tmp);
-//                $('#numStart').val(tmp);
-                var numStart = document.getElementById('numStart').value;
-                var start = parseFloat(numStart);
-                var noInteger = parseFloat(tmp);
-                console.log("start = " + start);
-                console.log("noInteger = " + noInteger);
-                var numEnd = start + noInteger - 1;
-                $('#numEnd').val(numEnd);
-                console.log(numEnd);
-
-                //document.getElementById("Thick").value = cars;
-//    alert(tmp);
-                //console.log(tmp);
-
-            }
-        </script>
-        <script type="text/javascript" >
-            $(document).ready(function() {
-                $('.js-example-basic-single').select2();
-            });
-            $("#noQty").keyup(function() {
-
-                var noQty = document.getElementById("noQty").value;
-
-            });
-        </script>
+        
     </head>
     <body>
         
         <div class='container'>
             <form action="index.php" method="post">
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+                <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
             <form action="activatePrePrintVoucher.php" method='POST'>
             <h3 class="text-primary">Activate Pre-Printed Vouchers (Batch)</h3>
@@ -145,7 +114,7 @@ and open the template in the editor.
                     <div class="col-sm-2">
                         <label class="label label-default">No. of vouchers :</label><br>
                         <select name='noQty' id='noQty' class="js-example-basic-single"
-                                style="text-align: center;padding-right: 3px;padding-left:3px;width:120%" name="state"
+                                style="text-align: center;padding-right: 3px;padding-left:3px;width:100%" name="state"
                                 onchange="getSelectOptionNo(this)">
                                     <?php
                                     for ($i = 1; $i < 1000; $i++) {
@@ -193,7 +162,40 @@ and open the template in the editor.
             </div>
             <?php
             }
+            #include 'new-footer.php';
             ?>
+            <script type="text/javascript">
+                function getSelectOptionNo(sel) {
+
+                    var tmp = sel.options[sel.selectedIndex].text;
+                    var tmp2 = sel.options[sel.selectedIndex].value;
+    //                $('#numStart').val(tmp);
+    //                $('#numStart').val(tmp);
+                    var numStart = document.getElementById('numStart').value;
+                    var start = parseFloat(numStart);
+                    var noInteger = parseFloat(tmp);
+                    console.log("start = " + start);
+                    console.log("noInteger = " + noInteger);
+                    var numEnd = start + noInteger - 1;
+                    $('#numEnd').val(numEnd);
+                    console.log(numEnd);
+
+                    //document.getElementById("Thick").value = cars;
+    //    alert(tmp);
+                    //console.log(tmp);
+
+                }
+            </script>
+            <script type="text/javascript" >
+                $(document).ready(function() {
+                    $('.js-example-basic-single').select2();
+                });
+                $("#noQty").keyup(function() {
+
+                    var noQty = document.getElementById("noQty").value;
+
+                });
+            </script>
         </div>
         
     </body>

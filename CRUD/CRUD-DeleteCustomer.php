@@ -1,9 +1,7 @@
 <?php
 namespace CRUD\Customer\Details;
-include_once 'CRUD/CRUD-header.php';
 require 'CRUD-functions.php';
 require 'CRUD/class/customer.inc.php';
-session_start();
 use CUSTOMER;
 
 if (isset($_GET['cid'])){

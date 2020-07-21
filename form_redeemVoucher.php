@@ -3,7 +3,7 @@
 namespace voucher\Validate;
 
 session_start();
-include 'header.php';
+include_once 'new-header.php';
 $physvoucherRadio = '';
 $evoucherRadio = '';
 
@@ -46,7 +46,7 @@ and open the template in the editor.
     <body>
         <div class='container'>
             <form action="index.php" method="post">
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+                <input class="btn btn-warning mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
             <h3 class="text-primary">Validate Voucher</h3>
             <form action="" method="POST">
@@ -107,6 +107,8 @@ if (isset($voucherUpdMsg)) {
                 </div>
     <?php
 }
+
+include_once 'new-footer.php';
 ?>
 
         </div>

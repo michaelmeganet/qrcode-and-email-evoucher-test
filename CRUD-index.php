@@ -1,4 +1,6 @@
 <?php
+session_start();
+include_once 'CRUD/CRUD-header.php';
 if (isset($_GET['view'])){
     $view = $_GET['view'];
 }else{

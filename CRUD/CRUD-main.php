@@ -1,10 +1,8 @@
 <?php
 namespace CRUD\Customer;
-include_once 'header.php';
 require 'CRUD-functions.php';
 
 $customerList = getCustomerList();
-session_start();
 if (isset($_SESSION['delMsg'])){
     $deleteResult = $_SESSION['delMsg'];
     session_destroy();
@@ -25,7 +23,7 @@ and open the template in the editor.
         
         <div class="container">
             <form action="index.php" method="post">
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+                <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
         <h3><b>Customer List CRUD</b></h3>
         <br>
@@ -79,5 +77,8 @@ and open the template in the editor.
                 </table>
             </div>
         </div>
+       <?php
+            include 'new-footer.php';
+       ?>
     </body>
 </html>

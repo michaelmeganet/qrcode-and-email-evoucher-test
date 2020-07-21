@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+    <!--   -->
     <head>
-        <title>CRUD Activity</title>
+        <title>ISHIN Japanese Dining</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!--https://en.wikipedia.org/wiki/Meta_refresh-->
+
         <!-- SmartMenus core CSS (required) -->
         <link href="assets/css/sm-core-css.css" rel="stylesheet" type="text/css" />
 
@@ -13,8 +15,7 @@
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/style.css">
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src='bower_components/jquery-validation/dist/jquery.validate.min.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script>
             function cloneValidate(url,index){
@@ -34,7 +35,26 @@
                     window.location.href = index;
                 }
             }
-            
+            function dtlOpenNewWindow(url){
+                window.open(url,"_self");
+                return false;
+            }
+ 
+            function updOpenNewWindow(url){
+                window.open(url,"_self");
+                return false;
+            }
+            function openPopUp(url){
+                window.open(url);
+                return false;
+            }
+            function updateValidate(){
+                if(window.confirm("Are you sure you want to submit?")){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
             function redirectToMain(text,main){
                 window.alert(text);
                 window.location.href = main;
@@ -51,8 +71,10 @@
                 }
             })*/
         </script>
-    </head>
 
+    </head>
+    <!-- https://www.smartmenus.org/about/themes/ 
+         Complete navbar .sm-clean -->
     <div id="page">
         <div id="content">
             <body  onLoad="LoadOnce()">
@@ -61,7 +83,7 @@
                     <label class="main-menu-btn" for="main-menu-state">
                       <span class="main-menu-btn-icon"></span> Toggle main menu visibility
                     </label>
-                    <h2 class='nav-brand'><label class='label' style='color:#555555'>ISHIN Japanese Dining</label></h2>
+                    <h2 class='nav nav-brand' style="padding-top: 5px"><label class='label' style='color:#555555'>ISHIN Japanese Dining</label></h2>
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
                         <li><a href='index.php'>Home</a></li>
@@ -69,7 +91,7 @@
                             <ul>
                                 <li><a href='CRUD-index.php?view=CC'>Create Customer</a></li>
                                 <li><a href='CRUD-index.php?view=main'>Customer List</a></li>
-                    </ul>
+                            </ul>
                         </li>
                         <li><a href='form_redeemVoucher.php'>Vouchers</a>
                             <ul>
@@ -86,7 +108,7 @@
                                 </li>
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
                             </ul>
-
+                        
                         <li class="sm-rtl"><a href='#'>Logout </a></li>
                     </ul>
                 </nav>
