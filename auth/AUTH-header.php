@@ -61,7 +61,7 @@
                     <label class="main-menu-btn" for="main-menu-state">
                       <span class="main-menu-btn-icon"></span> Toggle main menu visibility
                     </label>
-                    <h2 class='nav-brand'><label class='label' style='color:#555555'>ISHIN Japanese Dining</label></h2>
+                    <h2 class='nav nav-brand' style="padding-top: 5px"><label class='label' style='color:#555555'>ISHIN Japanese Dining</label></h2>
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
                         <li><a href='index.php'>Home</a></li>
@@ -69,24 +69,24 @@
                             <ul>
                                 <li><a href='CRUD-index.php?view=CC'>Create Customer</a></li>
                                 <li><a href='CRUD-index.php?view=main'>Customer List</a></li>
-                    </ul>
+                            </ul>
                         </li>
                         <li><a href='form_redeemVoucher.php'>Vouchers</a>
                             <ul>
                                 <li><a href='#'>E-Voucher</a>
-                                    <ul id='nav'>
+                                    <ul id='main'>
                                         <li><a href='form_mailCustomer.php'>Create Single</a></li>
                                         <li><a href='form_batchMailCustomer.php'>Create Batch</a></li>
                                     </ul> 
                                 </li>
                                 <li><a href='#'>Physical Voucher</a>
-                                    <ul id='nav'>
+                                    <ul id='main'>
                                         <li><a href='importPreprintVoucher.php'>Activate Physical Voucher</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
                             </ul>
-
+                        
                         <li class="sm-rtl"><a href='#'>Logout </a></li>
                     </ul>
                 </nav>
