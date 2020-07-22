@@ -86,8 +86,27 @@
                                 </li>
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
                             </ul>
-                        
-                        <li class="sm-rtl"><a href='#'>Logout </a></li>
+                        </li>
+                        <?php
+                        if ($_SESSION['activeUserCredentials'] == 'admin'){
+                        ?>    
+                        <li><a href='AUTH-index.php'>Admin Area</a>
+                            <ul>
+                                <li><a href='#'>User Account</a>
+                                    <ul id='main'>
+                                        <li><a href='AUTH-index.php?Aview=RG'>Register New User</a></li>
+                                        <li><a href='AUTH-index.php?Aview=AA'>Activate User Authenticator</a></li>
+                                    </ul> 
+                                </li>
+                                <li><a href='#'>User List</a></li>
+                            </ul>
+                        </li>
+                        <?php   
+                        }
+                        ?>
+                        <li class="sm-rtl"><a href='logout.php'>Logout </a></li>
                     </ul>
                 </nav>
+                <div class=" content" style="text-align:left;margin: 0px 40px 0px 40px">
+                    <label class="label label-info" style="font-size:12px">Welcome, <?php echo $_SESSION['activeUser'].",  ".$_SESSION['activeUserCredentials'];?></label></div>
                 <br>
