@@ -59,6 +59,7 @@
                 window.alert(text);
                 window.location.href = main;
             }
+            
             /*
             function redirectToIndex(text){
                 window.alert(text);
@@ -70,6 +71,12 @@
                      window.location = index.php;
                 }
             })*/
+    
+            
+                
+
+                    
+
         </script>
 
     </head>
@@ -96,13 +103,13 @@
                         <li><a href='form_redeemVoucher.php'>Vouchers</a>
                             <ul>
                                 <li><a href='#'>E-Voucher</a>
-                                    <ul id='nav'>
+                                    <ul id='main'>
                                         <li><a href='form_mailCustomer.php'>Create Single</a></li>
                                         <li><a href='form_batchMailCustomer.php'>Create Batch</a></li>
                                     </ul> 
                                 </li>
                                 <li><a href='#'>Physical Voucher</a>
-                                    <ul id='nav'>
+                                    <ul id='main'>
                                         <li><a href='importPreprintVoucher.php'>Activate Physical Voucher</a></li>
                                     </ul>
                                 </li>

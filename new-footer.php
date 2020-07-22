@@ -1,8 +1,8 @@
 <!-- jQuery -->
-                <script type="text/javascript" src="libs/jquery/jquery.js"></script>
+            <!--    <script type="text/javascript" src="libs/jquery/jquery.js"></script>                   -->
             <!--    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
                 <!-- SmartMenus jQuery plugin -->
-                <script type="text/javascript" src="libs/jquery/jquery,smartmenus.js"></script>
+                <script type="text/javascript" src="libs/jquery/jquery.smartmenus.js"></script>
 
                 <!-- SmartMenus jQuery init -->
                 <script type="text/javascript">
@@ -13,20 +13,15 @@
                     });
                 });
                 </script>
-                <!-- Jquery reload nav menu -->
-
-                <script language=" JavaScript" >
-
-                    function LoadOnce()
-                    {
+                <!--reload once menu-->
+                <script>
+                function LoadOnce(){
+                    if(!window.location.hash){
+                        window.location = window.location+'#loaded';
                         window.location.reload();
                     }
-
+                }
                 </script>
-
-
-                <!-- YOU DO NOT NEED THIS - demo page themes switcher -->
-                <script type="text/javascript" src="libs/demo-assets/themes-switcher.js"></script>
 
                 <script>
                     $(function () { // DOM Ready (shorthand)
@@ -39,7 +34,6 @@
                         };
 
                         $('#nav a').click(function (dss) {
-
                             dss.preventDefault();                // prevent default anchor behavior
                             var URL = $(this).attr('href');    // get page URL
                             $('#page').html('');               // empty old HTML content.
@@ -50,7 +44,6 @@
                                 // Everything here will be performed once the load is done.
                                 // Put here whatever you need.
                                 // ...
-
                                 // Also, let's handle history and  browser's AddressBar
                                 var $data = $(data),
                                         content = $data.find('#content').html(),
