@@ -4,8 +4,10 @@ session_start();
 if(isset($_SESSION['mailMsg'])){
     $mailMsg = $_SESSION['mailMsg'];
     $mailStat = $_SESSION['mailStat'];
-    session_destroy();
+    unset($_SESSION['mailMsg']);
+    unset($_SESSION['mailStat']);
 }
+include "include/session.php";
 include 'new-header.php';   
 
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];

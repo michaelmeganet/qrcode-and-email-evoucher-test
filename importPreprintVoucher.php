@@ -1,6 +1,7 @@
 <?php
 namespace voucher\PrePrint;
 session_start();
+include "include/session.php";
 include_once 'new-header.php';
 include_once 'class/dbh.inc.php';
 include_once 'class/variables.inc.php';

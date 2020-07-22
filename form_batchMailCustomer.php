@@ -3,6 +3,7 @@
 namespace voucher\EVoucherBatch;
 
 session_start();
+include "include/session.php";
 include 'class/dbh.inc.php';
 include 'class/variables.inc.php';
 include 'new-header.php';
@@ -14,7 +15,8 @@ if (isset($_SESSION['mailResults'])) {
     $mailCount = $_SESSION['mailCount'];
     $successCount = $mailCount['successCount'];
     $errCount = $mailCount['errCount'];
-    session_destroy();
+    unset($_SESSION['mailResults']);
+    unset($_SESSION['mailCount']);
 }
 #if(isset($_POST['emailSelected'])){
 #    $arr_email = $_POST['emailSelected'];
