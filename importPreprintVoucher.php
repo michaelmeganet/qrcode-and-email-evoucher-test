@@ -53,7 +53,6 @@ and open the template in the editor.
         <script src="bower_components/select2/dist/js/select2.min.js"></script>
         
     </head>
-    <body>
         
         <div class='container'>
             <form action="index.php" method="post">
@@ -197,7 +196,9 @@ and open the template in the editor.
                 });
             </script>
         </div>
-        
+        <?php
+        include 'new-footer.php';
+        ?>
     </body>
 </html>
 
