@@ -1,10 +1,11 @@
 <?php
 session_start();
+include "include/session.php";
 include_once 'CRUD/CRUD-header.php';
 if (isset($_GET['view'])){
     $view = $_GET['view'];
 }else{
-    die('Cannot do it this way, please <a href="index.php">try again</a>.');
+    $view = 'main';
 }
 
 switch ($view) {

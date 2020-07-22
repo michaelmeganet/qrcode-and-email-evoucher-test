@@ -3,6 +3,7 @@
 namespace voucher\Validate;
 
 session_start();
+include "include/session.php";
 include_once 'new-header.php';
 $physvoucherRadio = '';
 $evoucherRadio = '';

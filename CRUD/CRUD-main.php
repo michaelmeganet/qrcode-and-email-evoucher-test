@@ -5,7 +5,7 @@ require 'CRUD-functions.php';
 $customerList = getCustomerList();
 if (isset($_SESSION['delMsg'])){
     $deleteResult = $_SESSION['delMsg'];
-    session_destroy();
+    unset($_SESSION['delMsg']);
 }
 ?>
 <!DOCTYPE html>

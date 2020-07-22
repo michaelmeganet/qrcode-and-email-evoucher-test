@@ -3,8 +3,6 @@
 namespace AUTH\User\Activate;
 
 require 'AUTH-functions.php';
-require 'class/users.inc.php';
-require 'googleLib/GoogleAuthenticator.php';
 
 use USER;
 use GoogleAuthenticator;
@@ -136,5 +134,8 @@ and open the template in the editor.
             }
             ?>
         </div>
+        <?php
+        include 'new-footer.php';
+        ?>
     </body>
 </html>

@@ -13,7 +13,7 @@
                     });
                 });
                 </script>
-                <!--reload once menu-->
+                <!--reload once menu--><!--
                 <script>
                 function LoadOnce(){
                     if(!window.location.hash){
@@ -21,7 +21,7 @@
                         window.location.reload();
                     }
                 }
-                </script>
+                </script>-->
 
                 <script>
                     $(function () { // DOM Ready (shorthand)

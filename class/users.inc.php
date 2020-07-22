@@ -13,6 +13,7 @@
  */
 class USER {
 
+    protected $uid;
     protected $username;
     protected $password;
     protected $name;
@@ -32,6 +33,7 @@ class USER {
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
         if (!empty($result)) {
+            $this->set_uid($result['uid']);
             $this->set_username($result['username']);
             $this->set_password($result['password']);
             $this->set_name($result['name']);
@@ -65,6 +67,31 @@ class USER {
             return 'Insert Successful';
         } else {
             return 'Insert Failed';
+        }
+    }
+
+    function update($uid, $username, $name, $password, $credentials) {
+        //make hash of password;
+        $hash_password = hash('sha256', $password);
+        //create array of this
+        $arr_user = array('name' => $name, 'username' => $username, 'password' => $hash_password, 'credentials' => $credentials);
+        $cnt = 0;
+        $arrCount = count($arr_user);
+        $qr = 'UPDATE users SET ';
+        foreach ($arr_user as $rowKey => $rowVal) {
+            $cnt++;
+            $qr .= $rowKey . "=:" . $rowKey;
+            if ($cnt != $arrCount) {
+                $qr .= ", ";
+            }
+        }
+        $qr .= ' WHERE uid = ' . $uid;
+        $objSQL = new SQLBINDPARAM($qr, $arr_user);
+        $result = $objSQL->UpdateData2();
+        if ($result == 'Update ok!') {
+            return 'Update Successful';
+        } else {
+            return 'Update Failed';
         }
     }
 
@@ -112,6 +139,25 @@ class USER {
         } else {
             return 'Failed to Deactivate';
         }
+    }
+
+    function delete($uid) {
+        $qr = 'DELETE FROM users WHERE uid = ' . $uid;
+        $objSQL = new SQL($qr);
+        $result = $objSQL->getDelete();
+        if ($result == 'deleted') {
+            return 'Delete Successful';
+        } else {
+            return 'Delete Failed';
+        }
+    }
+
+    function set_uid($input) {
+        $this->uid = $input;
+    }
+
+    function get_uid() {
+        return $this->uid;
     }
 
     function set_username($input) {

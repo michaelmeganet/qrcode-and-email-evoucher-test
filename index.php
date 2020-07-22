@@ -1,10 +1,8 @@
 <?php
 session_start();
+include "include/session.php";
 include "new-header.php";
 
-if(isset($_POST['reset_click'])){
-    session_destroy();
-}
 ?>
 <div class="container" style="text-align:center">
     &nbsp;

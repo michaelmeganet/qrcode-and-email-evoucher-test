@@ -1,46 +1,13 @@
 <?php
-date_default_timezone_set("Asia/Jakarta");
-echo date('D-M-Y h:i:s');
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $codeGoogle = $_POST['codeGoogle'];
-    echo "\$username = $username,  \$password = $password, \$hash = ".hash('sha256',$password).",  \$codeGoogle = $codeGoogle<br>";
-    include_once 'class/dbh.inc.php';
-    include_once 'class/variables.inc.php';
-    include_once 'class/users.inc.php';
 
-    $objUser0 = new USER();
-    $loginResult = $objUser0->login($username, $password);
-    if ($loginResult == 'User Correct') {
-        echo "user is correct<br>";
-        //the user is found, check if active or not
-        $user_active = $objUser0->get_active();
-        if ($user_active == 'yes') {
-            echo "user is active<br>";
-            //user is active, check google code
-            include_once 'auth/googleLib/GoogleAuthenticator.php';
-            $user_secret = $objUser0->get_google_auth_code();
-            echo "\$user_secret = $user_secret<br>";
-            $objGA = new GoogleAuthenticator();
-            $checkAuth = $objGA->verifyCode($user_secret, $codeGoogle, 2); // userAuth code, 6 digit code, 2 * 30 sec tolerance
-            if ($checkAuth) {
-                echo "Google auth is complete<br>";
-                $_SESSION['googleCode'] == $codeGoogle;
-                $_SESSION['activeUser'] == $username;
-                header('Location: index.php');
-            }else{
-                echo "Google auth is wrong<br>";
-                $loginMsg = 'The 6 digit code is not valid';
-            }
-        } else {
-            echo "user is not active<br>";
-            $loginMsg = 'User is not yet activated, Contact administrator';
-        }
-    } else {
-        echo "wrong username / password<br>";
-        $loginMsg = $loginResult;
-    }
+namespace AUTH\User;
+
+session_start();
+date_default_timezone_set("Asia/Jakarta");
+#echo date('D-M-Y h:i:s');
+if (isset($_POST['login'])) {
+    include_once 'auth/AUTH-functions.php';
+    $loginMsg = doLogin($_POST);
 }
 ?>
 
@@ -60,10 +27,10 @@ if (isset($_POST['login'])) {
         <!-- "sm-clean" menu theme (optional, you can use your own CSS, too) -->
         <link href="assets/css/sm-clean.css" rel="stylesheet" type="text/css" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/tooltip.css">
         <link rel="stylesheet" href="./assets/style.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style type="text/css">
             body{background-color: #FFFFFF;}
             .form-login{
@@ -93,7 +60,9 @@ if (isset($_POST['login'])) {
     </head>
     <!-- https://www.smartmenus.org/about/themes/ 
          Complete navbar .sm-clean -->
+
     <div class="container">
+
         <div class="form-login">
             <form action="" method="post" id='loginform' name='loginform'>
                 <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
@@ -102,8 +71,8 @@ if (isset($_POST['login'])) {
                 <?php
                 if (isset($loginMsg)) {
                     ?>
-                    <div class="alert alert-info alert-dismissible fade in">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger alert-dismissible fade in" >
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black">&times;</a>
                         <?php echo $loginMsg; ?>
                     </div>
                     <?php

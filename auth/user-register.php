@@ -2,11 +2,10 @@
 
 namespace AUTH\User\Register;
 
-require 'AUTH-functions.php';
-require 'class/users.inc.php';
-require 'googleLib/GoogleAuthenticator.php';
+include 'AUTH-functions.php';
 
 use USER;
+use GoogleAuthenticator;
 
 if (isset($_POST['submitCreate'])) {
     $objGA = new \GoogleAuthenticator();
@@ -45,6 +44,9 @@ $UID = $lastUID + 1;
             echo "</div>";
         }
         ?>
+        <form action="AUTH-index.php?Aview=main" method="post" >
+            <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
+        </form>
         <h3 class="text-primary">Create New User</h3>
         <form name="userform" id='userform' action='' method="POST" novalidate="novalidate">
             <div class="form-group row col-sm-4">
@@ -77,4 +79,7 @@ $UID = $lastUID + 1;
     </div>
 
     <script src='auth/validation.js'></script>
+    <?php
+    include 'new-footer.php';
+    ?>
 </body>
