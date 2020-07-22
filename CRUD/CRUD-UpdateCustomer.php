@@ -86,6 +86,7 @@ and open the template in the editor.
                 </div>
             </form>
         </div>
-    </body>
     <script src='CRUD/validation.js'></script>
+    <?php include 'new-footer.php';?>
+    </body>
 </html>
