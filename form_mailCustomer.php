@@ -66,3 +66,4 @@ include 'new-header.php';
 <?php
 include 'new-footer.php';
 ?>
+</body>
