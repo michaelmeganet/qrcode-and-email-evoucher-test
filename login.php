@@ -7,7 +7,20 @@ date_default_timezone_set("Asia/Jakarta");
 #echo date('D-M-Y h:i:s');
 if (isset($_POST['login'])) {
     include_once 'auth/AUTH-functions.php';
-    $loginMsg = doLogin($_POST);
+    $loginMsg = doLogin2($_POST);
+    if ($loginMsg == 'login ok') {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $authMode = 'yes';
+    }
+}
+
+if (isset($_POST['auth'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $authMode = 'yes';
+    include_once 'auth/AUTH-functions.php';
+    $authMsg = doGoogleAuthCheck($_POST);
 }
 ?>
 
@@ -34,8 +47,8 @@ if (isset($_POST['login'])) {
         <style type="text/css">
             body{background-color: #FFFFFF;}
             .form-login{
-                width: 350px;
-                margin: 120px auto;
+                width: 370px;
+                margin: auto auto;
                 padding: 25px 20px;
                 background: #DDDDDD;
                 box-shadow: 2px 2px 4px #ab8de0;
@@ -62,45 +75,91 @@ if (isset($_POST['login'])) {
          Complete navbar .sm-clean -->
 
     <div class="container">
-
-        <div class="form-login">
-            <form action="" method="post" id='loginform' name='loginform'>
-                <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
-                &nbsp;
-                <h3 class="text-center">Please login</h3>    
-                <?php
-                if (isset($loginMsg)) {
-                    ?>
-                    <div class="alert alert-danger alert-dismissible fade in" >
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black">&times;</a>
-                        <?php echo $loginMsg; ?>
-                    </div>
+        <?php
+        if (!isset($authMode)) {
+            ?>
+            <div class="form-login">
+                <form action="" method="post" id='loginform' name='loginform'>
+                    <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
+                    &nbsp;
+                    <h3 class="text-center">Please login</h3>    
                     <?php
-                }
-                ?>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username" required="required" name='username' class='username'>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="required" name='password' id='password'>
-                </div>
-                &nbsp;
-                <div class="form-group">
-                    <div class='text-left ttip' style='color:#555555'>6 Digit Authenticator Code :
-                        <span class='ttiptext'>Use Google Auth App</span>
+                    if (isset($loginMsg)) {
+                        ?>
+                        <div class="alert alert-danger alert-dismissible fade in" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black">&times;</a>
+                            <?php echo $loginMsg; ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required="required" name='username' class='username'>
                     </div>
-                    <input type="text" class="form-control" placeholder="000000" required="required" name='codeGoogle' id='codeGoogle'>
-                </div>
-                <div class="form-group clearfix">
-                    <input type="submit" class="btn btn-primary pull-right" id='login' name='login' value='Log In'/>
-                </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="required" name='password' id='password'>
+                    </div>
+                    <div class="form-group clearfix">
+                        <input type="submit" class="btn btn-primary pull-right" id='login' name='login' value='Log In'/>
+                    </div>
 
-                <!-- Account Creation can only be done by administrator
-                <div class="clearfix">
-                    <a href="#" class="pull-left">Forgot Password?</a>
-                    <a href="#" class="pull-right">Create an Account</a>
+                    <!-- Account Creation can only be done by administrator
+                    <div class="clearfix">
+                        <a href="#" class="pull-left">Forgot Password?</a>
+                        <a href="#" class="pull-right">Create an Account</a>
+                    </div>
+                    -->
+                </form>
+            </div>
+            <?php
+        } else {
+            if ($authMode == 'yes') {
+                ?>
+                <div class="form-login">
+                    <form action="" method="post" id='loginform' name='loginform'>
+                        <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
+                        <?php
+                        if (isset($authMsg)) {
+                            ?>
+                            <div class="alert alert-danger alert-dismissible fade in" >
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black">&times;</a>
+                                <?php echo $authMsg; ?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div style="background-color:white;padding:4px 4px 4px 4px;border-radius: 5px">
+                            
+                        <h4 class="text-center text-info">Please enter your Authenticator Code</h4>  
+                            
+                        </div>
+                        <span>&nbsp;</span>
+                        <div style="background-color:white;padding:15px 5px 5px 5px;border-radius: 5px">
+                            <div class="form-group text-center">
+                                <img src="assets/images/gAuth.png" style="width:200px"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="000000" required="required" name='codeGoogle' id='codeGoogle'>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class='text-left ttip' style='color:#555555'>Can't find it?
+                                    <span class='ttiptext'>Google Authenticator can be found on your phone, Or contract your administrator</span>
+                                </div>
+                                <input type='hidden' value='<?php echo $username; ?>' id='username' name='username'/>
+                                <input type='hidden' value='<?php echo $password; ?>' id='password' name='password'/>
+                                <input type='hidden' value='<?php echo $authMode; ?>' id='authMode' name='authMode'/>
+
+                                <input type="submit" class="btn btn-primary pull-right" id='auth' name='auth' value='Log In'/>
+                            </div>
+                        </div>
+                    </form>
+                    <div style='text-align: center'>
+
+                        <a href='login.php' Class='btn btn-warning btn-mini btn-block'>Go back to Login Page</a>
+                    </div>
                 </div>
-                -->
-            </form>
-        </div>
+                <?php
+            }
+        }
+        ?>
     </div>
