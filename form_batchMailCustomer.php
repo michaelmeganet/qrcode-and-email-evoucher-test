@@ -72,7 +72,7 @@ if (isset($mailCount)) {
     <div class="form-group row row-no-gutters">
         <div class="col-sm-1">                     
             <label class="label label-default">User :</label><br> 
-            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
+            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="<?php echo $_SESSION['activeUsername'];?>" placeholder="userid" maxlength="20" readonly />
         </div>
     </div>
 
