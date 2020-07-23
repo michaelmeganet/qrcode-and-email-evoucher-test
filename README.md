@@ -13,5 +13,6 @@ XAMPP version : 3.2.4<br>
 To use the process, run the program from form_mailcustomer.php<br>
 and type in the provided textbox the recipient's email and name<br>
 <br>
-currently it uses my googleaccount to connect [testmailphh@gmail.com]<br>
-this can be changed in testMail.php<br>
+The ishindata.sql have to be extract under an empty database name: ishindata in mysql (phpmyadmin)
+so that this program can be fully functioning
+<br>
