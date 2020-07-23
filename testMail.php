@@ -19,6 +19,7 @@ if (isset($_POST)) {
     $recipient = $_POST['address'];
     $voucheramount = $_POST['radioRM'];
     $userid = $_POST['userid'];
+    $ipaddress = $_POST['ipaddress'];
     $_SESSION['post'] = $_POST;
     #print_r($_SESSION['post']);
 } else {
@@ -28,7 +29,7 @@ if (isset($_POST)) {
 try {
     $objEVoucher = new E_VOUCHER($userid, $voucheramount);
     $result = $objEVoucher->create_voucher();
-    echo "\$result  =$result<br>";
+    #echo "\$result  =$result<br>";
     if ($result != 'Insert Successful!') {
         throw new Exception("Failed to insert.");
     } else {
@@ -39,7 +40,8 @@ try {
         $_SESSION['post']['expiredate'] = $expiredate;
 
         //create script filename
-        $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        #$currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $currURL = "http://" . $ipaddress . $_SERVER['REQUEST_URI'];
         $valCurr = str_replace(basename((__FILE__)),'validateVoucher.php?qrscode='.$instanceid,$currURL);
         echo "<script>console.log('Debug Objects: valCurr = $valCurr');</script>";
         #$encode_ID = urlencode($instanceid);\
@@ -47,7 +49,7 @@ try {
         $_SESSION['post']['encode_ID'] = $encode_ID;
         $qrURL = "qrcodeimage.php?code=$encode_ID";
         $curr = str_replace(basename((__FILE__)), $qrURL, $currURL);
-        echo "curr = " . $curr . "<br>";
+        #echo "curr = " . $curr . "<br>";
         echo "<script>console.log('Debug Objects: qrURL =" . $qrURL . "' );</script>";
         echo "<script>console.log('Debug Objects: basename file =" . basename((__FILE__)) . "' );</script>";
         echo "<script>console.log('Debug Objects: currURL =" . $currURL . "' );</script>";
@@ -56,6 +58,9 @@ try {
         //Create PNG of Barcode
         $img_dir = './resource/img/qrcode_img.png';
         $output = file_get_contents($curr);
+        if(empty($output)){
+                throw new Exception('Error Connecting to Server, Cannot resolve assigned Server at <strong> http://'.$ipaddress.'</strong>.');
+            }
         file_put_contents($img_dir, $output);
 
         //create PDF for the E-Voucher
@@ -67,7 +72,7 @@ try {
         /**/
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+            #$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host = 'smtp.gmail.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth = true;                                   // Enable SMTP authentication
