@@ -117,6 +117,6 @@ try {
     $_SESSION['mailStat'] = 'error';
     $_SESSION['mailMsg'] = $ex->getMessage();
 }
-#echo '<META HTTP-EQUIV="refresh" content="0;URL=form_mailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+echo '<META HTTP-EQUIV="refresh" content="0;URL=form_mailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /**/
