@@ -11,7 +11,17 @@ if(isset($_SESSION['post'])){
     $voucheramount = "RM".$postdata['radioRM'];
     $datecreate = $postdata['datecreate'];
     $expiredate = $postdata['expiredate'];
-    $encode_ID = $postdata['encode_ID'];
+    $encodeURL = $postdata['encode_ID'];
+    //get Current URL = 
+    $thisURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    #echo "thisURL = $thisURL<br>";
+    $thisHeadURL = str_replace('testMail.php','',$thisURL);
+    $thisHeadURL = str_replace('testMailBatch.php','',$thisHeadURL);
+    #echo "thisHeadURL = $thisHeadURL<br>";
+    $checkURL = $thisHeadURL . "validateVoucher.php?qrscode=";
+    #echo "checkURL = $checkURL<br>";
+    //remove URL, get Encode Serialnumber only;
+    $encode_ID_Data = str_replace(urlencode($checkURL), '', $encodeURL);
 }
 ?>
 <div class="container">
@@ -22,7 +32,7 @@ if(isset($_SESSION['post'])){
             </tr> 
             <tr>
                 <td style='font-weight: bold;font-size: large'><?php echo $voucheramount; ?></td>
-                <td style='text-align:right'><?php echo $encode_ID; ?></td>
+                <td style='text-align:right'><?php echo $encode_ID_Data; ?></td>
             </tr>
             <tr style="text-align: center">
                 <td colspan ='2' ><?php echo "<img src='cid:qrcode'/>"; ?></td>

@@ -31,7 +31,7 @@ function getCustomerList() {
     $result = $objSQL->getResultRowArray();
     return $result;
 }
-
+$detected_ipaddress = $_SERVER['SERVER_NAME'];
 $customerList = getCustomerList();
 include 'header.php';
 
@@ -45,9 +45,9 @@ include 'header.php';
     <h3><b>Issue E-Voucher (Batch)</b></h3>
     <br>
     <br>
-<?php
-if (isset($mailCount)) {
-    ?>
+    <?php
+    if (isset($mailCount)) {
+        ?>
         <div class="alert alert-info alert-dismissible">
 
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -64,15 +64,22 @@ if (isset($mailCount)) {
             ?>
         </div>
 
-    <?php
-}
-?>
+        <?php
+    }
+    ?>
 </label>
 <form action='testMailBatch.php' method='POST'>
     <div class="form-group row row-no-gutters">
         <div class="col-sm-1">                     
             <label class="label label-default">User :</label><br> 
-            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="" placeholder="userid" maxlength="10" />
+            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="<?php echo $_SESSION['activeUsername']; ?>" placeholder="userid" maxlength="20" readonly />
+        </div>
+    </div>
+    <div class="form-group row row-no-gutters">
+        <div class="col-sm-1">                     
+            <label class="label label-default">Server IP Address :</label><br> 
+            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="ipaddress" id='ipaddress' value="" placeholder="<?php echo $detected_ipaddress; ?>" maxlength="20" required="required"/>
+            <label class="label label-warning">Please type in the IP Address of assigned Server.</label>
         </div>
     </div>
 
@@ -109,10 +116,10 @@ if (isset($mailCount)) {
                     }
                     ?>
                 <td><input type="checkbox" name="emailSelected[]" value="<?php echo $emailSelected; ?>" /></td>
-    <?php
-    echo "</tr>";
-}
-?>
+                <?php
+                echo "</tr>";
+            }
+            ?>
             </tbody>
         </table>
     </div>
