@@ -72,7 +72,7 @@ function doLogin($post_login) {
                 $objSessions = new \SESSIONS();
                 $currActSession = $objSessions->getActiveSession($user_uid, $username, $codeGoogle);
                 print_r($currActSession);
-                
+
                 if ($currActSession == 'empty') {
 
                     $loginMsg = 'Login Success!';
@@ -84,9 +84,13 @@ function doLogin($post_login) {
                     $_SESSION['activeUserCredentials'] = $user_credentials;
                     $_SESSION['startTimeout'] = time();
                     $updateActSession = $objSessions->setActiveSession($_SESSION['activeUID'], $_SESSION['activeUsername'], $_SESSION['googleCode']);
-                    header('Location: index.php');
-                  
-                 
+
+                    //if there's redirection :
+                    if (isset($_SESSION['redirectLocation'])) {
+                        header('Location:' . $_SESSION['redirectLocation']);
+                    } else {
+                        header('Location: index.php');
+                    }
                 } else {
                     $loginMsg = 'This account is already logged in on another place.';
                 }
