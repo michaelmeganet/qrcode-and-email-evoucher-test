@@ -1,5 +1,7 @@
 <?php
+
 namespace voucher\EVoucherBatch;
+
 include_once 'class/vouchergenerate.inc.php';
 
 use E_VOUCHER;
@@ -13,32 +15,31 @@ require './assets/PHPMailer/src/SMTP.php';
 
 session_start();
 
-if (isset($_POST['emailSelected'])){
+if (isset($_POST['emailSelected'])) {
     $arr_email = (array) $_POST['emailSelected'];
     var_dump($arr_email);
     $voucheramount = $_POST['radioRM'];
     $userid = $_POST['userid'];
     $_SESSION['post'] = $_POST;
     #print_r($_SESSION['post']);
-}else{
+} else {
     die("Please try <a href='index.php'>again</a>.");
-}  
+}
 
-function sendEmail($recipient,//the email recipient
-                    $img_dir){  //the directory for image files
+function sendEmail($recipient, //the email recipient
+        $img_dir) {  //the directory for image files
     $mail = new PHPMailer(true);
     /**/
     try {
         //Server settings
         #$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                       // Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-        $mail->Username   = 'meganet003@gmail.com';                 // SMTP username
-        $mail->Password   = 'mega6636';                             // SMTP password
+        $mail->Host = 'smtp.gmail.com';                       // Set the SMTP server to send through
+        $mail->SMTPAuth = true;                                   // Enable SMTP authentication
+        $mail->Username = 'meganet003@gmail.com';                 // SMTP username
+        $mail->Password = 'mega6636';                             // SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-        $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
+        $mail->Port = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         //Recipients
         $mail->setFrom('meganet003@gmail.com', '-noreply');
         #$mail->addAddress('joe@example.net', 'Joe User');          // Add a recipient
@@ -47,12 +48,10 @@ function sendEmail($recipient,//the email recipient
         $mail->addEmbeddedImage($img_dir, 'qrcode');                //Adds an image to be embedded
         #$mail->addCC('cc@example.com');
         #$mail->addBCC('bcc@example.com');
-
         // Attachments
         #$mail->addAttachment('/var/tmp/file.tar.gz');              // Add attachments
         #$mail->addAttachment('/tmp/image.jpg', 'new.jpg');         // Optional name
         #$mail->addAttachment($evoucher);
-
         //creating body for message
         ob_start();
         include('testBody.php');
@@ -77,7 +76,7 @@ function sendEmail($recipient,//the email recipient
         $mailMsg = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
     $mailResult = array('mailStat' => $mailStat, 'mailMsg' => $mailMsg);
-    
+
     return $mailResult;
 }
 
@@ -86,21 +85,21 @@ $errCount = 0;
 $successCount = 0;
 $arr_results = array();
 
-foreach($arr_email as $row){
-    $rows = explode('|x|',$row);
+foreach ($arr_email as $row) {
+    $rows = explode('|x|', $row);
     #echo"<br>";
     $cusName = $rows[0];
     $_SESSION['post']['customer_name'] = $cusName;
     #echo "cusname = $cusName<br>";
     $cusEmail = $rows[1];
     #echo "cusEmail = $cusEmail<br>";
-    try{
+    try {
         $objEVoucher = new E_VOUCHER($userid, $voucheramount);
         $result = $objEVoucher->create_voucher();
         #echo "\$result = $result<br>";
-        if ($result != 'Insert Successful!'){
+        if ($result != 'Insert Successful!') {
             throw new Exception("Fail to create Voucher for $cusName. Please Contact Administrator regarding this.");
-        }else{
+        } else {
             $instanceid = $objEVoucher->get_instanceid();
             $expiredate = $objEVoucher->get_expiredate();
             $datecreate = $objEVoucher->get_datecreate();
@@ -108,12 +107,19 @@ foreach($arr_email as $row){
             $_SESSION['post']['expiredate'] = $expiredate;
 
             //create script filename
-            $encode_ID = urlencode($instanceid);
+            $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+            $valCurr = str_replace(basename((__FILE__)), 'validateVoucher.php?qrscode=' . $instanceid, $currURL);
+            echo "<script>console.log('Debug Objects: valCurr = $valCurr');</script>";
+            #$encode_ID = urlencode($instanceid);\
+            $encode_ID = urlencode($valCurr);
             $_SESSION['post']['encode_ID'] = $encode_ID;
             $qrURL = "qrcodeimage.php?code=$encode_ID";
-            $currURL = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-            $curr = str_replace(basename((__FILE__)),$qrURL,$currURL);
-            #echo "curr = ".$curr."<br>";
+            $curr = str_replace(basename((__FILE__)), $qrURL, $currURL);
+            echo "curr = " . $curr . "<br>";
+            echo "<script>console.log('Debug Objects: qrURL =" . $qrURL . "' );</script>";
+            echo "<script>console.log('Debug Objects: basename file =" . basename((__FILE__)) . "' );</script>";
+            echo "<script>console.log('Debug Objects: currURL =" . $currURL . "' );</script>";
+            echo "<script>console.log('Debug Objects: curr =" . $curr . "' );</script>";
 
             //Create PNG of Barcode
             $img_dir = './resource/img/qrcode_img.png';
@@ -122,20 +128,17 @@ foreach($arr_email as $row){
 
             //create PDF for the E-Voucher
             //include_once 'printToPDF.php';
-
             //directory of PDF file
             //$evoucher = './resource/pdf/evoucher_tmp.pdf';
-
             //Begin Preparing to Email
             $mailResult = sendEmail($cusEmail, $img_dir);
-            if ($mailResult['mailStat'] == 'error'){
+            if ($mailResult['mailStat'] == 'error') {
                 throw new Exception($mailResult['mailMsg']);
-            }else{
+            } else {
                 $successCount++;
-                $arr_results[] = array('name' => $cusName, 'email' => $cusEmail, 'mailStat' => 'success', 'details' =>$mailResult['mailMsg']);
+                $arr_results[] = array('name' => $cusName, 'email' => $cusEmail, 'mailStat' => 'success', 'details' => $mailResult['mailMsg']);
             }
         }
-
     } catch (Exception $ex) {
         $errCount++;
         $errMsg = $ex->getMessage();
@@ -144,7 +147,7 @@ foreach($arr_email as $row){
 }
 $_SESSION['mailCount'] = array('successCount' => $successCount, 'errCount' => $errCount);
 $_SESSION['mailResults'] = $arr_results;
-   
+
 echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /**/
