@@ -3,6 +3,7 @@
 namespace voucher\Validate;
 
 session_start();
+include_once 'include/session.php';
 include_once 'class/vouchergenerate.inc.php';
 
 include_once 'class/dbh.inc.php';
@@ -12,7 +13,7 @@ use Dbh;
 use SQL;
 use Exception;
 
-if (isset($_POST)) {
+if (isset($_POST['serialcode'])) {
     $postdata = $_POST;
     unset($_POST);
     $currentDate = date('Y-m-d H:i:s');
@@ -20,7 +21,14 @@ if (isset($_POST)) {
     $inputSerialCode = $postdata['serialcode'];
     echo "\$vouchertype = $vouchertype<br>";
     echo "\$inputSerialCode = $inputSerialCode<br>";
+} elseif (isset($_GET['qrscode'])) {
+    $currentDate = date('Y-m-d H:i:s');
+    $vouchertype = 'evoucher';
+    $inputSerialCode = $_GET['qrscode'];
+    echo "\$vouchertype = $vouchertype<br>";
+    echo "\$inputSerialCode = $inputSerialCode<br>";
 } else {
+
     die("Please try <a href='index.php'>again</a>.");
 }
 
@@ -40,7 +48,7 @@ function fetchVoucherData($inputSerialCode, $vouchertype) {
 function updateRedeemVoid($vouchertype, $instanceid, $dateredeem, $updVoid) {
     if ($vouchertype == 'evoucher') {
         $table = 'evoucher_serial';
-    }elseif($vouchertype == 'preprintvoucher'){
+    } elseif ($vouchertype == 'preprintvoucher') {
         $table = 'preprint_serial';
     }
     $qr = "UPDATE $table SET "
