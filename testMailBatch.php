@@ -78,7 +78,7 @@ function sendEmail($recipient, //the email recipient
         #                ."<img src='qrcodeimage.php?code=$text_encode'/>";
         #$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-        #$mail->send();
+        $mail->send();
         $mailStat = 'success';
         $mailMsg = "Message has been sent to $recipient";
     } catch (Exception $e) {
@@ -96,7 +96,7 @@ $successCount = 0;
 $arr_results = array();
 
 foreach ($arr_email as $row) {
-    echo "row = $row<br>";
+    #echo "row = $row<br>";
     $cid = $row;
     $cus_data = getCustomerListByCID($cid);
     $cusName = $cus_data['cus_name'];
@@ -167,6 +167,6 @@ foreach ($arr_email as $row) {
 $_SESSION['mailCount'] = array('successCount' => $successCount, 'errCount' => $errCount);
 $_SESSION['mailResults'] = $arr_results;
 
-#echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /**/
