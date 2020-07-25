@@ -91,8 +91,8 @@ if (isset($_POST['auth'])) {
                     if (isset($loginMsg)) {
                         ?>
                         <div class="alert alert-danger alert-dismissible fade in" >
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black">&times;</a>
-                            <h5><strong><?php echo $loginMsg; ?></strong></h5>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close" style="color:black;font-size:30px">&times;</a>
+                            <h5><?php echo $loginMsg; ?></h5>
                         </div>
                         <?php
                     }
