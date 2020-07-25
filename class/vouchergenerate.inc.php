@@ -15,16 +15,15 @@ class VOUCHER {
 
     protected $instanceid;
     protected $userid;
-    protected $cid;
     protected $valvoucher;
     protected $datecreate;
     protected $expiredate;
     protected $table;
 
-    public function __construct($cid, $userid, $valvoucher, $datecreate, $table) {
+    public function __construct($userid, $valvoucher, $datecreate, $table) {
 
         $this->table = $table;
-        $this->set_cid($cid);
+
         $this->set_userid($userid);
         $this->set_valvoucher($valvoucher);
         $this->set_datecreate($datecreate);
@@ -86,14 +85,6 @@ class VOUCHER {
     public function get_userid() {
         return $this->userid;
     }
-    
-    public function set_cid($input){
-        $this->cid = $input;
-    }
-    
-    public function get_cid(){
-        return $this->cid;
-    }
 
     public function set_valvoucher($input) {
         $this->valvoucher = $input;
@@ -127,10 +118,10 @@ Class E_VOUCHER extends VOUCHER {
     protected $void = 'no'; //default value = no
     protected $table = 'evoucher_serial';
 
-    public function __construct($cid,$userid, $valvoucher) {
+    public function __construct($userid, $valvoucher) {
         $table = $this->table;
         $datecreate = date('Y-m-d H:i:s');
-        parent::__construct($cid,$userid, $valvoucher, $datecreate, $table);
+        parent::__construct($userid, $valvoucher, $datecreate, $table);
         $lastSerialNo = $this->fetchLastSerialNo();
         #echo "\$lastSerialNo = $lastSerialNo<br>";
         $serialno = $lastSerialNo + 1;
@@ -174,12 +165,10 @@ Class E_VOUCHER extends VOUCHER {
         $expiredate = $this->get_expiredate();
         $serialno = $this->get_serialno();
         $datecreate = $this->get_datecreate();
-        $cid = $this->get_cid();
         //create post array
         $bindparamArray = array(
             'instanceid' => $instanceid,
             'userid' => $userid,
-            'cid' => $cid,
             'valvoucher' => $valvoucher,
             'expiredate' => $expiredate,
             'serialno' => $serialno,
@@ -189,7 +178,6 @@ Class E_VOUCHER extends VOUCHER {
         $qr = "INSERT INTO $table SET "
                 . "instanceid=:instanceid, "
                 . "userid=:userid, "
-                . "cid=:cid, "
                 . "valvoucher=:valvoucher, "
                 . "expiredate=:expiredate, "
                 . "serialno=:serialno, "
@@ -222,7 +210,7 @@ Class E_VOUCHER extends VOUCHER {
       $table = $this->get_table();
       $currDate = date_format(date_create($this->get_datecreate()),'Y-m-d');
       #echo "\$currDate = $currDate<br>";
-     # $runningno = $this->get_runningno();
+      $runningno = $this->get_runningno();
       $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC;";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
@@ -239,7 +227,7 @@ Class E_VOUCHER extends VOUCHER {
 
       public function checkVoid($instanceid){
       $table = $this->get_table();
-      #$runningno = $this->get_runningno();
+      $runningno = $this->get_runningno();
       $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
