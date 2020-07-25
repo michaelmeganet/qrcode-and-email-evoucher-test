@@ -1,10 +1,12 @@
 <?php
+
 session_start();
 include "include/session.php";
-include 'auth/AUTH-header.php';
-if (isset($_GET['Aview'])){
+// include 'auth/AUTH-header.php';
+include_once '../qrcode-and-email-evoucher-test/new-header.php';
+if (isset($_GET['Aview'])) {
     $Aview = $_GET['Aview'];
-}else{
+} else {
     $Aview = 'main';
 }
 
@@ -13,7 +15,7 @@ switch ($Aview) {
         $title = 'User CRUD';
         include_once 'auth/AUTH-main.php';
         break;
-    
+
     case 'RG':
         $title = 'User Register';
         include_once 'auth/user-register.php';
@@ -31,15 +33,14 @@ switch ($Aview) {
         $title = 'Edit User';
         include_once 'auth/AUTH-UpdateUser.php';
         break;
-    
+
     case 'DU':
         $title = 'Delete User';
         include_once 'auth/AUTH-DeleteUser.php';
     default:
+        include_once 'auth/AUTH-main.php';
         break;
 }
 ?>
 
-<?php
-
-?>
+<?php ?>

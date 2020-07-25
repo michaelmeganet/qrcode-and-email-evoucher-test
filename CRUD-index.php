@@ -1,10 +1,12 @@
 <?php
+
 session_start();
 include "include/session.php";
-include_once 'CRUD/CRUD-header.php';
-if (isset($_GET['view'])){
+// include_once 'CRUD/CRUD-header.php';
+include_once '../qrcode-and-email-evoucher-test/new-header.php';
+if (isset($_GET['view'])) {
     $view = $_GET['view'];
-}else{
+} else {
     $view = 'main';
 }
 
@@ -13,28 +15,29 @@ switch ($view) {
         include_once('CRUD/CRUD-Main.php');
 
         break;
-    
+
     case 'CC':
         include_once('CRUD/CRUD-CreateCustomer.php');
 
         break;
-    
+
     case 'UC':
         include_once('CRUD/CRUD-UpdateCustomer.php');
 
         break;
-    
+
     case 'RC':
         include_once('CRUD/CRUD-DetailsCustomer.php');
 
         break;
-    
+
     case 'DC':
         include_once('CRUD/CRUD-DeleteCustomer.php');
-        
+
         break;
 
     default:
+        include_once('CRUD/CRUD-Main.php');
         break;
 }
 ?>
