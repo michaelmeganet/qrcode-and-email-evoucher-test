@@ -73,7 +73,7 @@ if (isset($_POST['auth'])) {
         </style>
 
     </head>
-    <!-- https://www.smartmenus.org/about/themes/ 
+    <!-- https://www.smartmenus.org/about/themes/
          Complete navbar .sm-clean -->
 
     <div class="container">
@@ -83,9 +83,9 @@ if (isset($_POST['auth'])) {
             <div class="form-login">
                 <form action="" method="post" id='loginform' name='loginform'>
                     <!--<h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>-->
-                    <img src='assets/images/Ishin-logo.png' />
+                    <img src='./assets/images/Ishinlogo.png' />
                     &nbsp;
-                    <h3 class="text-center">Please login</h3>    
+                    <h3 class="text-center">Please login</h3>
                     <?php
                     if (isset($loginMsg)) {
                         ?>
@@ -121,7 +121,7 @@ if (isset($_POST['auth'])) {
                 <div class="form-login">
                     <form action="" method="post" id='loginform' name='loginform'>
                         <!--<h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>-->
-                        
+
                         <img src='assets/images/Ishin-logo.png' />
                         <?php
                         if (isset($authMsg)) {
@@ -134,9 +134,9 @@ if (isset($_POST['auth'])) {
                         }
                         ?>
                         <div style="background-color:white;padding:4px 4px 4px 4px;border-radius: 5px">
-                            
-                        <h4 class="text-center text-info">Please enter your Authenticator Code</h4>  
-                            
+
+                            <h4 class="text-center text-info">Please enter your Authenticator Code</h4>
+
                         </div>
                         <span>&nbsp;</span>
                         <div style="background-color:white;padding:15px 5px 5px 5px;border-radius: 5px">
@@ -147,7 +147,7 @@ if (isset($_POST['auth'])) {
                             <div class="form-group text-center ">
                                 <input type="text" class="form-control " placeholder="000000" required="required" name='codeGoogle' id='codeGoogle' style="padding:20px 0px 20px 0px;width:100%;text-align:center;font-size:35px" />
 
-                                        <!--<span class='ttiptext'>Google Authenticator can be found on your phone, Or contract your administrator</span>-->
+                                                <!--<span class='ttiptext'>Google Authenticator can be found on your phone, Or contract your administrator</span>-->
 
                             </div>
                             <div class="form-group clearfix">
