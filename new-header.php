@@ -112,9 +112,9 @@
                                         <li><a href='form_batchMailCustomer.php'>Create Batch</a></li>
                                     </ul> 
                                 </li>
-                                <li><a href='#'>Physical Voucher</a>
+                                <li><a href='#'>Pre-Printed Voucher</a>
                                     <ul id='main'>
-                                        <li><a href='importPreprintVoucher.php'>Activate Physical Voucher</a></li>
+                                        <li><a href='importPreprintVoucher.php'>Activate Pre-Printed Voucher</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
