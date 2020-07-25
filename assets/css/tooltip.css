@@ -10,15 +10,15 @@ and open the template in the editor.
 
  /* Tooltip container */
 .ttip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  position: absolute;
+  /*display: inline-block;*/
+  border-bottom: 0px dotted black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
 .ttip .ttiptext {
   visibility: hidden;
-  width: 350px;
+  width: 100px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -29,8 +29,8 @@ and open the template in the editor.
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 50%;
-  margin-left: -60px;
+  left: 0%;
+  /*margin-left: -60px;*/
 
   /* Fade in ttip */
   opacity: 0;
@@ -42,7 +42,7 @@ and open the template in the editor.
   content: "";
   position: absolute;
   top: 100%;
-  left: 20%;
+  left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;

@@ -96,7 +96,6 @@
                     
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
-
                         <li><a href='index.php'>Home</a></li>
                         <li><a href='CRUD-index.php?view=main'>Customer</a>
                             <ul>
@@ -150,3 +149,4 @@
                     <br>
                     <?php
                 }
+                ?>
