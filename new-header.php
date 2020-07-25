@@ -124,12 +124,12 @@
                         if (isset($_SESSION['activeUserCredentials'])) {
                             if ($_SESSION['activeUserCredentials'] == 'admin') {
                                 ?>    
-                                <li><a href='AUTH-index.php'>Admin Area</a>
+                                <li><a href='AUTH-index.php'>Administration</a>
                                     <ul>
                                         <li><a href='#'>User Account</a>
                                             <ul id='main'>
                                                 <li><a href='AUTH-index.php?Aview=RG'>Register New User</a></li>
-                                                <li><a href='AUTH-index.php?Aview=AA'>Activate User Authenticator</a></li>
+                                                <li><a href='AUTH-index.php?Aview=AA'>Activate Google Authenticator</a></li>
                                             </ul> 
                                         </li>
                                         <li><a href='AUTH-index.php?Aview=main'>User List</a></li>
