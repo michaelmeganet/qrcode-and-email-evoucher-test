@@ -19,6 +19,7 @@
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <script src='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/js/bootstrap.min.js'></script>
         <script>
+            /*
             function cloneValidate(url, index) {
                 if (window.confirm("Are you sure you want to clone?\nThis will create a duplicate in your table.")) {
                     window.open(url, "_self");
@@ -26,7 +27,7 @@
                 } else {
                     window.location.href = index;
                 }
-            }
+            }*/
             function delValidate(url, index) {
                 if (window.confirm("Caution! Data will be deleted!\nThis cannot be undone!")) {
                     window.open(url, "_self");
@@ -36,7 +37,7 @@
                     window.location.href = index;
                 }
             }
-
+            /*
             function redirectToMain(text, main) {
                 window.alert(text);
                 window.location.href = main;
@@ -58,6 +59,7 @@
     <div id="page">
         <div id="content">
             <body  onLoad="">
+                <img src='assets/images/Ishin-logo.png' style='max-height:70px'/>
                 <nav id="main-nav"class='main-nav' role='navigation' >
                     <input id="main-menu-state" type="checkbox" />
                     <label class="main-menu-btn" for="main-menu-state">

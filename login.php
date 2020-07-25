@@ -53,7 +53,7 @@ if (isset($_POST['auth'])) {
                 width: auto;
                 max-width: 350px;
                 margin: auto auto;
-                padding: 25px 20px;
+                padding: 10px 20px;
                 background: #DDDDDD;
                 box-shadow: 2px 2px 4px #ab8de0;
                 border-radius: 5px;
@@ -62,9 +62,11 @@ if (isset($_POST['auth'])) {
             .form-login h3{
                 margin-top: 0px;
                 margin-bottom: 15px;
+                padding-top: 5px;
                 padding-bottom: 5px;
                 border-radius: 10px;
-                border: 1px solid #555555;
+                border: 0px solid #555555;
+                background-color: white;
             }
             .form-login a{color: #555555;}
             .form-login a:hover{
@@ -84,7 +86,8 @@ if (isset($_POST['auth'])) {
             ?>
             <div class="form-login">
                 <form action="" method="post" id='loginform' name='loginform'>
-                    <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
+                    <!--<h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>-->
+                    <img src='assets/images/Ishin-logo.png' />
                     &nbsp;
                     <h3 class="text-center">Please login</h3>    
                     <?php
@@ -121,7 +124,9 @@ if (isset($_POST['auth'])) {
                 ?>
                 <div class="form-login">
                     <form action="" method="post" id='loginform' name='loginform'>
-                        <h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>
+                        <!--<h2 class='text-center' style='border:0px'>Japanese Ishin Dining</h2>-->
+                        
+                        <img src='assets/images/Ishin-logo.png' />
                         <?php
                         if (isset($authMsg)) {
                             ?>
@@ -145,7 +150,7 @@ if (isset($_POST['auth'])) {
                             <div class="form-group text-center ">
                                 <input type="text" class="form-control " placeholder="000000" required="required" name='codeGoogle' id='codeGoogle' style="padding:20px 0px 20px 0px;width:100%;text-align:center;font-size:35px" />
 
-                                <!--<span class='ttiptext'>Google Authenticator can be found on your phone, Or contract your administrator</span>-->
+                                        <!--<span class='ttiptext'>Google Authenticator can be found on your phone, Or contract your administrator</span>-->
                             </div>
                             <div class="form-group clearfix" style='height:30px'>
 
