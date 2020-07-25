@@ -31,6 +31,7 @@ function getCustomerList() {
     $result = $objSQL->getResultRowArray();
     return $result;
 }
+
 $detected_ipaddress = $_SERVER['SERVER_NAME'];
 $customerList = getCustomerList();
 include 'header.php';
@@ -48,20 +49,24 @@ include 'header.php';
     <?php
     if (isset($mailCount)) {
         ?>
-        <div class="alert alert-info alert-dismissible">
+        <div class="container alert alert-info alert-dismissible">
 
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             Done processing E-Voucher with <span style=" font-weight: bold;color: green"><?php echo $successCount; ?> successful process</span> and <span style="font-weight:bold;color:red"><?php echo $errCount; ?> failed process.</span><br>
-            <p>Detail Failures :</p><br>
-            <?php
-            $postCount = 0;
-            foreach ($mailResults as $rows) {
-                if ($rows['mailStat'] == 'fail') {
+            <p>Details :</p><br>
+            <textarea class='form-control' style='max-height: 100px;overflow-y: scroll;resize:none '>
+                <?php
+                $postCount = 0;
+                echo"\r\n";
+                foreach ($mailResults as $rows) {
+                    //if ($rows['mailStat'] == 'fail') {
                     $postCount++;
-                    echo "$postCount. " . $rows['name'] . "(" . $rows['email'] . ") => <i>" . $rows['details'] . "</i><br>";
+                    echo "$postCount. " . $rows['name'] . "(" . $rows['email'] . ") => " . $rows['details'] . "\r\n";
+                    //}
                 }
-            }
-            ?>
+                ?>
+            </textarea>
+
         </div>
 
         <?php
@@ -110,12 +115,12 @@ include 'header.php';
                 foreach ($customerList as $customerData) {
                     echo "<tr>";
                     #$arr_emailSelected = array("name" => $customerData['cus_name'], "email" => $customerData['email']);
-                    $emailSelected = $customerData['cus_name'] . "|x|" . $customerData['email'];
+                    #$emailSelected = $customerData['cus_name'] . "|x|" . $customerData['email'];
                     foreach ($customerData as $key => $val) {
                         echo "<td>$val</td>";
                     }
                     ?>
-                <td><input type="checkbox" name="emailSelected[]" value="<?php echo $emailSelected; ?>" /></td>
+                <td><input type="checkbox" name="emailSelected[]" value="<?php echo $customerData['cid']; ?>" /></td>
                 <?php
                 echo "</tr>";
             }

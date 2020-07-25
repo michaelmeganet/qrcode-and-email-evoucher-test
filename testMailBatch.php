@@ -4,7 +4,9 @@ namespace voucher\EVoucherBatch;
 
 include_once 'class/vouchergenerate.inc.php';
 
+
 use E_VOUCHER;
+use SQL;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -14,6 +16,13 @@ require './assets/PHPMailer/src/PHPMailer.php';
 require './assets/PHPMailer/src/SMTP.php';
 
 session_start();
+
+function getCustomerListByCID($cid) {
+    $qr = "SELECT * FROM customers WHERE cid = $cid";
+    $objSQL = new SQL($qr);
+    $result = $objSQL->getResultOneRowArray();
+    return $result;
+}
 
 if (isset($_POST['emailSelected'])) {
     $arr_email = (array) $_POST['emailSelected'];
@@ -87,15 +96,20 @@ $successCount = 0;
 $arr_results = array();
 
 foreach ($arr_email as $row) {
-    $rows = explode('|x|', $row);
+    echo "row = $row<br>";
+    $cid = $row;
+    $cus_data = getCustomerListByCID($cid);
+    $cusName = $cus_data['cus_name'];
+    $cusEmail = $cus_data['email'];
+    #$rows = explode('|x|', $row);
     #echo"<br>";
-    $cusName = $rows[0];
+    #$cusName = $rows[0];
     $_SESSION['post']['customer_name'] = $cusName;
     #echo "cusname = $cusName<br>";
-    $cusEmail = $rows[1];
+    #$cusEmail = $rows[1];
     #echo "cusEmail = $cusEmail<br>";
     try {
-        $objEVoucher = new E_VOUCHER($userid, $voucheramount);
+        $objEVoucher = new E_VOUCHER($cid, $userid, $voucheramount);
         $result = $objEVoucher->create_voucher();
         #echo "\$result = $result<br>";
         if ($result != 'Insert Successful!') {
@@ -153,6 +167,6 @@ foreach ($arr_email as $row) {
 $_SESSION['mailCount'] = array('successCount' => $successCount, 'errCount' => $errCount);
 $_SESSION['mailResults'] = $arr_results;
 
-echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+#echo '<META HTTP-EQUIV="refresh" content="0;URL=form_batchMailCustomer.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /**/
