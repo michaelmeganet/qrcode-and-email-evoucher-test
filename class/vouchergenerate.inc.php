@@ -15,16 +15,14 @@ class VOUCHER {
 
     protected $instanceid;
     protected $userid;
-    protected $cid;
     protected $valvoucher;
     protected $datecreate;
     protected $expiredate;
     protected $table;
 
-    public function __construct($cid, $userid, $valvoucher, $datecreate, $table) {
+    public function __construct($userid, $valvoucher, $datecreate, $table) {
 
         $this->table = $table;
-        $this->set_cid($cid);
         $this->set_userid($userid);
         $this->set_valvoucher($valvoucher);
         $this->set_datecreate($datecreate);
@@ -86,14 +84,6 @@ class VOUCHER {
     public function get_userid() {
         return $this->userid;
     }
-    
-    public function set_cid($input){
-        $this->cid = $input;
-    }
-    
-    public function get_cid(){
-        return $this->cid;
-    }
 
     public function set_valvoucher($input) {
         $this->valvoucher = $input;
@@ -126,11 +116,12 @@ Class E_VOUCHER extends VOUCHER {
     protected $serialno;
     protected $void = 'no'; //default value = no
     protected $table = 'evoucher_serial';
-
+    protected $cid;
     public function __construct($cid,$userid, $valvoucher) {
         $table = $this->table;
+        $this->set_cid($cid);
         $datecreate = date('Y-m-d H:i:s');
-        parent::__construct($cid,$userid, $valvoucher, $datecreate, $table);
+        parent::__construct($userid, $valvoucher, $datecreate, $table);
         $lastSerialNo = $this->fetchLastSerialNo();
         #echo "\$lastSerialNo = $lastSerialNo<br>";
         $serialno = $lastSerialNo + 1;
@@ -260,7 +251,15 @@ Class E_VOUCHER extends VOUCHER {
     public function set_serialno($input) {
         $this->serialno = $input;
     }
-
+    
+    public function set_cid($input){
+        $this->cid = $input;
+    }
+    
+    public function get_cid(){
+        return $this->cid;
+    }
+    
     public function get_void() {
         return $this->void;
     }
