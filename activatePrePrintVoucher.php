@@ -56,7 +56,7 @@ try {
     $_SESSION['ERR_MSG'] = $exc->getMessage();
 }
 
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=issue_preprintVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=importPreprintVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
