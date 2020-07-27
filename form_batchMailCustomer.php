@@ -39,10 +39,11 @@ include 'header.php';
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];
 #echo "THIS :> ".basename((__FILE__),'.php');
 ?>
-<form action="index.php" method="post">
-    <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
-</form>
+
 <div class ="container">
+    <form action="index.php" method="post">
+        <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
+    </form>
     <h3><b>Issue E-Voucher (Batch)</b></h3>
     <br>
     <br>
