@@ -10,6 +10,7 @@
 
         <!-- "sm-clean" menu theme (optional, you can use your own CSS, too) -->
         <link href="assets/css/sm-clean.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="./assets/images/favicon-64x64.png" type="image/x-icon">
 
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
         <link rel='stylesheet' href='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/css/bootstrap.min.css'/>

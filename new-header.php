@@ -18,6 +18,7 @@
 
         <link rel="stylesheet" href="./assets/style.css">
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>-->
+        <link rel="shortcut icon" href="./assets/images/favicon-64x64.png" type="image/x-icon">
         <script src='bower_components/jquery/dist/jquery.min.js'></script>
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <script src='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/js/bootstrap.min.js'></script>
@@ -93,7 +94,7 @@
                     <div class="navbar-header">
                         <img src="./assets/images/Ishinlogo.png" alt="ishin" >
                     </div>
-                    
+
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
                         <li><a href='index.php'>Home</a></li>
