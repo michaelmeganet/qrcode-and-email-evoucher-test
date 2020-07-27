@@ -14,7 +14,7 @@ function getEVoucherListFilter($filterby = 'none', $filterval = 'none', $startLi
                 $whereClause = " WHERE cus_name LIKE '%$filterval%'";
                 break;
             case 'user':
-                $whereClause = " WHERE name LIKE '%$filterval%'";
+                $whereClause = " WHERE userid LIKE '%$filterval%'";
                 break;
         }
     } else {
@@ -28,11 +28,9 @@ function getEVoucherListFilter($filterby = 'none', $filterval = 'none', $startLi
         # echo "limit2<br>";
         $limitClause = '';
     }
-    $qr = " SELECT sid, customers.cus_name, valvoucher, datecreate, expiredate, dateredeem, void, users.name FROM evoucher_serial
+    $qr = " SELECT sid, customers.cus_name, valvoucher, datecreate, expiredate, dateredeem, void, userid FROM evoucher_serial
             LEFT JOIN customers
             ON customers.cid = evoucher_serial.cid
-            LEFT JOIN users
-            ON users.username = evoucher_serial.userid
             $whereClause  
              ORDER BY datecreate DESC 
             $limitClause";
@@ -60,9 +58,7 @@ function getPPVoucherListFilter($filterby = 'none', $filterval = 'none', $startL
         # echo "limit2<br>";
         $limitClause = '';
     }
-    $qr = " SELECT psid, runningno, valvoucher, datecreate, expiredate, dateredeem, void,users.NAME FROM preprint_serial
-            LEFT JOIN users
-            ON users.username = preprint_serial.userid
+    $qr = " SELECT psid, runningno, valvoucher, datecreate, expiredate, dateredeem, void,userid FROM preprint_serial
             $whereClause  
              ORDER BY datecreate DESC 
             $limitClause";
@@ -79,7 +75,7 @@ function countEVoucherListFilter($filterby = 'none', $filterval = '') {
                 $whereClause = " WHERE cus_name LIKE '%$filterval%'";
                 break;
             case 'user':
-                $whereClause = " WHERE name LIKE '%$filterval%'";
+                $whereClause = " WHERE userid LIKE '%$filterval%'";
                 break;
         }
     } else {
@@ -87,7 +83,6 @@ function countEVoucherListFilter($filterby = 'none', $filterval = '') {
     }
     $qr = " SELECT COUNT(*) FROM evoucher_serial
             LEFT JOIN customers ON customers.cid = evoucher_serial.cid
-            LEFT JOIN users ON users.username = evoucher_serial.userid
             $whereClause  ";
     $objSQL = new SQL($qr);
     $result = $objSQL->getRowCount();
@@ -98,14 +93,13 @@ function countPPVoucherListFilter($filterby = 'none', $filterval = '') {
     if ($filterby != 'none' && $filterval != '') {
         switch ($filterby) {
             case 'user':
-                $whereClause = " WHERE name LIKE '%$filterval%'";
+                $whereClause = " WHERE userid LIKE '%$filterval%'";
                 break;
         }
     } else {
         $whereClause = '';
     }
     $qr = " SELECT COUNT(*) FROM preprint_serial
-            LEFT JOIN users ON users.username = preprint_serial.userid
             $whereClause  ";
     $objSQL = new SQL($qr);
     $result = $objSQL->getRowCount();
