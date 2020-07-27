@@ -4,8 +4,8 @@ namespace voucher\EVoucherBatch;
 
 session_start();
 include "include/session.php";
-include 'class/dbh.inc.php';
-include 'class/variables.inc.php';
+include_once 'class/dbh.inc.php';
+include_once 'class/variables.inc.php';
 include 'new-header.php';
 
 use SQL;
