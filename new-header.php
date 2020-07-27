@@ -109,11 +109,15 @@
                                     <ul id='main'>
                                         <li><a href='form_mailCustomer.php'>Create Single</a></li>
                                         <li><a href='form_batchMailCustomer.php'>Create Batch</a></li>
+                                        <li>-------------------------------------</li>
+                                        <li><a href="voucherlog.php?log=EV&init=yes">E-Voucher Log</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='#'>Pre-Printed Voucher</a>
                                     <ul id='main'>
                                         <li><a href='importPreprintVoucher.php'>Activate Pre-Printed Voucher</a></li>
+                                        <li>--------------------------------------------------------------</li>
+                                        <li><a href="voucherlog.php?log=PP&init=yes">Pre-Printed Voucher Log</a></li>
                                     </ul>
                                 </li>
                                 <li><a href='form_redeemVoucher.php'>Redeem Voucher</a></li>
