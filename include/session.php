@@ -2,6 +2,9 @@
 <link rel='stylesheet' href='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/css/bootstrap.min.css'/>
 <script src='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/js/bootstrap.min.js'></script>
 <?php
+        include 'class/dbh.inc.php';
+        include 'class/variables.inc.php';
+        include 'class/session.inc.php';
 $lee_time = 1200; // 20minutes
 if (!isset($_SESSION['activeUser'])) {
     //redirection link
@@ -20,9 +23,6 @@ if (!isset($_SESSION['activeUser'])) {
 
     $startTimeout = $_SESSION['startTimeout'];
     if (time() - $startTimeout > $lee_time) {
-        include 'class/dbh.inc.php';
-        include 'class/variables.inc.php';
-        include 'class/session.inc.php';
 
         $objSESSIONS = new SESSIONS();
         $resultUpdSession = $objSESSIONS->endActiveSession($_SESSION['activeUID'], $_SESSION['activeUsername'], $_SESSION['googleCode']);
@@ -43,7 +43,9 @@ if (!isset($_SESSION['activeUser'])) {
         <?php
         exit();
     } else {
+        $objSESSIONS = new SESSIONS();
         $_SESSION['startTimeout'] = time();
+        $resultUpdTime = $objSESSIONS->updateActiveTime($_SESSION['activeUID'], $_SESSION['activeUsername'], $_SESSION['googleCode'], $_SESSION['startTimeout']);
     }
 }
 
