@@ -27,7 +27,7 @@ if (isset($_POST)) {
 }
 
 try {
-    $objEVoucher = new E_VOUCHER($userid, $voucheramount);
+    $objEVoucher = new E_VOUCHER(0, $userid, $voucheramount);
     $result = $objEVoucher->create_voucher();
     #echo "\$result  =$result<br>";
     if ($result != 'Insert Successful!') {
