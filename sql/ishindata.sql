@@ -11,6 +11,28 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Dumping structure for table ishindata.active_session
+CREATE TABLE IF NOT EXISTS `active_session` (
+  `asid` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `auth_code` int(6) NOT NULL,
+  `current_active` varchar(10) NOT NULL,
+  KEY `primary index` (`asid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table ishindata.active_session: ~7 rows (approximately)
+/*!40000 ALTER TABLE `active_session` DISABLE KEYS */;
+INSERT INTO `active_session` (`asid`, `uid`, `username`, `auth_code`, `current_active`) VALUES
+	(1, 2, 'claudio', 686852, 'no'),
+	(2, 2, 'claudio', 181690, 'no'),
+	(3, 2, 'claudio', 947059, 'no'),
+	(4, 2, 'claudio', 147283, 'no'),
+	(5, 2, 'claudio', 201682, 'no'),
+	(6, 1, 'administrator', 852704, 'no'),
+	(7, 2, 'claudio', 671912, 'yes');
+/*!40000 ALTER TABLE `active_session` ENABLE KEYS */;
+
 -- Dumping structure for table ishindata.customers
 CREATE TABLE IF NOT EXISTS `customers` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,18 +40,28 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `address1` varchar(50) DEFAULT NULL,
   `address2` varchar(50) DEFAULT NULL,
   `address3` varchar(50) DEFAULT NULL,
+  `phone` varchar(18) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `status` varchar(30) DEFAULT NULL,
   KEY `cid` (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ishindata.customers: ~4 rows (approximately)
+-- Dumping data for table ishindata.customers: ~13 rows (approximately)
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` (`cid`, `cus_name`, `address1`, `address2`, `address3`, `email`, `status`) VALUES
-	(1, 'Claudio', 'Jl. Sungkai', 'Indonesia', NULL, 'mosint.nagant@gmail.com', 'active'),
-	(2, 'Chong C.T', 'Malaysia', NULL, NULL, 'cct3000@gmail.com', 'active'),
-	(3, 'Claudio 2', 'Jl. Sungkai', 'Cikarang', 'Indonesia', 'claudio.christyo@gmail.com', 'active'),
-	(4, 'IT PHH Indo', 'Jl. Sungkai', 'Indonesia', NULL, 'it@phh.co.id', 'active');
+INSERT INTO `customers` (`cid`, `cus_name`, `address1`, `address2`, `address3`, `phone`, `email`, `status`) VALUES
+	(1, 'Claudio', 'Jl. Sungkai Delta Silicon', 'Cikarang', 'Indonesia', '08973773737', 'mosint.nagant@gmail.com', 'active'),
+	(2, 'Chong C.T', 'Malaysia', NULL, NULL, NULL, 'cct3000@gmail.com', 'active'),
+	(3, 'Claudio 2', 'Jl. Sungkai', 'Cikarang', 'Indonesia', NULL, 'claudio.christyo@gmail.com', 'active'),
+	(4, 'IT PHH Indo', 'Jl. Sungkai', 'Indonesia', NULL, NULL, 'it@phh.co.id', 'active'),
+	(10, 'Marni', 'PT. PHH Special Steel', 'Jl. Sungkai', 'Cikarang, Indonesia', '21', 'sales@phh.co.id', 'active'),
+	(20, 'Silvi', 'Cicau', 'Cikarang, Bekasi', 'Indonesia', '021123456789', 'test@email.com', 'active'),
+	(22, '', '', '', '', '', '', 'active'),
+	(23, '', '', '', '', '', '', 'active'),
+	(24, '', '', '', '', '', '', 'active'),
+	(25, '', '', '', '', '', '', 'active'),
+	(26, '', '', '', '', '', '', 'active'),
+	(27, '', '', '', '', '', '', 'active'),
+	(28, '', '', '', '', '', '', 'active');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 
 -- Dumping structure for table ishindata.evoucher_serial
@@ -47,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `evoucher_serial` (
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table ishindata.evoucher_serial: ~34 rows (approximately)
+-- Dumping data for table ishindata.evoucher_serial: ~45 rows (approximately)
 /*!40000 ALTER TABLE `evoucher_serial` DISABLE KEYS */;
 INSERT INTO `evoucher_serial` (`sid`, `instanceid`, `userid`, `valvoucher`, `expiredate`, `serialno`, `datecreate`, `dateredeem`, `void`) VALUES
 	(1, '620557291489337349', 'Claudio', 5.00, '2020-09-06', 1, '2020-07-07 16:15:33', '2020-07-07 11:15:33', 'yes'),
@@ -87,8 +119,83 @@ INSERT INTO `evoucher_serial` (`sid`, `instanceid`, `userid`, `valvoucher`, `exp
 	(35, '625468398804934661', 'Claudio', 5.00, '2020-09-13', 35, '2020-07-13 03:20:43', NULL, 'no'),
 	(36, '625468740758151173', 'Claudio', 5.00, '2020-09-13', 36, '2020-07-13 03:21:24', NULL, 'no'),
 	(37, '625469308205539333', 'Claudio', 5.00, '2020-09-13', 37, '2020-07-13 03:22:31', NULL, 'no'),
-	(38, '625476918560432133', 'Claudio', 5.00, '2020-09-13', 38, '2020-07-13 03:37:39', NULL, 'no');
+	(38, '625476918560432133', 'Claudio', 5.00, '2020-09-13', 38, '2020-07-13 03:37:39', NULL, 'no'),
+	(39, '625482657576263685', 'Claudio', 5.00, '2020-09-13', 39, '2020-07-13 03:49:03', NULL, 'no'),
+	(40, '625482695090118661', 'Claudio', 5.00, '2020-09-13', 40, '2020-07-13 03:49:07', NULL, 'no'),
+	(41, '625482723770769413', 'Claudio', 5.00, '2020-09-13', 41, '2020-07-13 03:49:11', NULL, 'no'),
+	(42, '625483045750710277', 'Claudio', 5.00, '2020-09-13', 42, '2020-07-13 03:49:49', NULL, 'no'),
+	(43, '625483074532024325', 'Claudio', 5.00, '2020-09-13', 43, '2020-07-13 03:49:52', NULL, 'no'),
+	(44, '625483102742913029', 'Claudio', 5.00, '2020-09-13', 44, '2020-07-13 03:49:56', NULL, 'no'),
+	(45, '625491418135142405', '', 5.00, '2020-09-13', 45, '2020-07-13 04:06:27', NULL, 'no'),
+	(46, '625491448678064133', '', 5.00, '2020-09-13', 46, '2020-07-13 04:06:31', NULL, 'no'),
+	(47, '625491477543264261', '', 5.00, '2020-09-13', 47, '2020-07-13 04:06:34', NULL, 'no'),
+	(48, '626996268685598725', 'Claudio', 5.00, '2020-09-15', 48, '2020-07-15 05:56:19', NULL, 'no'),
+	(49, '626996307289972741', 'Claudio', 5.00, '2020-09-15', 49, '2020-07-15 05:56:24', NULL, 'no');
 /*!40000 ALTER TABLE `evoucher_serial` ENABLE KEYS */;
+
+-- Dumping structure for table ishindata.login_log
+CREATE TABLE IF NOT EXISTS `login_log` (
+  `lid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `auth_code` int(6) NOT NULL,
+  `remarks` text NOT NULL,
+  PRIMARY KEY (`lid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table ishindata.login_log: ~49 rows (approximately)
+/*!40000 ALTER TABLE `login_log` DISABLE KEYS */;
+INSERT INTO `login_log` (`lid`, `username`, `password`, `auth_code`, `remarks`) VALUES
+	(1, 'claudio', '8cface989a3a91edb14989e82ff3ab67cfd3046906d0cee828f8882a8e137823', 123456, 'Username or Password is incorrect'),
+	(2, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 883689, 'Login Success!'),
+	(3, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 883689, 'Login Success!'),
+	(4, 'claudio', '7179ffb55ad1b4b2c4164e37ffd2019de5d07de20c8b81d20fc9dceba7e9d735', 123123, 'Username or Password is incorrect'),
+	(5, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 876619, 'Login Success!'),
+	(6, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 876619, 'Login Success!'),
+	(7, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 952260, 'Login Success!'),
+	(8, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 952260, 'Login Success!'),
+	(9, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 254810, 'Login Success!'),
+	(10, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 254810, 'Login Success!'),
+	(11, 'cluadi', '688787d8ff144c502c7f5cffaafe2cc588d86079f9de88304c26b0cb99ce91c6', 123456, 'Username or Password is incorrect'),
+	(12, 'cluadi', '688787d8ff144c502c7f5cffaafe2cc588d86079f9de88304c26b0cb99ce91c6', 123456, 'Username or Password is incorrect'),
+	(13, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(14, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(15, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(16, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(17, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(18, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(19, 'asd', '50ad41624c25e493aa1dc7f4ab32bdc5a3b0b78ecc35b539936e3fea7c565af7', 123456, 'Username or Password is incorrect'),
+	(20, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(21, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(22, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(23, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(24, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(25, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(26, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(27, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(28, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(29, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(30, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(31, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(32, 'cascasa', '84770c45f0f6cc69d25d21dcb7c6877453d12c64336c993d9d7c8625e5fe7a1f', 123456, 'Username or Password is incorrect'),
+	(33, 'asd', '5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8', 123456, 'Username or Password is incorrect'),
+	(34, 'asd', '5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8', 123456, 'Username or Password is incorrect'),
+	(35, 'asd', '5fd924625f6ab16a19cc9807c7c506ae1813490e4ba675f843d5a10e0baacdb8', 123456, 'Username or Password is incorrect'),
+	(36, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 123456, 'The 6 digit code is not valid'),
+	(37, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 379731, 'Login Success!'),
+	(38, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 686852, 'Login Success!'),
+	(39, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 181690, 'Login Success!'),
+	(40, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 947059, 'Login Success!'),
+	(41, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 147283, 'Login Success!'),
+	(42, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 119247, ''),
+	(43, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 119247, 'The 6 digit code is not valid'),
+	(44, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 692331, ''),
+	(45, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 692331, 'This account is already logged in on another place.'),
+	(46, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 201682, 'Login Success!'),
+	(47, 'administrator', '4194d1706ed1f408d5e02d672777019f4d5385c766a8c6ca8acba3167d36a7b9', 852704, 'Login Success!'),
+	(48, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 671912, 'Login Success!'),
+	(49, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 971306, 'This account is already logged in on another place.');
+/*!40000 ALTER TABLE `login_log` ENABLE KEYS */;
 
 -- Dumping structure for table ishindata.preprint_serial
 CREATE TABLE IF NOT EXISTS `preprint_serial` (
@@ -3339,6 +3446,27 @@ INSERT INTO `serialtable` (`sid`, `instanceid`, `userid`, `valvoucher`, `expired
 	(22, '617698709618040837', 'claudio', 5.00, '2020-10-03', 1, '2020-07-02 10:03:44', NULL, 'no'),
 	(23, '617701357599596549', 'claudio', 5.00, '2020-10-03', 1, '2020-07-02 10:08:59', NULL, 'no');
 /*!40000 ALTER TABLE `serialtable` ENABLE KEYS */;
+
+-- Dumping structure for table ishindata.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `credentials` varchar(15) NOT NULL,
+  `active` varchar(15) NOT NULL DEFAULT 'no',
+  `google_auth_code` varchar(16) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table ishindata.users: ~3 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`uid`, `username`, `password`, `name`, `credentials`, `active`, `google_auth_code`) VALUES
+	(1, 'administrator', '4194d1706ed1f408d5e02d672777019f4d5385c766a8c6ca8acba3167d36a7b9', 'Chong C', 'admin', 'yes', 'PWG5UWRHKXDUPXII'),
+	(2, 'claudio', '75c8a1411d350727380c015a11bf566c6f04898d8dab87e9f23030e91987efd4', 'Claudio Christyo Florianus', 'admin', 'yes', 'LUDFFP36W4G3XHC7'),
+	(4, 'staff01', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'Staff 01', 'staff', 'yes', 'RARE2REHUSKFAOAS');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

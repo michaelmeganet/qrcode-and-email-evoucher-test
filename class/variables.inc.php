@@ -126,8 +126,8 @@ Class SQLBINDPARAM extends SQL {
         $stmt = $this->connect()->prepare($sql);
         $bindparamArray = $this->bindparamArray;
 //        unset($bindparamArray['submit']);
-        print_r($bindparamArray);
-        echo "<br>";
+//        print_r($bindparamArray);
+//        echo "<br>";
 //        $para = "";
         $count = 0;
         foreach ($bindparamArray as $key => $value) {
@@ -156,9 +156,9 @@ Class SQLBINDPARAM extends SQL {
 //        var_dump($stmt);
 //        echo "=====end of var_dump \$stmt==================<br>";
         if ($stmt->execute()) {
-            echo "dump \$stmt :";
-            print_r($stmt);
-            echo "<br>";
+            #echo "dump \$stmt :";
+            #print_r($stmt);
+            #echo "<br>";
             $result = 'insert ok!';
         } else {
             $result = 'insert fail';
@@ -182,7 +182,7 @@ Class SQLBINDPARAM extends SQL {
             ${$key} = $value;
             $bindValue = $key;
             $bindParamdata = "bindParam(:{$bindValue}, $$bindValue) == " . $$bindValue; //this is for debugging purposes
-            debug_to_console($bindParamdata);
+            #debug_to_console($bindParamdata);
             #echo "\$bindParamdata = $bindParamdata <br>";
             #########################################################
             # this line not successful, how to check in the future

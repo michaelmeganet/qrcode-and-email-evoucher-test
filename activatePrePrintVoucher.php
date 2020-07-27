@@ -1,6 +1,7 @@
 <?php
 namespace voucher\PrePrint;
 session_start();
+include_once 'include/session.php';
 include_once 'class/vouchergenerate.inc.php';
 
 use Exception;
@@ -33,7 +34,7 @@ try {
             #$runningno = $str_rundate.$currNo;
             $currNo = $numStart + $i - 1;
             $runningno = sprintf("%'.010d",$currNo);
-            echo "No.$i : Processed runningno = $runningno<br>";
+            #echo "No.$i : Processed runningno = $runningno<br>";
             $objVoucher = new PREPRINT_VOUCHER($userid, $valvoucher, $runningno);
             //create a voucher
             $createResult = $objVoucher->create_voucher();
@@ -42,8 +43,8 @@ try {
                 $arr_listFail[] = array('runningno' => $runningno, 'message' => $createResult);
                     
             }
-            echo $createResult."<br>";
-            echo "-------------------------------------------------<br>";
+            #echo $createResult."<br>";
+            #echo "-------------------------------------------------<br>";
         }
         $successCount = $batchCount - $errorCount;
         $_SESSION['prePrintCount'] = array('success'=>$successCount,'fail'=>$errorCount,'lastrunningno'=>$currNo);
@@ -55,7 +56,7 @@ try {
     $_SESSION['ERR_MSG'] = $exc->getMessage();
 }
 
-    echo '<META HTTP-EQUIV="refresh" content="0;URL=issue_preprintVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+    echo '<META HTTP-EQUIV="refresh" content="0;URL=importPreprintVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

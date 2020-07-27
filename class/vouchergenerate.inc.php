@@ -23,7 +23,6 @@ class VOUCHER {
     public function __construct($userid, $valvoucher, $datecreate, $table) {
 
         $this->table = $table;
-
         $this->set_userid($userid);
         $this->set_valvoucher($valvoucher);
         $this->set_datecreate($datecreate);
@@ -117,15 +116,16 @@ Class E_VOUCHER extends VOUCHER {
     protected $serialno;
     protected $void = 'no'; //default value = no
     protected $table = 'evoucher_serial';
-
-    public function __construct($userid, $valvoucher) {
+    protected $cid;
+    public function __construct($cid,$userid, $valvoucher) {
         $table = $this->table;
+        $this->set_cid($cid);
         $datecreate = date('Y-m-d H:i:s');
         parent::__construct($userid, $valvoucher, $datecreate, $table);
         $lastSerialNo = $this->fetchLastSerialNo();
-        echo "\$lastSerialNo = $lastSerialNo<br>";
+        #echo "\$lastSerialNo = $lastSerialNo<br>";
         $serialno = $lastSerialNo + 1;
-        echo "\$serialno = $serialno<br>";
+        #echo "\$serialno = $serialno<br>";
         $this->set_serialno($serialno);
     }
 
@@ -165,10 +165,12 @@ Class E_VOUCHER extends VOUCHER {
         $expiredate = $this->get_expiredate();
         $serialno = $this->get_serialno();
         $datecreate = $this->get_datecreate();
+        $cid = $this->get_cid();
         //create post array
         $bindparamArray = array(
             'instanceid' => $instanceid,
             'userid' => $userid,
+            'cid' => $cid,
             'valvoucher' => $valvoucher,
             'expiredate' => $expiredate,
             'serialno' => $serialno,
@@ -178,6 +180,7 @@ Class E_VOUCHER extends VOUCHER {
         $qr = "INSERT INTO $table SET "
                 . "instanceid=:instanceid, "
                 . "userid=:userid, "
+                . "cid=:cid, "
                 . "valvoucher=:valvoucher, "
                 . "expiredate=:expiredate, "
                 . "serialno=:serialno, "
@@ -209,17 +212,17 @@ Class E_VOUCHER extends VOUCHER {
       public function checkExpiryDate($instanceid){
       $table = $this->get_table();
       $currDate = date_format(date_create($this->get_datecreate()),'Y-m-d');
-      echo "\$currDate = $currDate<br>";
-      $runningno = $this->get_runningno();
+      #echo "\$currDate = $currDate<br>";
+     # $runningno = $this->get_runningno();
       $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC;";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
       if ($currDate >= $result['expiredate']){
-      echo "Voucher has expired <br>";
+      #echo "Voucher has expired <br>";
       $info = 'voucher expired';
 
       }else{
-      echo "Voucher still active<br>";
+      #echo "Voucher still active<br>";
       $info = 'voucher not expired';
       }
       return $info;
@@ -227,15 +230,15 @@ Class E_VOUCHER extends VOUCHER {
 
       public function checkVoid($instanceid){
       $table = $this->get_table();
-      $runningno = $this->get_runningno();
+      #$runningno = $this->get_runningno();
       $qr = "SELECT * FROM $table WHERE instanceid = $instanceid ORDER BY serialno DESC";
       $objSQL = new SQL($qr);
       $result = $objSQL->getResultOneRowArray();
       if($result['void'] == 'no'){
-      echo "Voucher not void<br>";
+      #echo "Voucher not void<br>";
       $info = 'voucher not void';
       }else{
-      echo "Voucher void<br>";
+      #echo "Voucher void<br>";
       $info = 'voucher void';
       }
       return $info;
@@ -248,7 +251,15 @@ Class E_VOUCHER extends VOUCHER {
     public function set_serialno($input) {
         $this->serialno = $input;
     }
-
+    
+    public function set_cid($input){
+        $this->cid = $input;
+    }
+    
+    public function get_cid(){
+        return $this->cid;
+    }
+    
     public function get_void() {
         return $this->void;
     }
@@ -280,9 +291,9 @@ Class PREPRINT_VOUCHER extends VOUCHER {
         parent::__construct($userid, $valvoucher, $datecreate, $table);
         $this->set_runningno($runningno);
         $lastSerialNo = $this->fetchLastSerialNo(); ///serialno format = int
-        echo "\$lastSerialNo = $lastSerialNo<br>";
+        #echo "\$lastSerialNo = $lastSerialNo<br>";
         $serialno = $lastSerialNo + 1; //initialize serialno;
-        echo "\$serialno = $serialno<br>";
+        #echo "\$serialno = $serialno<br>";
         $this->set_serialno($serialno);
     }
 
@@ -381,16 +392,16 @@ Class PREPRINT_VOUCHER extends VOUCHER {
     public function checkExpiryDate($runningno) {
         $table = $this->get_table();
         $currDate = date_format(date_create($this->get_datecreate()), 'Y-m-d');
-        echo "\$currDate = $currDate<br>";
+        #echo "\$currDate = $currDate<br>";
         #$runningno = $this->get_runningno();
         $qr = "SELECT * FROM $table WHERE runningno = $runningno ORDER BY serialno DESC;";
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
         if ($currDate >= $result['expiredate']) {
-            echo "Voucher has expired <br>";
+            #echo "Voucher has expired <br>";
             $info = 'voucher expired';
         } else {
-            echo "Voucher still active<br>";
+            #echo "Voucher still active<br>";
             $info = 'voucher not expired';
         }
         return $info;
@@ -403,10 +414,10 @@ Class PREPRINT_VOUCHER extends VOUCHER {
         $objSQL = new SQL($qr);
         $result = $objSQL->getResultOneRowArray();
         if ($result['void'] == 'no') {
-            echo "Voucher not void<br>";
+            #echo "Voucher not void<br>";
             $info = 'voucher not void';
         } else {
-            echo "Voucher void<br>";
+            #echo "Voucher void<br>";
             $info = 'voucher void';
         }
         return $info;

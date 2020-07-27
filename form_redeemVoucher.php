@@ -3,7 +3,8 @@
 namespace voucher\Validate;
 
 session_start();
-include 'header.php';
+include "include/session.php";
+include_once 'new-header.php';
 $physvoucherRadio = '';
 $evoucherRadio = '';
 
@@ -19,16 +20,16 @@ if (isset($_SESSION['VOUCHER_UPD_MSG'])) {
     $voucherUpdMsg = $_SESSION['VOUCHER_UPD_MSG'];
     unset($_SESSION['VOUCHER_UPD_MSG']);
 }
-if(isset($_SESSION['vouchertype'])){
+if (isset($_SESSION['vouchertype'])) {
     $vouchertype = $_SESSION['vouchertype'];
-    
+
     if ($vouchertype == 'evoucher') {
         $evoucherRadio = "checked='checked'";
     } else {
         $physvoucherRadio = "checked='checked'";
     }
 }
-if(isset($_SESSION['userid'])){
+if (isset($_SESSION['userid'])) {
     $userid = $_SESSION['userid'];
 }
 ?><!DOCTYPE html>
@@ -46,16 +47,14 @@ and open the template in the editor.
     <body>
         <div class='container'>
             <form action="index.php" method="post">
-                <input class="button button-green mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "reset form">
+                <input class="btn btn-warning mt-12 pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
             </form>
             <h3 class="text-primary">Validate Voucher</h3>
             <form action="" method="POST">
                 <div class="form-group row row-no-gutters">
                     <div class="col-sm-1">
                         <label class="label label-default">User :</label><br>
-                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="<?php if (isset($userid)) {
-    echo $userid;
-} ?>" placeholder="userid" maxlength="10" />
+                        <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="userid" id='userid' value="<?php echo $_SESSION['activeUsername']; ?> " placeholder="userid" maxlength="10" readonly="readonly" />
                     </div>
                 </div>
                 <div class="form-group row row-no-gutters">
@@ -69,9 +68,9 @@ and open the template in the editor.
                     </div>
                 </div>
             </form>
-<?php
-if (isset($vouchertype)) {
-    ?>
+            <?php
+            if (isset($vouchertype)) {
+                ?>
                 <form action='validateVoucher.php' method="POST">
                     <div class="form-group row row-no-gutters">
                         <div class="col-sm-3">
@@ -85,33 +84,41 @@ if (isset($vouchertype)) {
                     <input type='hidden' name='vouchertype' id='vouchertype' value="<?php echo $vouchertype; ?>" />
                     <input type='hidden' name='userid' id='userid' value="<?php echo $userid; ?>" />
                 </form>
-    <?php
-}
-if (isset($voucherUpdMsg)) {
-    ?>
+                <?php
+            }
+            if (isset($voucherUpdMsg)) {
+                ?>
                 <div class="form-group row row-no-gutters col-sm-5 ">
                     <?php
-                    $chkMsg = stripos($voucherUpdMsg,'congratulation');
+                    $chkMsg = stripos($voucherUpdMsg, 'congratulation');
                     #echo "\$chkMsg = $chkMsg<br>". var_dump($chkMsg)."<br>";
-                    if(($chkMsg)){
+                    if (($chkMsg)) {
                         #echo "exist<br>";
                         echo "<div class='alert alert-success alert-dismissable'>";
-                    }else{
+                    } else {
                         #echo "not eist<br>";
-                        echo "<div class='alert alert-danger alert-dismissable'>";                        
+                        echo "<div class='alert alert-danger alert-dismissable'>";
                     }
                     ?>
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <?php echo $voucherUpdMsg; ?>
-                    </div>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <?php echo $voucherUpdMsg; ?>
                 </div>
-    <?php
-}
-?>
+            </div>
+            <?php
+        }
+        
+        include_once 'new-footer.php';
+        ?>
+        <script>
+            window.onload = function(){
+                if(document.getElementById('serialcode')){
+                    document.getElementById('serialcode').focus();
+                }
+            }
+        </script>
+    </div>
 
-        </div>
 
-
-    </body>
+</body>
 </body>
 </html>
