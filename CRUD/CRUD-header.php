@@ -14,6 +14,7 @@
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
         <link rel='stylesheet' href='assets/bootstrap-3.3.7/bootstrap-3.3.7/dist/css/bootstrap.min.css'/>
         <link rel="stylesheet" href="./assets/style.css">
+        <link rel="shortcut icon" href="./assets/images/favicon-64x64.png" type="image/x-icon">
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src='bower_components/jquery-validation/dist/jquery.validate.min.js'></script>
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
@@ -24,12 +25,12 @@
              function cloneValidate(url, index) {
              if (window.confirm("Are you sure you want to clone?\nThis will create a duplicate in your table.")) {
              window.open(url, "_self");
-             
+
              return false;
              }else{
              window.location.href = index;
              }
-             
+
              }*/
             function delValidate(url, index) {
                 if (window.confirm("Caution! Data will be deleted!\nThis cannot be undone!")) {
@@ -44,7 +45,7 @@
 
             /*
              function redirectToMain(text, main) {
-             
+
              window.alert(text);
              window.location.href = main;
              }
@@ -62,7 +63,7 @@
         </script>
     </head>
 
-        <div id="page">
+    <div id="page">
         <div id="content">
             <body  onLoad="">
 <!--                <img src='assets/images/Ishin-logo.png' style='max-height:70px'/>-->
@@ -74,7 +75,7 @@
                     <div class="navbar-header">
                         <img src="./assets/images/Ishinlogo.png" alt="ishin" >
                     </div>
-                    
+
                     <!-- Sample menu definition -->
                     <ul id="main-menu" class="sm sm-clean">
                         <li><a href='index.php'>Home</a></li>
