@@ -2,8 +2,8 @@
 
 namespace AUTH\User;
 
-include 'class/dbh.inc.php';
-include 'class/variables.inc.php';
+include_once 'class/dbh.inc.php';
+include_once 'class/variables.inc.php';
 include_once 'class/users.inc.php';
 include_once 'auth/googleLib/GoogleAuthenticator.php';
 include_once 'class/session.inc.php';

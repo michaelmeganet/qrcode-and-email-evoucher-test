@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'CRUD/CRUD-header.php';
-include "include/session.php";
+include_once "include/session.php";
 if (isset($_GET['view'])){
     $view = $_GET['view'];
 }else{
