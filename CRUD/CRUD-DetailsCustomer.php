@@ -58,7 +58,7 @@ and open the template in the editor.
                 </div>
         </div>
         <?php
-            include 'new-footer.php';
+            include_once 'new-footer.php';
        ?>
     </body>
 </html>

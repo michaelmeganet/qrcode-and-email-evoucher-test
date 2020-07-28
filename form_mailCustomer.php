@@ -9,8 +9,8 @@ if (isset($_SESSION['mailMsg'])) {
     unset($_SESSION['mailMsg']);
     unset($_SESSION['mailStat']);
 }
-include "include/session.php";
-include 'new-header.php';
+include_once "include/session.php";
+include_once 'new-header.php';
 
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];
 $detected_ipaddress = $_SERVER['SERVER_NAME'];
