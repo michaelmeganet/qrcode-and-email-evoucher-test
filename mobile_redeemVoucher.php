@@ -3,7 +3,7 @@
 namespace voucher\Validate;
 
 session_start();
-include "include/session.php";
+include_once "include/session.php";
 include_once 'new-header.php';
 
 if (isset($_SESSION['VOUCHER_UPD_MSG'])) {
