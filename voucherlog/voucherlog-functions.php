@@ -2,8 +2,8 @@
 
 namespace voucher\Log;
 
-require 'class/dbh.inc.php';
-require 'class/variables.inc.php';
+include_once 'class/dbh.inc.php';
+include_once 'class/variables.inc.php';
 
 use SQL;
 

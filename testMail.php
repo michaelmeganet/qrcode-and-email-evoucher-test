@@ -81,10 +81,10 @@ try {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
             $mail->Port = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
             //Recipients
-            $mail->setFrom('meganet003@gmail.com', '-noreply');
+            $mail->setFrom('meganet003@gmail.com', 'IshinJPD-noreply');
             #$mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
             $mail->addAddress($recipient);               // Name is optional
-            $mail->addReplyTo('meganet003@gmail.com', '-noreply');
+            $mail->addReplyTo('meganet003@gmail.com', 'IshinJPD-noreply');
             $mail->addEmbeddedImage($img_dir, 'qrcode'); //Adds an image to be embedded
             #$mail->addCC('cc@example.com');
             #$mail->addBCC('bcc@example.com');
@@ -101,7 +101,7 @@ try {
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Test Message, QRCode in mail body, without PDF Attachment';
+            $mail->Subject = 'Ishin Japanese Dining - Free Voucher Discount';
             $mail->Body = $body_html;
             #$mail->Body    = "This is a test Message!<br>"
             #               . "You got a voucher of $vouchertype!<br>"

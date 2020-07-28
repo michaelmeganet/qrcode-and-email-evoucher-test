@@ -1,7 +1,7 @@
 <?php
 session_start();
-include 'auth/AUTH-header.php';
-include "include/session.php";
+include_once 'auth/AUTH-header.php';
+include_once "include/session.php";
 if (isset($_GET['Aview'])){
     $Aview = $_GET['Aview'];
 }else{
