@@ -81,6 +81,7 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    <input type='hidden' name='prevpage' id='prevpage' value ='form_redeemVoucher.php'/>
                     <input type='hidden' name='vouchertype' id='vouchertype' value="<?php echo $vouchertype; ?>" />
                     <input type='hidden' name='userid' id='userid' value="<?php echo $userid; ?>" />
                 </form>

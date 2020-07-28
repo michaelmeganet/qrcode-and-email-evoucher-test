@@ -13,6 +13,12 @@ use Dbh;
 use SQL;
 use Exception;
 
+if(isset($_POST['prevpage'])){
+    $pageredirect = 'form_redeemVoucher.php';
+}else{
+    $pageredirect = 'mobile_redeemVoucher.php';
+}
+
 if (isset($_POST['submitSerialCode'])) {
     $postdata = $_POST;
     unset($_POST);
@@ -125,5 +131,5 @@ try {
     $_SESSION['VOUCHER_UPD_MSG'] = $ex->getMessage();
 }
 #echo $_SESSION['VOUCHER_UPD_MSG'];
-echo '<META HTTP-EQUIV="refresh" content="0;URL=form_redeemVoucher.php">'; //using META tags instead of headers because headers didn't work in PHP5.3
+echo '<META HTTP-EQUIV="refresh" content="0;URL='.$pageredirect.'">'; //using META tags instead of headers because headers didn't work in PHP5.3
 
