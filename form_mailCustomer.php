@@ -76,6 +76,6 @@ $detected_ipaddress = $_SERVER['SERVER_NAME'];
         </form>
 </div>
 <?php
-include 'new-footer.php';
+include_once 'new-footer.php';
 ?>
 </body>
