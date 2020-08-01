@@ -1,8 +1,8 @@
 <?php
 namespace CRUD\Customer;
 
-include 'class/dbh.inc.php';
-include 'class/variables.inc.php';
+include_once 'class/dbh.inc.php';
+include_once 'class/variables.inc.php';
 
 use SQL;
 
