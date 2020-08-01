@@ -46,7 +46,7 @@ $detected_ipaddress = $_SERVER['SERVER_NAME'];
         <div class="form-group row row-no-gutters">
             <div class="col-sm-1">                     
                 <label class="label label-default">Server IP Address :</label><br> 
-                <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="ipaddress" id='ipaddress' value="" placeholder="<?php echo $detected_ipaddress;?>" maxlength="20" required="required"/>
+                <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="ipaddress" id='ipaddress' value="<?php echo $detected_ipaddress;?>" placeholder="<?php echo $detected_ipaddress;?>" maxlength="100" required="required"/>
                 <label class="label label-warning">Please type in the IP Address of assigned Server.</label>
             </div>
         </div>

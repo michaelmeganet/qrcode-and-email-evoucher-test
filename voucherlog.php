@@ -1,5 +1,6 @@
 <?php
 session_start();
+// require 'class/dbh.inc.php';
 include 'include/session.php';
 include 'new-header.php';
 
