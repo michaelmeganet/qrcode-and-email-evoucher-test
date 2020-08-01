@@ -4,8 +4,8 @@ namespace voucher\EVoucherBatch;
 
 session_start();
 include "include/session.php";
-include 'class/dbh.inc.php';
-include 'class/variables.inc.php';
+include_once 'class/dbh.inc.php';
+include_once 'class/variables.inc.php';
 include 'new-header.php';
 
 use SQL;
@@ -39,10 +39,11 @@ include 'header.php';
 #echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'].$_SERVER['SCRIPT_FILENAME'];
 #echo "THIS :> ".basename((__FILE__),'.php');
 ?>
-<form action="index.php" method="post">
-    <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
-</form>
+
 <div class ="container">
+    <form action="index.php" method="post">
+        <input class=" btn btn-warning pull-right" type = "submit" name="reset_click" id="reset_click" value = "Go Back">
+    </form>
     <h3><b>Issue E-Voucher (Batch)</b></h3>
     <br>
     <br>
@@ -83,7 +84,7 @@ include 'header.php';
     <div class="form-group row row-no-gutters">
         <div class="col-sm-1">                     
             <label class="label label-default">Server IP Address :</label><br> 
-            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="ipaddress" id='ipaddress' value="" placeholder="<?php echo $detected_ipaddress; ?>" maxlength="20" required="required"/>
+            <input class='form-control text-primary ' style="text-align: center;padding-right: 3px;padding-left:3px;width:auto"type="text" name="ipaddress" id='ipaddress' value="<?php echo $detected_ipaddress; ?>" placeholder="<?php echo $detected_ipaddress; ?>" maxlength="100" required="required"/>
             <label class="label label-warning">Please type in the IP Address of assigned Server.</label>
         </div>
     </div>

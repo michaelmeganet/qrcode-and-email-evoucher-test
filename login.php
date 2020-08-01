@@ -3,6 +3,10 @@
 namespace AUTH\User;
 
 session_start();
+if(isset($_SESSION['activeUID'])&&isset($_SESSION['activeUsername'])){
+    header('location:index.php');
+    exit();
+}
 date_default_timezone_set("Asia/Jakarta");
 #echo date('D-M-Y h:i:s');
 if (isset($_POST['login'])) {
