@@ -279,7 +279,8 @@ class PHPMailer
      *
      * @var string
      */
-    public $Host = 'localhost';
+    // public $Host = '192.168.100.198';
+    public $Host = '103.44.220.110';
 
     /**
      * The default SMTP server port.
@@ -3858,6 +3859,7 @@ class PHPMailer
         }
         if (!static::isValidHost($result)) {
             return 'localhost.localdomain';
+            // return '192.168.100.198';
         }
 
         return $result;

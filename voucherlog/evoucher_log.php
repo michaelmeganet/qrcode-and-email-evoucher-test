@@ -80,6 +80,7 @@ if (isset($_SESSION['filterby']) && $_SESSION['filterval']) {
             <tr>
                 <th>ID</th>
                 <th>Customer Name</th>
+                <th>voucher no</th>
                 <th>Value</th>
                 <th>Issue Date</th>
                 <th>Expire Date</th>

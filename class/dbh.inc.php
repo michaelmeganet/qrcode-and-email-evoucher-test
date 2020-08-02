@@ -11,8 +11,8 @@ class Dbh {
 	public function connect() {
 		$this->servername = "localhost";
 //                $this->servername = "10.10.1.2";
-		$this->username = "root";
-		$this->password = "5105458";
+		$this->username = "ishin";
+		$this->password = "ishin1234";
 		$this->dbname = "ishindata";
 		$this->charset = "utf8";
 

@@ -2,8 +2,8 @@
 
 namespace voucher\Log;
 
-require 'class/dbh.inc.php';
-require 'class/variables.inc.php';
+
+// require 'class/variables.inc.php';
 
 use SQL;
 
@@ -28,7 +28,7 @@ function getEVoucherListFilter($filterby = 'none', $filterval = 'none', $startLi
         # echo "limit2<br>";
         $limitClause = '';
     }
-    $qr = " SELECT sid, customers.cus_name, valvoucher, datecreate, expiredate, dateredeem, void, userid FROM evoucher_serial
+    $qr = " SELECT sid, customers.cus_name, instanceid, valvoucher, datecreate, expiredate, dateredeem, void, userid FROM evoucher_serial
             LEFT JOIN customers
             ON customers.cid = evoucher_serial.cid
             $whereClause  
