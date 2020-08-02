@@ -14,7 +14,7 @@ $headers .= "\r\nContent-Type: multipart/mixed; boundary=\"PHP-mixed-" . $random
 //encode it with MIME base64,
 //and split it into smaller chunks
 $img_dir = './resource/img/qrcode_img.png';
-$attachment = chunk_split(base64_encode(file_get_contents('$img_dir')));
+$attachment = chunk_split(base64_encode(file_get_contents('./resource/img/qrcode_img.png')));
 //define the body of the message.
 ob_start(); //Turn on output buffering
 ?>
