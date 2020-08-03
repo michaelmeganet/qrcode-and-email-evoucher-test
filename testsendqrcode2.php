@@ -48,30 +48,31 @@ if ($_POST['button'] && isset($_FILES['attachment'])) {
 
     $boundary = md5("random"); // define boundary with a md5 hashed value
 //header
-    $headers = "MIME-Version: 1.0\r\n"; // Defining the MIME version
-    $headers .= "From:" . $from_email . "\r\n"; // Sender Email
-    $headers .= "Reply-To: " . $reply_to_email . "\r\n"; // Email addrress to reach back
-    $headers .= "Content-Type: multipart/mixed;\r\n"; // Defining Content-Type
-    $headers .= "boundary = $boundary\r\n"; //Defining the Boundary
+    $eol = PHP_EOL;
+    $headers = "MIME-Version: 1.0" . $eol; // Defining the MIME version
+    $headers .= "From:" . $from_email . $eol; // Sender Email
+    $headers .= "Reply-To: " . $reply_to_email . $eol; // Email addrress to reach back
+    $headers .= "Content-Type: multipart/mixed;" . $eol; // Defining Content-Type
+    $headers .= "boundary = $boundary" . $eol; //Defining the Boundary
 //plain text
-    $body = "--$boundary\r\n";
-    $body .= "Content-Type: text/plain; charset=ISO-8859-1\r\n";
-    $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+    $body = "--$boundary" . $eol;
+    $body .= "Content-Type: text/plain; charset=ISO-8859-1" . $eol;
+    $body .= "Content-Transfer-Encoding: base64" . $eol . $eol;
     $body .= chunk_split(base64_encode($message));
 
 //attachment
-    $body .= "--$boundary\r\n";
-    $body .= "Content-Type: $file_type; name=" . $file_name . "\r\n";
-    $body .= "Content-Disposition: attachment; filename=" . $file_name . "\r\n";
-    $body .= "Content-Transfer-Encoding: base64\r\n";
-    $body .= "X-Attachment-Id: " . rand(1000, 99999) . "\r\n\r\n";
+    $body .= "--$boundary" . $eol;
+    $body .= "Content-Type: $file_type; name=" . $file_name . $eol;
+    $body .= "Content-Disposition: attachment; filename=" . $file_name . $eol;
+    $body .= "Content-Transfer-Encoding: base64" . $eol;
+    $body .= "X-Attachment-Id: " . rand(1000, 99999) . $eol . $eol;
     $body .= $encoded_content; // Attaching the encoded file with email
 
     $sentMailResult = mail($recipient_email, $subject, $body, $headers);
 
     if ($sentMailResult) {
         echo "File Sent Successfully.";
-        unlink($name); // delete the file after attachment sent.
+        // unlink($name); // delete the file after attachment sent.
     } else {
         die("Sorry but the email could not be sent.
                     Please go back and try again!");
