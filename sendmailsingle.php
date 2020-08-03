@@ -57,15 +57,16 @@ try {
         $eol = PHP_EOL;
 
         $to = $recipient; //Recipient Email Address
-
+        echo "To : $to <br>";
         $subject = "Value of RM $voucheramount E-voucher"; //Email Subject
-
+        echo "subject : $subject <br>";
         $headers = "From: Ishin E-Voucher Generator " . $eol . "Reply-To: no-reply-ishin-evoucher@ishinevoucher.ddns.net" . $eol;
 
         $random_hash = md5(date('r', time()));
 
         $headers .= "Content-Type: multipart / mixed;
         boundary = \"PHP-mixed-" . $random_hash . "\"";
+        echo "headers  : $headers  <br>";
         $filename = 'qrcode_img.png';
         $path = './resource/img';
         $file = $path . "/" . $filename;
