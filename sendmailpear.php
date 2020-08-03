@@ -16,4 +16,10 @@ $smtp = Mail::factory("smtp", array('host' => "smtp.webfaction.com",
             'password' => "@#mega6636"));
 
 $mail = $smtp->send($to, $headers, $body);
+
+if ($mail) {
+    echo "Message successfully sent!";
+} else {
+    echo "Message delivery failed...";
+}
 ?>
