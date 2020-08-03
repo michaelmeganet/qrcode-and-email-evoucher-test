@@ -13,8 +13,11 @@ $headers = "From: meganet001@gmail.com" . $eol . "Reply-To: no-reply@gmail.com" 
 $random_hash = md5(date('r', time()));
 
 $headers .= "Content-Type: multipart/mixed; boundary=\"PHP-mixed-" . $random_hash . "\"";
-
-$attachment = chunk_split(base64_encode(file_get_contents('logo.png'))); // Set your file path here
+$filename = 'qrcode_img.png';
+$path = './resource/img';
+$file = $path . "/". $filename;
+echo "\$file = $file <br>";
+$attachment = chunk_split(base64_encode(file_get_contents($file))); // Set your file path here
 //define the body of the message.
 
 $message = "--PHP-mixed-$random_hash" . $eol . "Content-Type: multipart/alternative; boundary=\"PHP-alt-$random_hash\"" . $eol . $eol;
