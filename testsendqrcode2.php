@@ -1,16 +1,17 @@
 
 
-<form enctype="multipart/form-data" method="POST" action="">
+<!--<form enctype="multipart/form-data" method="POST" action="">
+
     <label>Your Name <input type="text" name="sender_name" /> </label>
     <label>Your Email <input type="email" name="sender_email" /> </label>
     <label>Subject <input type="text" name="subject" /> </label>
     <label>Message <textarea name="message"></textarea> </label>
     <label>Attachment <input type="file" name="attachment" /></label>
     <label><input type="submit" name="button" value="Submit" /></label>
-</form>
+</form>-->
 
 <?php
-if ($_POST['button'] && isset($_FILES['attachment'])) {
+//if ($_POST['button'] && isset($_FILES['attachment'])) {
 
     $from_email = 'cct3000@gmail.com'; //from mail, sender email addrress
     $recipient_email = 'meganet001@gmail.com'; //recipient email addrress
@@ -28,6 +29,9 @@ if ($_POST['button'] && isset($_FILES['attachment'])) {
       }
      */
 
+/*echo "list down \$_FILES contents<br> ";
+print_r($_FILES);
+echo "<br>";
 //Get uploaded file data using $_FILES array
     $tmp_name = $_FILES['my_file']['tmp_name']; // get the temporary file name of the file on the server
     $name = $_FILES['my_file']['name'];  // get the name of the file
@@ -43,7 +47,13 @@ if ($_POST['button'] && isset($_FILES['attachment'])) {
     $handle = fopen($tmp_name, "r");  // set the file handle only for reading the file
     $content = fread($handle, $size); // reading the file
     fclose($handle);                  // close upon completion
-
+*/
+## insert from https://stackoverflow.com/questions/12301358/send-attachments-with-php-mail
+    $filename = 'qrcode_img.png';
+    $path = './resource/img';
+    $file = $path ."/".$filename;
+echo "\$file = $file <br>";
+    $content = file_get_contents($file);
     $encoded_content = chunk_split(base64_encode($content));
 
     $boundary = md5("random"); // define boundary with a md5 hashed value
@@ -77,4 +87,4 @@ if ($_POST['button'] && isset($_FILES['attachment'])) {
         die("Sorry but the email could not be sent.
                     Please go back and try again!");
     }
-}
+//}
