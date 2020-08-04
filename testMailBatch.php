@@ -4,7 +4,6 @@ namespace voucher\EVoucherBatch;
 
 include_once 'class/vouchergenerate.inc.php';
 
-
 use E_VOUCHER;
 use SQL;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -44,6 +43,7 @@ function sendEmail($recipient, //the email recipient
         //Server settings
         #$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
         $mail->isSMTP();                                            // Send using SMTP
+<<<<<<< HEAD
         //$mail->Host = 'smtp.gmail.com';                       // Set the SMTP server to send through
         $mail->Host = 'mail.phh.com.my';                       // Set the SMTP server to send through
         $mail->SMTPAuth = true;                                   // Enable SMTP authentication
@@ -60,6 +60,24 @@ function sendEmail($recipient, //the email recipient
         $mail->addAddress($recipient);                              // Name is optional
         $mail->addReplyTo('ishin_evoucher_generator@phh.com.my', '-noreply');
 //        $mail->addReplyTo('meganet003@gmail.com', '-noreply');
+=======
+//        $mail->Host = 'smtp.gmail.com';                       // Set the SMTP server to send through
+        $mail->Host = 'mail.phh.com.my';
+        $mail->SMTPAuth = true;                                   // Enable SMTP authentication
+//        $mail->Username = 'meganet003@gmail.com';                 // SMTP username
+        $mail->Username = 'ishin_evoucher_generator@phh.com.my';
+//        $mail->Password = 'mega6636';                             // SMTP password
+        $mail->Password = '@#$ishin1234()!';
+        //$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        $mail->Port = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+        //Recipients
+        //$mail->setFrom('meganet003@gmail.com', '-noreply');
+        $mail->setFrom('ishin_evoucher_generaor@phh.com.my', '-noreply');
+        #$mail->addAddress('joe@example.net', 'Joe User');          // Add a recipient
+        $mail->addAddress($recipient);                              // Name is optional
+//        $mail->addReplyTo('meganet003@gmail.com', '-noreply');
+        $mail->addReplyTo('ishin_evoucher_generator@phh.com.my', '-noreply');
+>>>>>>> fecb87d10cb3598718d8700d2c88df9b08e7a3c3
         $mail->addEmbeddedImage($img_dir, 'qrcode');                //Adds an image to be embedded
         #$mail->addCC('cc@example.com');
         #$mail->addBCC('bcc@example.com');
@@ -145,8 +163,8 @@ foreach ($arr_email as $row) {
             //Create PNG of Barcode
             $img_dir = './resource/img/qrcode_img.png';
             $output = file_get_contents($curr);
-            if(empty($output)){
-                throw new Exception('Error Connecting to Server, Cannot resolve assigned Server at <strong> http://'.$ipaddress.'</strong>.');
+            if (empty($output)) {
+                throw new Exception('Error Connecting to Server, Cannot resolve assigned Server at <strong> http://' . $ipaddress . '</strong>.');
             }
             file_put_contents($img_dir, $output);
 
