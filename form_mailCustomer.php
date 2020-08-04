@@ -38,8 +38,8 @@ $detected_ipaddress = $_SERVER['SERVER_NAME'];
             }
             ?>
         </label>
-        <!--    <form action='testMail.php' method='POST'>-->
-        <form action='sendmailsingle.php' method='POST'>
+        <form action='testMail.php' method='POST'>
+        <!-- <form action='sendmailsingle.php' method='POST'> -->
             <div class="form-group row row-no-gutters">
                 <div class="col-sm-1">
                     <label class="label label-default">User :</label><br>
